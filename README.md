@@ -68,7 +68,7 @@ As taken from <http://json-schema.org/example1.html>.
         + Items (string, `home`, `green`)
 ```
 
-#### Rendered
+#### Rendered Markdown
 
 + `product` ... A product from Acme's catalog
     + `id` (integer, `1`) ... The unique identifier for a product
