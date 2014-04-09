@@ -1,16 +1,16 @@
 # Markdown Syntax for Object Notation
-Markdown syntax proposal for JSON & JSON Schema.
+Proposal of a Markdown syntax for JSON & JSON Schema.
 
-The purpose of format is to provide a media-type agnostic, human and machine readable serialization (and validation) format which can be represented various serialization formats.
+The purpose of this plain text formatting syntax is to provide a human and machine readable serialization and validation format, agnostic to the current markup formats.
 
-While this document primarily focuses on JSON and JSON Schema it MUST be possible to produce an XML or YAML representation from the MSON notation.
+Similarly to the original Markdown to HTML (markup) conversion the Markdown Syntax for Object Notation (hereafter MSON) MUST enable a conversion to its markup counter part(s).
 
-This proposal covers only basic features of JSON Schema. At this moment it is out of the scope of this syntax to support all the JSON Schema keywords (such as `uniqueItems`, `exclusiveMinimum` etc.).
+While this document focuses primarily on JSON and JSON Schema it MUST be possible to produce an XML or YAML representation from the MSON as well.
 
-## Basic Example
-As taken from <http://json-schema.org/example1.html>.
+## Example (Serialization)
+> **NOTE:** Examples are using JSON (markup) documents from <http://json-schema.org/example1.html>
 
-### JSON Payload
+### JSON
 
 ```json
 {
@@ -21,7 +21,34 @@ As taken from <http://json-schema.org/example1.html>.
 }
 ```
 
-### JSON Payload Schema
+### MSON
+#### Source
+
+```
+- id: 1
+- name: A green door
+- price: 12.50
+- tags: home, green
+```
+
+#### Rendered Markdown
+
+---
+
+- id: 1
+- name: A green door
+- price: 12.50
+- tags: home, green
+
+---
+
+
+## Example (Validation)
+
+### JSON Schema
+
+> **NOTE:**  This proposal covers only basic features of JSON Schema. At this moment it is out of the scope of this syntax to support all the JSON Schema keywords (such as `uniqueItems`, `exclusiveMinimum` etc.).
+
 
 ```json
 {
@@ -56,43 +83,68 @@ As taken from <http://json-schema.org/example1.html>.
 }
 ```
 
-### Proposed Syntax
+### MSON
 #### Source
 
+
 ```
-+ `product` ... A product from Acme's catalog
-    + `id` (integer, `1`) ... The unique identifier for a product
-    + `name` (string, `A green door`) ... Name of the product
-    + `price` = `0` (number, optional, `12.50`)
-    + `tags` (array, optional)
-        + Items (string, `home`, `green`)
+# Product 
+A product from Acme's catalog
+
+- id: 1 (integer) - The unique identifier for a product
+- name: A green door (string) - Name of the product
+- price: 12.50 (number)
+- tags: home, green (optional, array of strings)
 ```
 
 #### Rendered Markdown
 
-+ `product` ... A product from Acme's catalog
-    + `id` (integer, `1`) ... The unique identifier for a product
-    + `name` (string, `A green door`) ... Name of the product
-    + `price` = `0` (number, optional, `12.50`)
-    + `tags` (array, optional)
-        + Items (string, `home`, `green`)
+---
+
+#### Product 
+A product from Acme's catalog
+
+- id: 1 (integer) - The unique identifier for a product
+- name: A green door (string) - Name of the product
+- price: 12.50 (number)
+- tags: home, green (optional, array of strings)
+
+----
 
 This syntax fully captures original JSON payload thanks to example values as well as most of the basic features of JSON schema while it stays media-type agnostic (e.g. you can generate a YAML or XML from it).
 
-### More Complex Example
-This example is demonstrating nesting of objects.
+
+---
+
+
+
+#### Advanced Array Techniques
 
 ```
-+ `product` ... A product from Acme's catalog
-    + `id` (integer) ... The unique identifier for a product
-    + `name` (string, `A green door`) ... Name of the product
-    + `price` = `0` (number, optional)
-    + `author` ... Author of the product
-        + `id` (integer) ... Id of the author
-        + `name` (string) ... Name of the author 
-        + `email` (string, optional) ... Email address of the author
-    + `tags` (array)
-        + Items
-            + `name` (string) ... Name of the tag
-            + `author_id` (integer) ... Id of the author
+
+- tags: home, 42 (optional, array)
+    - Item (string)
+    - Item (number)
+
+- tags
+    - Item
+        - name (string)
+        - description (string)
+    - Item (number)
+
+- tags (array of arrays)
+    - Item: 1, 2, 3, 4 (array of numbers)
+        - Item (number)
+
+
+- name: Josh
+- address: josh@icloud.com
+- tags
+    - Item
+        - label: A
+        - address: a.com
+    - Item
+        - label: B
+        - address: b.com
+
 ```
