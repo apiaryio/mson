@@ -130,6 +130,54 @@ Markdown [code span][] element syntax (`` ` ` ``) is used to escape properties a
 - `price`: `12.50`
 - `tags`: `home`, `green`
 
+## More description?
+In the case where one-liner description is not enough a mutli-paragraph list item is the way to go.
+
+#### Source MSON
+
+```
+- id: 1 (integer) - The unique identifier for a product
+- name: A green door (string) 
+
+    **Name of the product**
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+    Maecenas elementum in odio sit amet ultrices. 
+    Phasellus placerat, nisl vel aliquam laoreet, quam nisi tempus mauris, non rhoncus arcu dolor sed erat. 
+    Sed vestibulum nisl placerat erat varius, eget tristique nibh volutpat. Vestibulum ut dui lacus. 
+
+    Sed sed lacus a arcu vehicula ultricies sed vel nibh. Mauris id cursus felis. 
+    Suspendisse pellentesque justo ac erat tempor lobortis. 
+    Proin aliquam adipiscing dolor at dictum. **Nulla facilisi**. 
+    Donec venenatis velit eget posuere malesuada. Aenean vel mi nisl. 
+
+    Interdum et malesuada fames ac ante ipsum primis in faucibus. 
+
+- price: 12.50 (number)
+- tags: home, green (optional, array of strings)
+```
+
+#### Rendered Markdown
+
+- id: 1 (integer) - The unique identifier for a product
+- name: A green door (string) 
+
+    **Name of the product**
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+    Maecenas elementum in odio sit amet ultrices. 
+    Phasellus placerat, nisl vel aliquam laoreet, quam nisi tempus mauris, non rhoncus arcu dolor sed erat. 
+    Sed vestibulum nisl placerat erat varius, eget tristique nibh volutpat. Vestibulum ut dui lacus. 
+
+    Sed sed lacus a arcu vehicula ultricies sed vel nibh. Mauris id cursus felis. 
+    Suspendisse pellentesque justo ac erat tempor lobortis. 
+    Proin aliquam adipiscing dolor at dictum. **Nulla facilisi**. 
+    Donec venenatis velit eget posuere malesuada. Aenean vel mi nisl. 
+
+    Interdum et malesuada fames ac ante ipsum primis in faucibus. 
+
+- price: 12.50 (number)
+- tags: home, green (optional, array of strings)
 
 ## Advanced Arrays
 Some additional examples some more complex arrays, such as arrays of mixed objects or arrays of arrays
