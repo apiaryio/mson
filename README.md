@@ -12,7 +12,7 @@ In addition this format also offers (limited) serialization functionality.
 Similarly to the original Markdown to HTML (markup) conversion the Markdown Syntax for Object Notation (hereafter MSON) enables a conversion to other markup formats. 
 
 ## Who & Why? 
-This format is being developed by [@zdne][] at [@apiaryio][] as a part of [API Blueprint][] syntax to provide a means for description and validation of HTTP payloads, DRY media-type agnostic resource descriptions and to simplify content-negotiation.
+This format is being developed by [@zdne][] at [Apiary][] as a part of [API Blueprint][] syntax to provide a means for description and validation of HTTP payloads, DRY media-type agnostic resource descriptions and to simplify content-negotiation.
 
 > **NOTE**: While this document focuses primarily on JSON and JSON Schema it MUST be possible to produce an XML or YAML representation from the MSON as well.
 
@@ -237,4 +237,4 @@ Some additional examples some more complex arrays, such as arrays of mixed objec
 [API Blueprint]: https://github.com/apiaryio/api-blueprint
 [code span]: http://daringfireball.net/projects/markdown/syntax#code
 [@zdne]: https://github.com/zdne
-[@apiaryio]: https://github.com/apiaryio
+[Apiary]: http://apiary.io
