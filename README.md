@@ -177,7 +177,12 @@ In the case where one-liner description is not enough a mutli-paragraph list ite
     
     Sed sed lacus a arcu vehicula ultricies sed vel nibh. Mauris id cursus felis. 
 
-    Interdum et malesuada fames ac ante ipsum primis in faucibus. 
+    Interdum et malesuada fames ac ante ipsum primis in faucibus.
+
+    - unus
+    - duo
+    - tres
+    - quattuor    
 
 - price: 12.50 (required, number)
 - tags: home, green (array)
@@ -192,7 +197,12 @@ For multi-line description of an array or object the `Elements` or `Properties` 
 
     Sed sed lacus a arcu vehicula ultricies sed vel nibh. Mauris id cursus felis.
 
-    Interdum et malesuada fames ac ante ipsum primis in faucibus.     
+    Interdum et malesuada fames ac ante ipsum primis in faucibus.
+
+    - unus
+    - duo
+    - tres
+    - quattuor
 
     - Elements
         - home
@@ -207,21 +217,21 @@ Some additional examples some more complex arrays, such as arrays of mixed objec
 #### JSON
 
 ```json
-["hello", 42]
+{ "tags": ["hello", 42] }
 ```
 
 #### MSON
 
 ```
 - tags (array)
-    - home (string)
+    - hello (string)
     - 42 (number)
 ```
 
 #### Rendered Markdown
 
 - tags (array)
-    - home (string)
+    - hello (string)
     - 42 (number)
 
 ---
@@ -231,22 +241,22 @@ Some additional examples some more complex arrays, such as arrays of mixed objec
 #### JSON
 
 ```json
-[{ "name": "", "description": "" }, 42]
+[{ "name": "snow", "description": null }, 42]
 ```
 
 #### MSON
 
 ```
-- tags (array)
+- (array)
     - (object)
-        - name (string)
+        - name: snow (string)
         - description (string)
     - 42 (number)
 ```
 
 #### Rendered Markdown
 
-- tags (array)
+- (array)
     - (object)
         - name (string)
         - description (string)
@@ -265,14 +275,14 @@ Some additional examples some more complex arrays, such as arrays of mixed objec
 #### MSON
 
 ```
-- tags (array)
+- (array)
     - 1, 2, 3, 4 (array)
         - (number)
 ```
 
 #### Rendered Markdown
 
-- tags (array)
+- (array)
     - 1, 2, 3, 4 (array)
         - (number)
 
