@@ -60,7 +60,7 @@ A product from Acme's catalog
 - id: 1 (required, integer) - The unique identifier for a product
 - name: A green door (required, string) - Name of the product
 - price: 12.50 (required, number)
-- tags: home, green (array of strings)
+- tags: home, green (array: string)
 ```
 
 #### Rendered Markdown
@@ -71,7 +71,7 @@ A product from Acme's catalog
 - id: 1 (required, integer) - The unique identifier for a product
 - name: A green door (required, string) - Name of the product
 - price: 12.50 (required, number)
-- tags: home, green (array of strings)
+- tags: home, green (array: string)
 
 #### JSON Schema Representation
 
@@ -155,13 +155,13 @@ In the case where one-liner description is not enough a mutli-paragraph list ite
     Interdum et malesuada fames ac ante ipsum primis in faucibus. 
 
 - price: 12.50 (required, number)
-- tags: home, green (array of strings)
+- tags: home, green (array: string)
 ```
 
 #### Rendered Markdown
 
 - id: 1 (required, integer) - The unique identifier for a product
-- name: A green door (required, string) 
+- name: A green door (required, array: string) 
 
     **Name of the product**
 
@@ -178,7 +178,7 @@ In the case where one-liner description is not enough a mutli-paragraph list ite
     Interdum et malesuada fames ac ante ipsum primis in faucibus. 
 
 - price: 12.50 (required, number)
-- tags: home, green (array of strings)
+- tags: home, green (array: string)
 
 ## Advanced Arrays
 Some additional examples some more complex arrays, such as arrays of mixed objects or arrays of arrays
@@ -224,15 +224,15 @@ Some additional examples some more complex arrays, such as arrays of mixed objec
 #### Source MSON
 
 ```
-- tags (array of arrays)
-    - Item: 1, 2, 3, 4 (array of numbers)
+- tags (array: array)
+    - Item: 1, 2, 3, 4 (array: number)
         - Item (number)
 ```
 
 #### Rendered Markdown
 
-- tags (array of arrays)
-    - Item: 1, 2, 3, 4 (array of numbers)
+- tags (array: array)
+    - Item: 1, 2, 3, 4 (array: number)
         - Item (number)
 
 [API Blueprint]: https://github.com/apiaryio/api-blueprint
