@@ -18,23 +18,7 @@ This format is being developed by [@zdne][] at [Apiary][] as a part of [API Blue
 
 ## Example
 
-#### Source MSON
-
-```
-- id: 1
-- name: A green door
-- price: 12.50
-- tags: home, green
-```
-
-#### Rendered Markdown
-
-- id: 1
-- name: A green door
-- price: 12.50
-- tags: home, green
-
-#### JSON Representation
+#### JSON
 
 ```json
 {
@@ -45,35 +29,31 @@ This format is being developed by [@zdne][] at [Apiary][] as a part of [API Blue
 }
 ```
 
+#### MSON
+
+```
+- id: 1
+- name: A green door
+- price: 12.50
+- tags: home, green
+```
+
+#### Rendered Markdown
+
+- id: 1
+- name: A green door
+- price: 12.50
+- tags: home, green
+
+---
+
 > **NOTE:** Escaping question? Look [here](#escaping).
 
 > **NOTE:** Examples are using JSON (markup) documents from <http://json-schema.org/example1.html>
 
 ## Example
 
-#### Source MSON
-
-```
-# Product 
-A product from Acme's catalog
-
-- id: 1 (required, integer) - The unique identifier for a product
-- name: A green door (required, string) - Name of the product
-- price: 12.50 (required, number)
-- tags: home, green (array: string)
-```
-
-#### Rendered Markdown
-
-#### Product 
-A product from Acme's catalog
-
-- id: 1 (required, integer) - The unique identifier for a product
-- name: A green door (required, string) - Name of the product
-- price: 12.50 (required, number)
-- tags: home, green (array: string)
-
-#### JSON Schema Representation
+#### JSON Schema
 
 ```json
 {
@@ -104,136 +84,220 @@ A product from Acme's catalog
 }
 ```
 
-> **NOTE:** In addition to the above schema the source MSON also captures the serialized data of the original JSON!
-
-> **NOTE:** This proposal covers only basic features of JSON Schema. At this moment it is out of the scope of this syntax to support all the JSON Schema keywords (such as `uniqueItems`, `exclusiveMinimum` etc.).
-
-> **NOTE:** Optional is the default trait of a property. Use `required` for required properties.ß
-
----
-
-## Escaping
-Markdown [code span][] element syntax (`` ` ` ``) is used to escape properties and values when needed. The use of code span is optional unless needed. A fully escaped first example would be:
-
-#### Source MSON
+#### MSON
 
 ```
-- `id`: `1`
-- `name`: `A green door`
-- `price`: `12.50`
-- `tags`: `home`, `green`
+# Product 
+A product from Acme's catalog
+
+- id: 1 (required, integer) - The unique identifier for a product
+- name: A green door (required, string) - Name of the product
+- price: 12.50 (required, number)
+- tags: home, green (array)
+    - (string)
 ```
 
 #### Rendered Markdown
 
-- `id`: `1`
-- `name`: `A green door`
-- `price`: `12.50`
-- `tags`: `home`, `green`
+#### Product 
+A product from Acme's catalog
+
+- id: 1 (required, integer) - The unique identifier for a product
+- name: A green door (required, string) - Name of the product
+- price: 12.50 (required, number)
+- tags: home, green (array)
+    - (string)
+
+---
+
+> **NOTE:** In addition to the above schema the source MSON also captures the serialized data of the original JSON!
+
+> **NOTE:** This proposal covers only basic features of JSON Schema. At this moment it is out of the scope of this syntax to support all the JSON Schema keywords (such as `uniqueItems`, `exclusiveMinimum` etc.).
+
+> **NOTE:** Optional is the default trait of a property. Use `required` for required properties.
+
+## Objects & Arrays
+By default, a Markdown list item is considered to be an object property:
+
+#### JSON
+```json
+{ 
+    "address" : {
+        "street": null,
+        "city": null,
+        "state": null
+    }
+}
+```
+
+#### MSON
+```
+- address
+    - street
+    - city
+    - state
+```
+
+If a markdown list items represent array values the type of parents property must be explicitly set to array:
+
+#### JSON
+```json
+{ 
+    "address": ["street", "city", "state"]
+}
+```
+
+#### MSON
+```
+- address (array)
+    - street
+    - city
+    - state
+```
+
+Or, perhaps preferably: 
+
+```
+- address: street, city, state (array)
+```
+
+In this case, the type – `(array)` – can be omitted.
+
 
 ## More description?
 In the case where one-liner description is not enough a mutli-paragraph list item is the way to go.
 
-#### Source MSON
+#### MSON
 
 ```
 - id: 1 (required, integer) - The unique identifier for a product
 - name: A green door (required, string) 
 
-    **Name of the product**
-
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-    Maecenas elementum in odio sit amet ultrices. 
-    Phasellus placerat, nisl vel aliquam laoreet, quam nisi tempus mauris, non rhoncus arcu dolor sed erat. 
-    Sed vestibulum nisl placerat erat varius, eget tristique nibh volutpat. Vestibulum ut dui lacus. 
-
+    
     Sed sed lacus a arcu vehicula ultricies sed vel nibh. Mauris id cursus felis. 
-    Suspendisse pellentesque justo ac erat tempor lobortis. 
-    Proin aliquam adipiscing dolor at dictum. **Nulla facilisi**. 
-    Donec venenatis velit eget posuere malesuada. Aenean vel mi nisl. 
 
     Interdum et malesuada fames ac ante ipsum primis in faucibus. 
 
 - price: 12.50 (required, number)
-- tags: home, green (array: string)
+- tags: home, green (array)
 ```
 
-#### Rendered Markdown
+For multi-line description of an array or object the `Elements` or `Properties` keyword is needed to avoid any possible clash with potential description list items: 
 
-- id: 1 (required, integer) - The unique identifier for a product
-- name: A green door (required, array: string) 
+```
+- tags (array)
+    
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
-    **Name of the product**
+    Sed sed lacus a arcu vehicula ultricies sed vel nibh. Mauris id cursus felis.
 
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-    Maecenas elementum in odio sit amet ultrices. 
-    Phasellus placerat, nisl vel aliquam laoreet, quam nisi tempus mauris, non rhoncus arcu dolor sed erat. 
-    Sed vestibulum nisl placerat erat varius, eget tristique nibh volutpat. Vestibulum ut dui lacus. 
+    Interdum et malesuada fames ac ante ipsum primis in faucibus.     
 
-    Sed sed lacus a arcu vehicula ultricies sed vel nibh. Mauris id cursus felis. 
-    Suspendisse pellentesque justo ac erat tempor lobortis. 
-    Proin aliquam adipiscing dolor at dictum. **Nulla facilisi**. 
-    Donec venenatis velit eget posuere malesuada. Aenean vel mi nisl. 
-
-    Interdum et malesuada fames ac ante ipsum primis in faucibus. 
-
-- price: 12.50 (required, number)
-- tags: home, green (array: string)
+    - Elements
+        - home
+        - green 
+```
 
 ## Advanced Arrays
 Some additional examples some more complex arrays, such as arrays of mixed objects or arrays of arrays
 
 ### Array of mixed primitive types
 
-#### Source MSON
+#### JSON
+
+```json
+["hello", 42]
+```
+
+#### MSON
 
 ```
-- tags: home, 42 (array)
-    - Item (string)
-    - Item (number)
+- tags (array)
+    - home (string)
+    - 42 (number)
 ```
 
 #### Rendered Markdown
 
-- tags: home, 42 (array)
-    - Item (string)
-    - Item (number)
+- tags (array)
+    - home (string)
+    - 42 (number)
+
+---
 
 ### Array of mixed objects
 
-#### Source MSON
+#### JSON
+
+```json
+[{ "name": "", "description": "" }, 42]
+```
+
+#### MSON
 
 ```
-- tags
-    - Item
+- tags (array)
+    - (object)
         - name (string)
         - description (string)
-    - Item (number)
+    - 42 (number)
 ```
 
 #### Rendered Markdown
 
-- tags
-    - Item
+- tags (array)
+    - (object)
         - name (string)
         - description (string)
-    - Item (number)
+    - 42 (number)
+
+---
 
 ### Array of Arrays
 
-#### Source MSON
+#### JSON
+
+```json
+[[1, 2, 3, 4]]
+```
+
+#### MSON
 
 ```
-- tags (array: array)
-    - Item: 1, 2, 3, 4 (array: number)
-        - Item (number)
+- tags (array)
+    - 1, 2, 3, 4 (array)
+        - (number)
 ```
 
 #### Rendered Markdown
 
-- tags (array: array)
-    - Item: 1, 2, 3, 4 (array: number)
-        - Item (number)
+- tags (array)
+    - 1, 2, 3, 4 (array)
+        - (number)
+
+---
+
+## Escaping
+Markdown [code span][] element syntax (`` ` ` ``) is used to escape properties and values when needed. The use of code span is optional unless needed. A fully escaped first example would be:
+
+#### MSON
+
+```
+- `id`: `1`
+- `name`: `A green door`
+- `price`: `12.50`
+- `tags`: `home`, `green`
+```
+
+#### Rendered Markdown
+
+- `id`: `1`
+- `name`: `A green door`
+- `price`: `12.50`
+- `tags`: `home`, `green`
+
+---
 
 [API Blueprint]: https://github.com/apiaryio/api-blueprint
 [code span]: http://daringfireball.net/projects/markdown/syntax#code
