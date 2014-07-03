@@ -57,10 +57,10 @@ This format is being developed by [@zdne][] at [Apiary][] as a part of [API Blue
 # Product 
 A product from Acme's catalog
 
-- id: 1 (integer) - The unique identifier for a product
-- name: A green door (string) - Name of the product
-- price: 12.50 (number)
-- tags: home, green (optional, array of strings)
+- id: 1 (required, integer) - The unique identifier for a product
+- name: A green door (required, string) - Name of the product
+- price: 12.50 (required, number)
+- tags: home, green (array of strings)
 ```
 
 #### Rendered Markdown
@@ -68,10 +68,10 @@ A product from Acme's catalog
 #### Product 
 A product from Acme's catalog
 
-- id: 1 (integer) - The unique identifier for a product
-- name: A green door (string) - Name of the product
-- price: 12.50 (number)
-- tags: home, green (optional, array of strings)
+- id: 1 (required, integer) - The unique identifier for a product
+- name: A green door (required, string) - Name of the product
+- price: 12.50 (required, number)
+- tags: home, green (array of strings)
 
 #### JSON Schema Representation
 
@@ -108,6 +108,7 @@ A product from Acme's catalog
 
 > **NOTE:** This proposal covers only basic features of JSON Schema. At this moment it is out of the scope of this syntax to support all the JSON Schema keywords (such as `uniqueItems`, `exclusiveMinimum` etc.).
 
+> **NOTE:** Optional is the default trait of a property. Use `required` for required properties.ß
 
 ---
 
@@ -136,8 +137,8 @@ In the case where one-liner description is not enough a mutli-paragraph list ite
 #### Source MSON
 
 ```
-- id: 1 (integer) - The unique identifier for a product
-- name: A green door (string) 
+- id: 1 (required, integer) - The unique identifier for a product
+- name: A green door (required, string) 
 
     **Name of the product**
 
@@ -153,14 +154,14 @@ In the case where one-liner description is not enough a mutli-paragraph list ite
 
     Interdum et malesuada fames ac ante ipsum primis in faucibus. 
 
-- price: 12.50 (number)
-- tags: home, green (optional, array of strings)
+- price: 12.50 (required, number)
+- tags: home, green (array of strings)
 ```
 
 #### Rendered Markdown
 
-- id: 1 (integer) - The unique identifier for a product
-- name: A green door (string) 
+- id: 1 (required, integer) - The unique identifier for a product
+- name: A green door (required, string) 
 
     **Name of the product**
 
@@ -176,8 +177,8 @@ In the case where one-liner description is not enough a mutli-paragraph list ite
 
     Interdum et malesuada fames ac ante ipsum primis in faucibus. 
 
-- price: 12.50 (number)
-- tags: home, green (optional, array of strings)
+- price: 12.50 (required, number)
+- tags: home, green (array of strings)
 
 ## Advanced Arrays
 Some additional examples some more complex arrays, such as arrays of mixed objects or arrays of arrays
@@ -187,14 +188,14 @@ Some additional examples some more complex arrays, such as arrays of mixed objec
 #### Source MSON
 
 ```
-- tags: home, 42 (optional, array)
+- tags: home, 42 (array)
     - Item (string)
     - Item (number)
 ```
 
 #### Rendered Markdown
 
-- tags: home, 42 (optional, array)
+- tags: home, 42 (array)
     - Item (string)
     - Item (number)
 
