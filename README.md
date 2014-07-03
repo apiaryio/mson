@@ -258,7 +258,7 @@ Some additional examples some more complex arrays, such as arrays of mixed objec
 
 - (array)
     - (object)
-        - name (string)
+        - name: snow (string)
         - description (string)
     - 42 (number)
 
