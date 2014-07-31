@@ -174,7 +174,8 @@ In this case, the type – `(array)` – can be omitted.
 
 ## Advanced Objects
 
-### Non-uniform property 
+### Non-uniform property
+Heterogeneous property must be marked as `one of` "type". 
 
 #### JSON
 
@@ -191,16 +192,16 @@ or
 #### MSON
 
 ```
-- tag 
-    - green (string) - Tag name
+- tag (one of)
+    - green (string)
     - (object)
-        - tag_id: 1 - An id of the tag
-        - label: green - Label of the tag
+        - tag_id: 1
+        - label: green
 ```
 
 #### Rendered Markdown
 
-- tag
+- tag (one of)
     - green (string) - Tag name
     - (object)
         - tag_id: 1 - An id of the tag
