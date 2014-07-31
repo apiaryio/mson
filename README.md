@@ -116,6 +116,15 @@ A product from Acme's catalog
 
 > **NOTE:** Optional is the default trait of a property. Use `required` for required properties.
 
+## Primitive types
+MSON defines following data types:
+
+- array
+- boolean
+- number
+- object
+- string
+
 ## Objects & Arrays
 By default, a Markdown list item is considered to be an object property:
 
