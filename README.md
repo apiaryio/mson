@@ -64,7 +64,7 @@ This format is being developed by [@zdne][] at [Apiary][] as a part of [API Blue
     "properties": {
         "id": {
             "description": "The unique identifier for a product",
-            "type": "integer"
+            "type": "number"
         },
         "name": {
             "description": "Name of the product",
@@ -90,7 +90,7 @@ This format is being developed by [@zdne][] at [Apiary][] as a part of [API Blue
 # Product 
 A product from Acme's catalog
 
-- id: 1 (required, integer) - The unique identifier for a product
+- id: 1 (required, number) - The unique identifier for a product
 - name: A green door (required, string) - Name of the product
 - price: 12.50 (required, number)
 - tags: home, green (array)
@@ -102,7 +102,7 @@ A product from Acme's catalog
 #### Product 
 A product from Acme's catalog
 
-- id: 1 (required, integer) - The unique identifier for a product
+- id: 1 (required, number) - The unique identifier for a product
 - name: A green door (required, string) - Name of the product
 - price: 12.50 (required, number)
 - tags: home, green (array)
@@ -322,7 +322,7 @@ In the case where one-liner description is not enough a mutli-paragraph list ite
 #### MSON
 
 ```
-- id: 1 (required, integer) - The unique identifier for a product
+- id: 1 (required, number) - The unique identifier for a product
 - name: A green door (required, string) 
 
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
