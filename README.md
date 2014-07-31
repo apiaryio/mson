@@ -172,51 +172,49 @@ Or, perhaps preferably:
 
 In this case, the type – `(array)` – can be omitted.
 
+## Advanced Objects
 
-## More description?
-In the case where one-liner description is not enough a mutli-paragraph list item is the way to go.
+### Non-uniform property 
+
+#### JSON
+
+```json
+{ "tag": "green" }
+```
+
+or
+
+```json
+{ "tag": { "tag_id": 1, "label": "green" } }
+```
 
 #### MSON
 
 ```
-- id: 1 (required, integer) - The unique identifier for a product
-- name: A green door (required, string) 
-
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-    
-    Sed sed lacus a arcu vehicula ultricies sed vel nibh. Mauris id cursus felis. 
-
-    Interdum et malesuada fames ac ante ipsum primis in faucibus.
-
-    - unus
-    - duo
-    - tres
-    - quattuor    
-
-- price: 12.50 (required, number)
-- tags: home, green (array)
+- tag 
+    - green (string) - Tag name
+    - (object)
+        - tag_id: 1 - An id of the tag
+        - label: green - Label of the tag
 ```
 
-For multi-line description of an array or object the `Elements` or `Properties` keyword is needed to avoid any possible clash with potential description list items: 
+#### Rendered Markdown
+
+- tag
+    - green (string) - Tag name
+    - (object)
+        - tag_id: 1 - An id of the tag
+        - label: green - Label of the tag
+
+#### MSON
 
 ```
 - tags (array)
-    
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-    Sed sed lacus a arcu vehicula ultricies sed vel nibh. Mauris id cursus felis.
-
-    Interdum et malesuada fames ac ante ipsum primis in faucibus.
-
-    - unus
-    - duo
-    - tres
-    - quattuor
-
-    - Elements
-        - home
-        - green 
+    - hello (string)
+    - 42 (number)
 ```
+
+---
 
 ## Advanced Arrays
 Some additional examples some more complex arrays, such as arrays of mixed objects or arrays of arrays
@@ -315,6 +313,53 @@ Markdown [code span][] element syntax (`` ` ` ``) is used to escape properties a
 - `name`: `A green door`
 - `price`: `12.50`
 - `tags`: `home`, `green`
+
+---
+
+## More description?
+In the case where one-liner description is not enough a mutli-paragraph list item is the way to go.
+
+#### MSON
+
+```
+- id: 1 (required, integer) - The unique identifier for a product
+- name: A green door (required, string) 
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+    
+    Sed sed lacus a arcu vehicula ultricies sed vel nibh. Mauris id cursus felis. 
+
+    Interdum et malesuada fames ac ante ipsum primis in faucibus.
+
+    - unus
+    - duo
+    - tres
+    - quattuor    
+
+- price: 12.50 (required, number)
+- tags: home, green (array)
+```
+
+For multi-line description of an array or object the `Elements` or `Properties` keyword is needed to avoid any possible clash with potential description list items: 
+
+```
+- tags (array)
+    
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+    Sed sed lacus a arcu vehicula ultricies sed vel nibh. Mauris id cursus felis.
+
+    Interdum et malesuada fames ac ante ipsum primis in faucibus.
+
+    - unus
+    - duo
+    - tres
+    - quattuor
+
+    - Elements
+        - home
+        - green 
+```
 
 ---
 
