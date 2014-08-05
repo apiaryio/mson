@@ -90,6 +90,8 @@ This format is being developed by [@zdne][] at [Apiary][] as a part of [API Blue
 # Product 
 A product from Acme's catalog
 
+## Attributes
+
 - id: 1 (required, number) - The unique identifier for a product
 - name: A green door (required, string) - Name of the product
 - price: 12.50 (required, number)
@@ -102,11 +104,12 @@ A product from Acme's catalog
 #### Product 
 A product from Acme's catalog
 
+##### Attributes
+
 - id: 1 (required, number) - The unique identifier for a product
 - name: A green door (required, string) - Name of the product
 - price: 12.50 (required, number)
-- tags: home, green (array)
-    - (string)
+- tags: home, green (array: string)
 
 ---
 
@@ -120,7 +123,7 @@ A product from Acme's catalog
 MSON defines following data types:
 
 - array
-- boolean
+- bool (boolean)
 - number
 - object
 - string
@@ -175,7 +178,7 @@ In this case, the type – `(array)` – can be omitted.
 ## Advanced Objects
 
 ### Non-uniform property
-Heterogeneous property must be marked as `one of` "type". 
+Types (and values) of a non-uniform property listed under the `One of` list item:
 
 #### JSON
 
@@ -192,34 +195,26 @@ or
 #### MSON
 
 ```
-- tag (one of)
-    - green (string)
-    - (object)
-        - tag_id: 1
-        - label: green
+- tag
+    - One of
+        - green (string)
+        - (object)
+            - tag_id: 1
+            - label: green
 ```
 
 #### Rendered Markdown
 
-- tag (one of)
-    - green (string) - Tag name
-    - (object)
-        - tag_id: 1 - An id of the tag
-        - label: green - Label of the tag
-
-#### MSON
-
-```
-- tags (array)
-    - hello (string)
-    - 42 (number)
-```
+- tag
+    - One of
+        - green (string)
+        - (object)
+            - tag_id: 1
+            - label: green
 
 ---
 
 ## Advanced Arrays
-Some additional examples some more complex arrays, such as arrays of mixed objects or arrays of arrays
-
 ### Array of mixed primitive types
 
 #### JSON
@@ -243,8 +238,6 @@ Some additional examples some more complex arrays, such as arrays of mixed objec
     - 42 (number)
 
 ---
-
-### Array of mixed objects
 
 #### JSON
 
@@ -284,20 +277,29 @@ Some additional examples some more complex arrays, such as arrays of mixed objec
 
 ```
 - (array)
-    - 1, 2, 3, 4 (array)
-        - (number)
+    - 1, 2, 3, 4 (array: number)
 ```
 
 #### Rendered Markdown
 
 - (array)
-    - 1, 2, 3, 4 (array)
-        - (number)
+    - 1, 2, 3, 4 (array: number)
 
 ---
 
 ## Escaping
 Markdown [code span][] element syntax (`` ` ` ``) is used to escape properties and values when needed. The use of code span is optional unless needed. A fully escaped first example would be:
+
+Element values and property names and values with _reserved characters_ or containing keywords MUST be escaped. 
+
+#### Reserved Characters
+
+`:`, `(`,`)`, `<`, `>`, `[`, `]`, `_`, `*`, `-`, `` ` `` 
+
+#### Keywords 
+Keywords are case insensitive:
+
+`One of`, `Element`, `Elements`, `Inherit`, `Inherits`, `Property`, `Properties`
 
 #### MSON
 
@@ -363,6 +365,129 @@ For multi-line description of an array or object the `Elements` or `Properties` 
 ```
 
 ---
+
+## Templated Properties
+Should an object have an arbitrary number properties with variable name simply create a templated property using braces around its name. Note a templated property can't be required.
+
+#### JSON
+
+```json
+{
+    "_links" {
+        "self": {
+            "href": "an uri"
+        }
+    }
+}
+```
+
+#### MSON
+
+```
+- _links
+    - {self}
+        - href: an uri
+```
+
+#### Rendered Markdown
+
+- _links
+    - {self}
+        - href: an uri
+
+---
+
+## Referencing
+Anywhere an object or type is expected, a reference to another object can be used. To reference an object use the `[object name]()` syntax.
+
+#### JSON
+```json
+{
+    "fist_name": null,
+    "last_name": null,
+    "address": {
+        "street": null,
+        "city": null,
+        "state": null,
+        "zip": null
+    }
+}
+```
+
+#### MSON
+
+```
+# Address Object
+- street
+- city
+- state
+- zip
+
+# User Object
+- fist_name 
+- last_name
+- address: [Address]()
+```
+
+#### Rendered Markdown
+
+##### Address Object
+- street
+- city
+- state
+- zip
+
+##### User Object
+- fist_name 
+- last_name
+- address: [Address]()
+
+---
+
+To inherit (mixin) object properties into another object use the `Inherit` keyword.
+
+#### JSON
+```json
+{
+    "fist_name": null,
+    "last_name": null,
+    "street": null,
+    "city": null,
+    "state": null,
+    "zip": null
+}
+```
+
+#### MSON
+
+```
+# Address Object
+- street
+- city
+- state
+- zip
+
+# User Object
+- fist_name 
+- last_name
+- Inherit [Address]()
+```
+
+#### Rendered Markdown
+
+##### Address Object
+- street
+- city
+- state
+- zip
+
+##### User Object
+- fist_name 
+- last_name
+- Inherit [Address]()
+
+---
+
 
 [API Blueprint]: https://github.com/apiaryio/api-blueprint
 [code span]: http://daringfireball.net/projects/markdown/syntax#code
