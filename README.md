@@ -16,7 +16,7 @@ This format is being developed by [@zdne][] at [Apiary][] as a part of [API Blue
 
 > **NOTE**: While this document focuses primarily on JSON and JSON Schema it MUST be possible to produce an XML or YAML representation from the MSON as well.
 
-## Example
+## Example 1
 
 #### JSON
 
@@ -49,9 +49,7 @@ This format is being developed by [@zdne][] at [Apiary][] as a part of [API Blue
 
 > **NOTE:** Escaping question? Look [here](#escaping).
 
-> **NOTE:** Examples are using JSON (markup) documents from <http://json-schema.org/example1.html>
-
-## Example
+## Example 2
 
 #### JSON Schema
 
@@ -90,25 +88,24 @@ This format is being developed by [@zdne][] at [Apiary][] as a part of [API Blue
 # Product 
 A product from Acme's catalog
 
-## Attributes
+## Properties
 
-- id: 1 (required, number) - The unique identifier for a product
-- name: A green door (required, string) - Name of the product
-- price: 12.50 (required, number)
-- tags: home, green (array)
-    - (string)
+- id: 1 (number, required) - The unique identifier for a product
+- name: A green door (string, required) - Name of the product
+- price: 12.50 (number, required)
+- tags: home, green (array: string)
 ```
 
 #### Rendered Markdown
 
-#### Product 
+##### Product
 A product from Acme's catalog
 
-##### Attributes
+###### Properties
 
-- id: 1 (required, number) - The unique identifier for a product
-- name: A green door (required, string) - Name of the product
-- price: 12.50 (required, number)
+- id: 1 (number, required) - The unique identifier for a product
+- name: A green door (string, required) - Name of the product
+- price: 12.50 (number, required)
 - tags: home, green (array: string)
 
 ---
@@ -117,16 +114,44 @@ A product from Acme's catalog
 
 > **NOTE:** This proposal covers only basic features of JSON Schema. At this moment it is out of the scope of this syntax to support all the JSON Schema keywords (such as `uniqueItems`, `exclusiveMinimum` etc.).
 
-> **NOTE:** Optional is the default trait of a property. Use `required` for required properties.
+> **NOTE:** Optional is the default for a property. Use `required` for required properties.
+
+## Quick Links
+
+- [Primitive types](#primitive-types)
+- [Composite Types](#composite-types)
+- [Objects & Arrays](#objects-arrays)
+- [Advanced Objects](#advanced-objects)
+- [Advanced Arrays](#advanced-arrays)
+- [Escaping](#escaping)
+- [Mutliline Description](#multiline-description)
+- [Variable Property Name](#variable-property-name)
+- [MSON Entity Definition](#mson-entity-definition)
+- [Referencing](#referencing)
+- [Mixins](#mixins)
 
 ## Primitive types
-MSON defines following data types:
+Following are the primitive data types of MSON entities:
 
-- array
 - bool (boolean)
 - number
-- object
 - string
+
+## Composite Types
+MSON entity types composed of one or more other types are 
+
+- array
+- object
+- one of
+
+    The _one of_ type represent a choice of types for an MSON entity value. The types are mutually exclusive. 
+
+#### MSON
+```
+- (one of)
+    - (number)
+    - (string)
+```
 
 ## Objects & Arrays
 By default, a Markdown list item is considered to be an object property:
@@ -178,7 +203,7 @@ In this case, the type – `(array)` – can be omitted.
 ## Advanced Objects
 
 ### Non-uniform property
-Types (and values) of a non-uniform property listed under the `One of` list item:
+A Property which value can be of different types is defined of the `one of` composite type:
 
 #### JSON
 
@@ -186,7 +211,7 @@ Types (and values) of a non-uniform property listed under the `One of` list item
 { "tag": "green" }
 ```
 
-or
+**or**
 
 ```json
 { "tag": { "tag_id": 1, "label": "green" } }
@@ -196,7 +221,7 @@ or
 
 ```
 - tag
-    - One of
+    - (one of)
         - green (string)
         - (object)
             - tag_id: 1
@@ -206,7 +231,7 @@ or
 #### Rendered Markdown
 
 - tag
-    - One of
+    - (one of)
         - green (string)
         - (object)
             - tag_id: 1
@@ -214,8 +239,41 @@ or
 
 ---
 
+### Mutually exclusive properites
+By default all properties are optional and can be includuded in the object (any of). If there a choice of available properties use the `One of` keyword:
+
+#### JSON
+```json
+{ "a": null, "b1": null, "c": null }
+```
+
+**or**
+
+```json
+{ "a": null, "b2": null, "c": null }
+```
+
+#### MSON
+```
+- a
+- One of
+    - b1
+    - b2
+- c
+```
+
+#### Rendered Markdown
+
+- a
+- One of
+    - b1
+    - b2
+- c
+
+---
+
 ## Advanced Arrays
-### Array of mixed primitive types
+### Array of mixed types
 
 #### JSON
 
@@ -294,12 +352,12 @@ Element values and property names and values with _reserved characters_ or conta
 
 #### Reserved Characters
 
-`:`, `(`,`)`, `<`, `>`, `[`, `]`, `_`, `*`, `-`, `` ` `` 
+`:`, `(`,`)`, `<`, `>`, `{`, `}`, `[`, `]`, `_`, `*`, `-`, `` ` `` 
 
 #### Keywords 
 Keywords are case insensitive:
 
-`One of`, `Element`, `Elements`, `Inherit`, `Inherits`, `Property`, `Properties`
+`Element`, `Elements`, `Inherit`, `Inherits`, `Property`, `Properties`, `Attribute`, `Attributes`, `One of`
 
 #### MSON
 
@@ -319,7 +377,7 @@ Keywords are case insensitive:
 
 ---
 
-## More description?
+## Mutliline Description
 In the case where one-liner description is not enough a mutli-paragraph list item is the way to go.
 
 #### MSON
@@ -364,10 +422,8 @@ For multi-line description of an array or object the `Elements` or `Properties` 
         - green 
 ```
 
----
-
-## Templated Properties
-Should an object have an arbitrary number properties with variable name simply create a templated property using braces around its name. Note a templated property can't be required.
+## Variable Property Name
+Variable property name (key) is defined using braces `{}`. Note a variable property can't be required. 
 
 #### JSON
 
@@ -397,8 +453,61 @@ Should an object have an arbitrary number properties with variable name simply c
 
 ---
 
+Additionaly a variable property name can specify its key type:
+
+#### JSON
+```json
+{
+    "1": "1",
+    "2": "2",
+    "3": "Fizz",
+    "4": "4",
+    "5": "Buzz"
+}
+```
+
+#### MSON
+
+```
+- {(number)} (string) - FizzBuzz number & answer pair
+```
+
+#### Rendered Markdown
+
+- {(number)} (string) - FizzBuzz number & answer pair
+
+---
+
+## MSON Entity Definition
+Top-level MSON entities definition
+
+#### MSON 
+
+```
+# Address (object)
+- street
+- city
+- state
+- zip
+```
+
+> **NOTE:** The `object` as default type can be omitted. 
+
+#### MSON 
+
+```
+# Address (one of)
+- (one of)
+    - z@apiary.io (string)
+    - (object)
+        - street
+        - city
+        - state
+        - zip
+```
+
 ## Referencing
-Anywhere an object or type is expected, a reference to another object can be used. To reference an object use the `[object name]()` syntax.
+Anywhere a type is expected, an MSON entity can be referenced. At its simplest an MSON entity is referenced by its name only:
 
 #### JSON
 ```json
@@ -417,34 +526,53 @@ Anywhere an object or type is expected, a reference to another object can be use
 #### MSON
 
 ```
-# Address Object
+# Address (object)
 - street
 - city
 - state
 - zip
 
-# User Object
+# User (object)
 - fist_name 
 - last_name
-- address: [Address]()
+- address (Address)
 ```
 
 #### Rendered Markdown
 
-##### Address Object
+##### Address (object)
 - street
 - city
 - state
 - zip
 
-##### User Object
+##### User (object)
 - fist_name 
 - last_name
-- address: [Address]()
+- address (Address)
 
 ---
 
-To inherit (mixin) object properties into another object use the `Inherit` keyword.
+However both `[]()` and `[][]` [Markdown syntax](http://daringfireball.net/projects/markdown/syntax#link) are supported:
+
+#### MSON
+
+```
+# User (object)
+- fist_name 
+- last_name
+- address ([Address](#address-object))
+```
+
+```
+# User (object)
+- fist_name 
+- last_name
+- address ([Address][])
+```
+
+## Mixins
+To inherit (mixin) object properties into another object use the `Inherit` keyword followed by a reference to the object.
 
 #### JSON
 ```json
@@ -487,7 +615,6 @@ To inherit (mixin) object properties into another object use the `Inherit` keywo
 - Inherit [Address]()
 
 ---
-
 
 [API Blueprint]: https://github.com/apiaryio/api-blueprint
 [code span]: http://daringfireball.net/projects/markdown/syntax#code
