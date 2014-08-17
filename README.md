@@ -357,7 +357,7 @@ Element values and property names and values with _reserved characters_ or conta
 #### Keywords 
 Keywords are case insensitive:
 
-`Element`, `Elements`, `Inherit`, `Inherits`, `Property`, `Properties`, `Attribute`, `Attributes`, `One of`
+`Element`, `Elements`, `Inherit`, `Inherits`, `Property`, `Properties`, `Attribute`, `Attributes`, `One of`, `Trait`, `Traits`
 
 #### MSON
 

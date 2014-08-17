@@ -37,7 +37,7 @@ A LinkObject specifies a link to a target resource
 
 ### Properties
 
-- `href` (Href, required) - The link URI or URI template
+- `href` (string, required) - The link URI or URI template
 
 - `templated` (bool) - Indicates if the href attribute contains a URI Template
     - default: `false`
