@@ -1,32 +1,24 @@
 # Notes API
 
 ## Notes [/notes]
-+ Model (application/json)
- 
-    + Body (array: Note)
++ Model
 
-    + Body
- 
-            [ { "id": 42, "title": "Buy Milk" } ]
+    + Body (array: Note)
  
 ### List all [GET]
-+ Response 200
++ Response 200 (application/json)
  
     [Notes][]
  
 ## Note [/notes/{id}]
-+ Model (application/json)
- 
++ Model
+
     + Body (object)
  
         + id: 42 (number) - id of the note
         + title: Buy Milk (string) - title of the note
- 
-    + Body
- 
-            { "id": 42, "title": "Buy Milk" }
- 
+  
 ### Retrieve a Note [GET]
-+ Response 200
++ Response 200 (application/json)
  
     [Note][]

@@ -175,7 +175,7 @@ By default, a Markdown list item is considered to be an object property:
     - state
 ```
 
-If a markdown list items represent array values the type of parents property must be explicitly set to array:
+If a markdown list items are literals (represent array values), the type of parents property must be explicitly set to array:
 
 #### JSON
 ```json
@@ -346,7 +346,7 @@ By default all properties are optional and can be includuded in the object (any 
 ---
 
 ## Escaping
-Markdown [code span][] element syntax (`` ` ` ``) is used to escape properties and values when needed. The use of code span is optional unless needed. A fully escaped first example would be:
+Markdown [code span][] element syntax (`` ` ` ``) is used to escape properties and literals when needed. The use of code span is optional unless needed.
 
 Element values and property names and values with _reserved characters_ or containing keywords MUST be escaped. 
 
@@ -357,7 +357,12 @@ Element values and property names and values with _reserved characters_ or conta
 #### Keywords 
 Keywords are case insensitive:
 
-`Element`, `Elements`, `Inherit`, `Inherits`, `Property`, `Properties`, `Attribute`, `Attributes`, `One of`, `Trait`, `Traits`
+`Element`, `Elements`, `Property`, `Properties`, `One of`, `Inherit`, `Inherits`
+
+#### Reserved Keywords
+Following keywords are reserved for future use:
+
+`Trait`, `Traits`, `Parameter`, `Parameters`, `Attribute`, `Attributes`, `Filter`
 
 #### MSON
 
@@ -417,7 +422,8 @@ For multi-line description of an array or object the `Elements` or `Properties` 
     - tres
     - quattuor
 
-    - Elements
+    - Elements 
+
         - home
         - green 
 ```
