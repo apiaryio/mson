@@ -240,7 +240,7 @@ A Property which value can be of different types is defined of the `one of` comp
 ---
 
 ### Mutually exclusive properites
-By default all properties are optional and can be includuded in the object (any of). If there a choice of available properties use the `One of` keyword:
+By default all properties are optional and can be includuded in the object (any of). If there is a choice of available properties use the `One of` keyword:
 
 #### JSON
 ```json

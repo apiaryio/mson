@@ -29,11 +29,15 @@ HAL introduces for Link relation types an extended representation of RFC 5988:
 - Custom link relation types should be (HTTP) URI, which should point to HTML documentation for that relation type.
 - The reserved (but unregistered) relation type curies can get used for a compact URI representation in CURIE Syntax for custom link relation types.
 
+Note in a future, additional type specifiers can be added:
+
+``` 
 - (string) 
     - min: `1`
+```
 
 ## Link (object)
-A LinkObject specifies a link to a target resource
+Link object specifies a link to a target resource.
 
 ### Properties
 
@@ -61,4 +65,9 @@ The generic type `One or many` allows to model a data type that either contains 
 - (one of)
     - (T)
     - (array: T)
+
+        Again a possible future extension to specifiy minimum number of items could be
+
+        ```
         - min: `1`
+        ```
