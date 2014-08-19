@@ -148,7 +148,7 @@ MSON entity types composed of one or more other types are
 
 #### MSON
 ```
-- (one of)
+- property (one of)
     - (number)
     - (string)
 ```
@@ -220,22 +220,20 @@ A Property which value can be of different types is defined of the `one of` comp
 #### MSON
 
 ```
-- tag
-    - (one of)
-        - green (string)
-        - (object)
-            - tag_id: 1
-            - label: green
+- tag (one of)
+    - green (string)
+    - (object)
+        - tag_id: 1
+        - label: green
 ```
 
 #### Rendered Markdown
 
-- tag
-    - (one of)
-        - green (string)
-        - (object)
-            - tag_id: 1
-            - label: green
+- tag (one of)
+    - green (string)
+    - (object)
+        - tag_id: 1
+        - label: green
 
 ---
 
@@ -357,12 +355,12 @@ Element values and property names and values with _reserved characters_ or conta
 #### Keywords 
 Keywords are case insensitive:
 
-`Element`, `Elements`, `Property`, `Properties`, `One of`, `Inherit`, `Inherits`
+`Element`, `Elements`, `Property`, `Properties`, `Choice`, `Choices` `One of`, `Inherit`, `Inherits`
 
 #### Reserved Keywords
 Following keywords are reserved for future use:
 
-`Trait`, `Traits`, `Parameter`, `Parameters`, `Attribute`, `Attributes`, `Filter`
+`Trait`, `Traits`, `Parameter`, `Parameters`, `Attribute`, `Attributes`, `Filter`, `Validation`
 
 #### MSON
 
@@ -495,21 +493,6 @@ Top-level MSON entities definition
 - city
 - state
 - zip
-```
-
-> **NOTE:** The `object` as default type can be omitted. 
-
-#### MSON 
-
-```
-# Address (one of)
-- (one of)
-    - z@apiary.io (string)
-    - (object)
-        - street
-        - city
-        - state
-        - zip
 ```
 
 ## Referencing

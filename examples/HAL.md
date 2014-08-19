@@ -62,12 +62,12 @@ Link object specifies a link to a target resource.
 ## One or many (one of): T
 The generic type `One or many` allows to model a data type that either contains a single entry of a given type or a collection of elements of the same type.
 
-- (one of)
-    - (T)
-    - (array: T)
+### Choices
+- (T)
+- (array: T)
 
-        Again a possible future extension to specifiy minimum number of items could be
+    Again a possible future extension to specifiy minimum number of items could be
 
-        ```
-        - min: `1`
-        ```
+    ```
+    - min: `1`
+    ```
