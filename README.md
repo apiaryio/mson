@@ -237,8 +237,8 @@ A Property which value can be of different types is defined of the `one of` comp
 
 ---
 
-### Mutually exclusive properites
-By default all properties are optional and can be includuded in the object (any of). If there is a choice of available properties use the `One of` keyword:
+### Mutually exclusive properties
+By default all properties are optional and can be included in the object (any of). If there is a choice of available properties use the `One of` keyword:
 
 #### JSON
 ```json
@@ -457,7 +457,7 @@ Variable property name (key) is defined using braces `{}`. Note a variable prope
 
 ---
 
-Additionaly a variable property name can specify its key type:
+Additionally a variable property name can specify its key type:
 
 #### JSON
 ```json
@@ -483,16 +483,33 @@ Additionaly a variable property name can specify its key type:
 ---
 
 ## MSON Entity Definition
-Top-level MSON entities definition
+Top-level, MSON entity definition that can be referenced, is defined using a Markdown header. A form of markdown headed is also used for entity-level keywords:
 
 #### MSON 
 
 ```
 # Address (object)
+Description is here! Properties to follow. 
+
+## Properties
 - street
-- city
 - state
 - zip
+```
+
+#### MSON
+The same entity defined as a content of the `Address` property: 
+
+```
+- Address (object)
+
+    Description is here! Properties to follow. 
+
+    - Properties
+
+        - street
+        - state
+        - zip
 ```
 
 ## Referencing
