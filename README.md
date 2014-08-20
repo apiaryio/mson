@@ -355,7 +355,7 @@ Element values and property names and values with _reserved characters_ or conta
 #### Keywords 
 Keywords are case insensitive:
 
-`Element`, `Elements`, `Property`, `Properties`, `Choice`, `Choices` `One of`, `Inherit`, `Inherits`
+`Element`, `Elements`, `Property`, `Properties`, `Choice`, `Choices` `One of`, `Include`
 
 #### Reserved Keywords
 Following keywords are reserved for future use:
@@ -500,7 +500,7 @@ Description is here! Properties to follow.
 #### MSON
 The same entity defined as a content of the `Address` property: 
 
-```
+```f
 - Address (object)
 
     Description is here! Properties to follow. 
@@ -513,7 +513,9 @@ The same entity defined as a content of the `Address` property:
 ```
 
 ## Referencing
-Anywhere a type is expected, an MSON entity can be referenced. At its simplest an MSON entity is referenced by its name only:
+Anywhere a type is expected, a top-level MSON entity can be referenced. At its simplest an MSON entity is referenced by its name only.
+
+Consider following JSON:
 
 #### JSON
 ```json
@@ -578,7 +580,7 @@ However both `[]()` and `[][]` [Markdown syntax](http://daringfireball.net/proje
 ```
 
 ## Mixins
-To inherit (mixin) object properties into another object use the `Inherit` keyword followed by a reference to the object.
+To include (mixin) object properties in another object use the `Include` keyword followed by a reference to the object MSON entity.
 
 #### JSON
 ```json
@@ -604,7 +606,7 @@ To inherit (mixin) object properties into another object use the `Inherit` keywo
 # User Object
 - fist_name 
 - last_name
-- Inherit [Address]()
+- Include [Address]()
 ```
 
 #### Rendered Markdown
@@ -618,7 +620,7 @@ To inherit (mixin) object properties into another object use the `Inherit` keywo
 ##### User Object
 - fist_name 
 - last_name
-- Inherit [Address]()
+- Include [Address]()
 
 ---
 
