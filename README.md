@@ -500,7 +500,7 @@ Description is here! Properties to follow.
 #### MSON
 The same entity defined as a content of the `Address` property: 
 
-```f
+```
 - Address (object)
 
     Description is here! Properties to follow. 
