@@ -509,7 +509,7 @@ lists of allowed _[Member Types][]_.
 A _[Member Type][]_ that contains _Nested Member Types_ defines an inner, anonymous type that specifies the structure
 of values of that particular member.
 
-_Nested Member Types_ → _nested Markdown-formatted lists of_ _[Member Types][]_
+_Nested Member Types_ → _[Member Types][]_
 
 By Default:
 
