@@ -17,6 +17,14 @@ Setext-style headers and/or asterisk (*) or plus (+) style lists if you prefer.
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and
 "OPTIONAL" in this document are to be interpreted as described in [RFC2119][].
 
+### 1.3 Promises
+By default, MSON explicitly defines data structures and the meaning of their members without making any assertion to the
+exclusivity of structures or their members. Further, no assertion is made concerning the presence of defined
+structures or members. Rather, MSON describes structures that MAY be observed versus what MUST be observed.
+
+However, much like JSON Schema being able to restrict "additionalProperties", MSON allows annotating structures to
+indicate when the are strictly defined to preclude other structures and members and when they have strict ordering.
+
 ## 2 Types
 In MSON, data structures are described by header-defined and/or list-defined _Types_ and/or combinations thereof built
 from a limited set of _[Base Types][]_. A particular _Type_ is defined by its _[Type Declaration][]_ and combination of
