@@ -334,8 +334,9 @@ References the name of a type in _[Base Types][]_ or _[Named Types][]_. Some lim
 
 _Type Name_ → _[Literal Value][]_ | _[Type Name Variable][]_
 
-A _[Type Name Variable][]_ MUST only be used for a _Type Name_ in a _[Type Definition]_ for a _[Generic Named Type][]_
-and MAY be used in a _[Type Definition][]_ in _[Nested Member Types][]_ of a _[Generic Named Type][]_.
+A _[Type Name Variable][]_ MUST only be used in two situations:
+- As a _Type Name_ in a _[Type Definition]_ for a _[Generic Named Type][]_.
+- As an associated _Type Name_ in _[Nested Member Types][]_ of the _[Generic Named Type][]_.
 
 #### 3.5.4 Type Name Variable
 An *italicized* variable that MAY be used in place of a _[Type Name][]_ for a _[Type Definition][]_ in a
