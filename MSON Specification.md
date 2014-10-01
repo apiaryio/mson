@@ -285,20 +285,20 @@ more generally, a sample value in a _[Value Definition][]_.
 *rel*
 ```
 
-#### 3.4.4 Type Definition
+#### 3.5 Type Definition
 Explicitly specifies the type of a value in an MSON instance.
 
 _Type Definition_ → `(`_[Type Specification][]_ _[opt]_ `,` _[opt]_ _Type Attributes List_ _[opt]_`)`
 
 _Type Attributes List_ → _[Type Attribute][]_ | _[Type Attribute][]_`,` _Type Attributes List_
 
-A _Type Definition_ MUST separate multiple items with commas.
+A _Type Definition_ MUST separate multiple items with commas and is order-independent.
 
 ```
 (enum, optional)
 ```
 
-#### 3.4.4.1 Variable Type Definition
+#### 3.5.1 Variable Type Definition
 Defines a variable _[Type Definition][]_ to indicate generic _[Named Types][]_.
 
 _Variable Type Definition_ → _[Type Definition][]_
@@ -309,7 +309,7 @@ A _Variable Type Definition_ MUST include at least one _[Type Name Variable][]_.
 (*T*)
 ```
 
-#### 3.4.5 Type Specification
+#### 3.5.2 Type Specification
 Defines sub-typed _[Base Types][]_ or _[Types][]_ for a particular _[Type][]_.
 
 _Type Specification_ → _[Type Name][]_ | _[Type Name][]_`[`_Nested Type Name List_`]`
@@ -325,7 +325,7 @@ array[number, string]
 
 Indicates a `array` type structure MAY include distinct numbers or strings as values.
 
-#### 3.4.6 Type Name
+#### 3.5.3 Type Name
 References the name of a type in _[Base Types][]_ or _[Named Types][]_. Some limitations apply (see
 [Reserved Characters & Keywords][]).
 
@@ -334,20 +334,20 @@ _Type Name_ → _[Literal Value][]_ | _[Type Name Variable][]_
 A _[Type Name Variable][]_ MUST only be used for a _Type Name_ in a _[Type Definition]_ for a _[Generic Named Type][]_
 and MAY be used in a _[Type Definition][]_ in _[Nested Member Types][]_ of a _[Generic Named Type][]_.
 
-#### 3.4.7 Type Name Variable
+#### 3.5.4 Type Name Variable
 An *italicized* variable that MAY be used in place of a _[Type Name][]_ for a _[Type Definition][]_ in a
 _[Generic Named Declaration][]_.
 
 _Type Name Variable_ → `*`_[Literal Value][]_`*`
 
-#### 3.4.8 Type Attribute
+#### 3.5.5 Type Attribute
 Defines extra attributes associated with the implementation of a type.
 
 - `required` - instance of this type is required
 - `optional` - syntactic sugar for optional instance of this type
 - `fixed` - indicates the structure and values are fixed for a data structure.
 
-### 3.5 Description
+### 3.6 Description
 Describes a _[Member Type][]_ in-line.
 
 _Description_ → `-` _Markdown-formatted text_
@@ -1095,16 +1095,16 @@ Following keywords are reserved for future use:
 [Values]: #341-value
 [Literal Value]: #342-literal-value
 [Variable Value]: #343-variable-value
-[Type Definition]: #344-type-definition
-[Type Definitions]: #344-type-definition
-[Type Specification]: #345-type-specification
-[Type Specifications]: #345-type-specification
-[Variable Type Definition]: #3441-variable-type-definition
-[Type Name]: #346-type-name
-[Type Names]: #346-type-name
-[Type Name Variable]: #347-type-name-variable
-[Type Attribute]: #348-type-attribute
-[Type Attributes]: #348-type-attribute
+[Type Definition]: #35-type-definition
+[Type Definitions]: #35-type-definition
+[Variable Type Definition]: #351-variable-type-definition
+[Type Specification]: #352-type-specification
+[Type Specifications]: #352-type-specification
+[Type Name]: #353-type-name
+[Type Names]: #353-type-name
+[Type Name Variable]: #354-type-name-variable
+[Type Attribute]: #355-type-attribute
+[Type Attributes]: #355-type-attribute
 [Description]: #35-description
 [Descriptions]: #35-description
 
