@@ -685,13 +685,13 @@ A _[Type][]_ MAY have multiple _Sample_ lists.
     # Colors (array)
     A list of colors
 
-    # Sample
+    ## Sample
     - red
 
-    # Items
+    ## Items
     - (string)
 
-    # Sample
+    ## Sample
     - blue
     - green
     ```
