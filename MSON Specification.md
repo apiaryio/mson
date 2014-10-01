@@ -420,8 +420,8 @@ _[Block Description][]_ are considered part of the block text.
 Note that `here` and `there` are NOT _[Nested Member Types][]_ but rather are part of a Markdown list in the
 _Block Description_.
 
-A _Block Description_ MUST escape any _[Keywords][]_ as a `code span` when used in a Markdown list that is part of the
-_Block Description_ of _[Member Types][]_.
+A _[Member Types][]_ _Block Description_ MUST escape _[Member Type Separator][]_ _[Keywords][]_ as a `code span`
+when used in a Markdown list.
 
 ```
 - person (object)
@@ -828,6 +828,17 @@ Implies the same structure as:
     - prefix: Mr.
 ```
 
+A _Mixin Type_ MUST use an appropriate _[Member Type Separator][]_ in a _[Member Type Group][]_ in order to specify
+_[Nested Member Types][]_ after a _[Block Description][]_.
+
+```
+- address (object)
+    An address
+
+    - Properties
+        - Include Address
+```
+
 ### 5.2 One Of Type
 MSON defines a _One Of Type_ that can be used to describe mutually exclusive sets of _[Nested Member Types][]_. A
 _One of Type_ MUST only be used to define _[Property Member Types][]_ for a `object` type structure.
@@ -1178,3 +1189,4 @@ Following keywords are reserved for future use:
 [Member Type Precedence]: #54-member-type-precedence
 
 [Reserved Characters & Keywords]: #7-reserved-characters--keywords
+[Keywords]: #72-keywords
