@@ -932,7 +932,7 @@ _[Member Type][]_.
     Is literally the same as:
 
     ```
-    - person (object, fixed)
+    - person (object)
         - first_name (fixed)
         - last_name (fixed)
         - address (object, fixed)
@@ -942,7 +942,7 @@ _[Member Type][]_.
     Which implies a structure the same as:
 
     ```
-    - person (object, fixed)
+    - person (object)
         - first_name (fixed)
         - last_name (optional)
         - address (object, fixed)
@@ -959,7 +959,7 @@ _[Member Type][]_.
     Is literally the same as:
 
     ```
-    - person (object, fixed)
+    - person (object)
         - first_name (optional)
         - first_name (fixed)
         - last_name (fixed)
@@ -969,7 +969,7 @@ _[Member Type][]_.
     Which implies a structure the same as:
 
     ```
-    - person (object, fixed)
+    - person (object)
         - first_name (fixed)
         - last_name (fixed)
         - address (object, fixed)
@@ -987,7 +987,7 @@ _[Member Type][]_.
     Is literally the same as:
 
     ```
-    - person (object, fixed)
+    - person (object)
         - first_name (fixed)
         - last_name (fixed)
         - address (object, fixed)
@@ -1031,10 +1031,10 @@ _[Member Type][]_.
     Is literally the same as:
 
     ```
-    - person (object, fixed)
+    - person (object)
+        - first_name (fixed)
         - last_name (fixed)
         - address (object, fixed)
-        - first_name (optional)
         - address (string)
     ```
 
