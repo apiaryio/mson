@@ -855,14 +855,14 @@ at any location in a _[Type Specification][]_.
 _Generic Named Type_ → _[Named Type][]_
 
 By default:
-- A _[Named Type][]_ that contains at least one _[Name Type Variable][]_ is a _Generic Named Type_.
+- A _[Named Type][]_ that contains at least one _[Type Name Variable][]_ is a _Generic Named Type_.
 - A _Type Name Variable_ in a _[Type Specification][]_ MAY only be used in the _[Type Definition][]_ of explicitly
-defined_[Nested Member Types][]_ in the _Generic Named Type_ and MUST NOT define any implied _[Nested Member Types][]_.
+defined _[Nested Member Types][]_ in the _Generic Named Type_ and MUST NOT define any implied _[Nested Member Types][]_.
 
 - Inherited type as a variable
 
     ```
-     # Address Decorator (*T*)
+    # Address Decorator (*T*)
         - address
 
     # Person (object)
