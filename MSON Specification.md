@@ -1124,7 +1124,7 @@ MUST be enclosed in backticks `` ` ``.
 
 `:`, `(`,`)`, `<`, `>`, `{`, `}`, `[`, `]`, `_`, `*`, `-`, `+`, `` ` ``
 
-## 7.2 Keywords
+### 7.2 Keywords
 
 `Property`, `Properties`, `Item`, `Items`, `Member`, `Members`, `Include`, `One of`, `Sample`
 
