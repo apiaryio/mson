@@ -23,7 +23,7 @@ exclusivity of structures or their members. Further, no assertion is made concer
 structures or members. Rather, MSON describes structures that MAY be observed versus what MUST be observed.
 
 However, much like JSON Schema being able to restrict "additionalProperties", MSON allows annotating structures to
-indicate when the are strictly defined to preclude other structures and members and when they have strict ordering.
+indicate when they are strictly defined to preclude other structures and members and when they have strict ordering.
 
 ## 2 Types
 In MSON, data structures are described by header-defined and/or list-defined _Types_ and/or combinations thereof built
