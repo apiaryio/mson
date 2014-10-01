@@ -356,8 +356,8 @@ _Type Name Variable_ → `*`_[Literal Value][]_`*`
 Defines extra attributes associated with the implementation of a type.
 
 - `required` - instance of this type is required
-- `optional` - syntactic sugar for optional instance of this type
-- `fixed` - indicates the structure and values are fixed for a data structure.
+- `optional` - instance of this type is optional (default)
+- `fixed`    - instance of this type structure and values are fixed
 
 ### 3.6 Description
 Describes a _[Member Type][]_ in-line.
