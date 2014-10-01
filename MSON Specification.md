@@ -420,6 +420,22 @@ _[Block Description][]_ are considered part of the block text.
 Note that `here` and `there` are NOT _[Nested Member Types][]_ but rather are part of a Markdown list in the
 _Block Description_.
 
+A _Block Description_ MUST escape any _[Keywords][]_ as a `code span` when used in a Markdown list that is part of the
+_Block Description_ of _[Member Types][]_.
+
+```
+- person (object)
+    This person does not have:
+
+    - `Properties`
+        - first_name
+        - last_name
+
+    - Properties
+        - given_name
+        - surname
+```
+
 ### 4.2 Member Type Group
 A _Member Type Group_ delineates _[Nested Member Types][]_ and MUST be used when other _[Type Sections][]_ are present.
 
