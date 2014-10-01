@@ -818,13 +818,11 @@ _One of Type_ MUST only be used to define _[Property Member Types][]_ for a `obj
 
 _One of Type_ → `- One Of`
 
+_One of Type_ ⇒ _[Member Type Group][]_
+
 _One of Type_ ⇒ _[Nested Member Types][]_
 
 _One of Type_ ⇒ _Mixin Type_
-
-In order to specify _[Nested Member Types][]_ after a _Block Description_, a _One Of Type_  MUST use an appropriate
-_[Member Type Separator][]_ to indicate the end of the _Block Description_ and the beginning
-of the _[Nested Member Types][]_ list.
 
 ```
 - first_name
@@ -854,6 +852,29 @@ Or:
 ```
 - first_name
 - suffixed_name: Smith, Sr.
+```
+
+A _One Of Type_ MUST use a `Properties` _[Member Type Separator][]_ in a _[Member Type Group][]_:
+- In order to specify _[Nested Member Types][]_ after a _[Block Description][]_.
+
+```
+- address (object)
+    An address
+    - Properties
+        - One Of
+            - state
+            - province
+```
+
+- When it contains a _[Member Type Group][]_.
+
+```
+- person (object)
+    - One Of
+        - full_name
+        - Properties
+            - first_name
+            - last_name
 ```
 
 ### 5.3 Generic Named Type
