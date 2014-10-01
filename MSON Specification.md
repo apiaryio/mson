@@ -274,10 +274,12 @@ Literal value of a type instance. Some limitations apply (see [Reserved Characte
 ```
 
 #### 3.4.3 Variable Value
-Defines a _[Value][]_ that is not concrete and specifies a _[Variable Property Name][]_ or a sample value
-indicated using Markdown *italics*.
+Defines a _[Value][]_ that is not concrete using Markdown *italics*.
 
 _Variable Value_ → `*`_[Literal Value][]_`*`
+
+A _Variable Value_ MAY be used to indicate a _[Variable Property Name][]_ in a _[Property Member Declaration][]_ or
+more generally, a sample value in a _[Value Definition][]_.
 
 ```
 *rel*
