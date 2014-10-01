@@ -187,10 +187,13 @@ Defines a _[Property Member Type][]_.
 
 _Property Member Declaration_ → `-` _[Property Name][]_ `:` _[opt]_ _[Value Definition][]_ _[opt]_ `-` _[opt]_ _[Description][]_ _[opt]_
 
+```
+- person (object) - A person
+```
+
 The optional `:` is only applicable in the case where a _[Value Definition][]_ is present and includes a _[Value][]_.
 
 ```
-- person (object) - A person
 - company: Apiary (string)
 ```
 
