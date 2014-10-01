@@ -205,27 +205,21 @@ _Property Name_ → _[Literal Value][]_ | _[Variable Property Name][]_
 
 Defines a _[Property Member Declaration][]_ with a _Property Name_ "customer".
 
-```
-- *rel* (string)
-```
-When a _Property Name_ is a _[Variable Property Name][]_, it indicates a property MAY have an arbitrary name and the
-specified _Property Name_ is then a sample. In the prior example, a _[Property Member Declaration][]_ for a `string`
-type is defined with an arbitrary name and a sample value of "rel".
-
 #### 3.2.2 Variable Property Name
 Defines a _[Property Name][]_ that is associated with a specific _[Value Definition][]_ in an `object` type structure
-that MAY be any arbitrary name in an actual implementation.
+that MAY be any arbitrary name in an actual implementation. The _[Value][]_ of the _Variable Property Name_ serves as
+a sample.
 
 _Variable Property Name_ → `*`_[Value Definition][]_`*`
 
-In the case of specifying a _[Variable Property Name][]_, the _[Value Definition][]_ MAY reference a _[Named Type][]_
+In the case of specifying a _[Variable Property Name][]_, the  _[Value Definition][]_ MAY reference a _[Named Type][]_
 that MUST be sub-typed from a `string` _[Primitive Type][]_.
 
 ```
 *rel (Custom String)* (object)
 ```
 
-Where `rel` is a sample value for the _[Property Name][]_ of a _[Property Member Declaration][]_.
+Where `rel` is a sample value for the arbitrary _[Property Name][]_ of a _[Property Member Declaration][]_.
 
 ### 3.3 Value Member Declaration
 Defines a _[Value Member Type][]_. A _Value Member Declaration_ MUST only be used to define structures of `array`
