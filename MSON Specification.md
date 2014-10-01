@@ -498,6 +498,7 @@ _[Type Section][]_ is specified at the same level.
     # Person (object)
     - first_name
     - last_name
+
     ## Sample
     ...
     ```
@@ -895,25 +896,26 @@ Or:
 A _One Of Type_ MUST use a `Properties` _[Member Type Separator][]_ in a _[Member Type Group][]_:
 - In order to specify _[Nested Member Types][]_ after a _[Block Description][]_.
 
-```
-- address (object)
-    An address
-    - Properties
-        - One Of
-            - state
-            - province
-```
+    ```
+    - address (object)
+        An address
+
+        - Properties
+            - One Of
+                - state
+                - province
+    ```
 
 - When it contains a _[Member Type Group][]_.
 
-```
-- person (object)
-    - One Of
-        - full_name
-        - Properties
-            - first_name
-            - last_name
-```
+    ```
+    - person (object)
+        - One Of
+            - full_name
+            - Properties
+                - first_name
+                - last_name
+    ```
 
 ### 5.3 Generic Named Type
 Defines a _[Named Type][]_ that allows an italicized _[Type Name Variable][]_ to represent a _[Type Name][]_
