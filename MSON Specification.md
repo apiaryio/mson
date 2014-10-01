@@ -396,7 +396,7 @@ Another ...
 ```
 
 In general, _Type Sections_ nested under:
-- A _[Named Declaration][]_ SHOULD use header-defined (`##`) variations.
+- A _[Named Declaration][]_ MUST use header-defined (`##`) variations.
 - A _[Property Member Declaration][]_ or _[Value Member Declaration][]_ MUST use list-defined (`-`) variations.
 
 ### 4.1 Block Description
@@ -611,6 +611,17 @@ By Default:
 
     Implies Implies a `colors` _[Property Member Type][]_ that MUST have either the string "red" or any number as
     a value, where "5" is a sample of a `number` value.
+
+- Named Types
+
+    _[Nested Member Types][]_ MAY be nested directly under a _[Named Declaration][]_ when there are no other
+    _[Type Sections][]_ present.
+
+    ```
+    # Person (object)
+    - first_name
+    - last_name
+    ```
 
 With a `fixed` _[Type Attribute][]_:
 
