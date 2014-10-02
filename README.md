@@ -1,33 +1,34 @@
 # Markdown Syntax for Object Notation
-This document is a proposal of Markdown syntax for JSON & JSON Schema.
+This document provides an introduction to Markdown Syntax for Object Notation (MSON), a proposed Markdown syntax 
+compatible with describing JSON and JSON Schema.
 
 ## What? 
-MSON is a plain text, human and machine readable, description format for common markup formats such as JSON, XML or YAML.
+MSON is a plain-text, human and machine readable, description format for describing data structures in common markup 
+formats such as JSON, XML or YAML.
 
 ## What for?
-The aim of this description format is to facilitate the discussion (and thus validation) of data structures. The format, being agnostic to the common markup formats, suites well the "resource & representations" and "content negotiation" scenarios. 
+The aim of this description format is to facilitate the discussion (and thus validation) of data structures. The format, 
+being agnostic to the common markup formats, is well suited for "resource & representations" and "content negotiation" 
+scenarios.
 
-In addition this format also offers (limited) serialization functionality.
+In addition, this format also offers (limited) serialization functionality.
 
-Similarly to the original Markdown to HTML (markup) conversion the Markdown Syntax for Object Notation (hereafter MSON) enables a conversion to other markup formats. 
+Similar to the original Markdown to HTML (markup) conversion, MSON enables conversion to other markup formats.
 
 ## Who & Why? 
-This format is being developed by [@zdne][] at [Apiary][] as a part of [API Blueprint][] syntax to provide a means for description and validation of HTTP payloads, DRY media-type agnostic resource descriptions and to simplify content-negotiation.
+This format is being developed by [@zdne][] at [Apiary][] as a part of the [API Blueprint][] syntax to provide a means 
+for description and validation of HTTP payloads and DRY, media-type agnostic, resource descriptions and to simplify 
+content-negotiation.
 
-> **NOTE**: While this document focuses primarily on JSON and JSON Schema it MUST be possible to produce an XML or YAML representation from the MSON as well.
+> **NOTE**: While this document focuses primarily on JSON and JSON Schema examples, the underlying specification will 
+> ultimately allow producing XML or YAML representations from MSON.
+
+## Notational Conventions
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and
+"OPTIONAL" in this document are to be interpreted as described in [RFC2119][].
 
 ## Example 1
-
-#### JSON
-
-```json
-{
-    "id": 1,
-    "name": "A green door",
-    "price": 12.50,
-    "tags": ["home", "green"]
-}
-```
+A simple `object` structure and it's associated JSON expression.
 
 #### MSON
 
@@ -45,11 +46,63 @@ This format is being developed by [@zdne][] at [Apiary][] as a part of [API Blue
 - price: 12.50
 - tags: home, green
 
+#### JSON
+
+```json
+{
+    "id": "1",
+    "name": "A green door",
+    "price": "12.50",
+    "tags": [ "home", "green" ]
+}
+```
+
+>**NOTE:** By default, a Markdown list item is considered to be a `string` type.
+
 ---
 
-> **NOTE:** Escaping question? Look [here](#escaping).
-
 ## Example 2
+A Named Type with it's associated JSON expression and JSON Schema.
+
+#### MSON
+
+```
+# Product 
+A product from Acme's catalog
+
+## Properties
+
+- id: 1 (number, required) - The unique identifier for a product
+- name: A green door (string, required) - Name of the product
+- price: 12.50 (number, required)
+- tags: home, green (array[string])
+```
+
+#### Rendered Markdown
+
+##### Product
+A product from Acme's catalog
+
+###### Properties
+
+- id: 1 (number, required) - The unique identifier for a product
+- name: A green door (string, required) - Name of the product
+- price: 12.50 (number, required)
+- tags: home, green (array: string)
+
+#### JSON
+
+```json
+{
+    "id": 1,
+    "name": "A green door",
+    "price": 12.50,
+    "tags": [ "home", "green" ]
+}
+```
+
+>**NOTE:** The `id` and `price` sample values are numbers given the explicit declaration of their base type of `number` 
+> vs. the default of `string` as in [Example 1](#example-1).
 
 #### JSON Schema
 
@@ -82,79 +135,38 @@ This format is being developed by [@zdne][] at [Apiary][] as a part of [API Blue
 }
 ```
 
-#### MSON
-
-```
-# Product 
-A product from Acme's catalog
-
-## Properties
-
-- id: 1 (number, required) - The unique identifier for a product
-- name: A green door (string, required) - Name of the product
-- price: 12.50 (number, required)
-- tags: home, green (array: string)
-```
-
-#### Rendered Markdown
-
-##### Product
-A product from Acme's catalog
-
-###### Properties
-
-- id: 1 (number, required) - The unique identifier for a product
-- name: A green door (string, required) - Name of the product
-- price: 12.50 (number, required)
-- tags: home, green (array: string)
+> **NOTE:** This proposal covers only basic features of JSON Schema. At this moment, it is out of the scope of this 
+> syntax to support all the JSON Schema keywords (such as `uniqueItems`, `exclusiveMinimum`, etc.).
 
 ---
 
-> **NOTE:** In addition to the above schema the source MSON also captures the serialized data of the original JSON!
-
-> **NOTE:** This proposal covers only basic features of JSON Schema. At this moment it is out of the scope of this syntax to support all the JSON Schema keywords (such as `uniqueItems`, `exclusiveMinimum` etc.).
-
-> **NOTE:** Optional is the default for a property. Use `required` for required properties.
+## MSON Language Specification
+The rest of this document covers some advanced syntax examples. Refer to the [MSON Language Specification][] for the 
+complete MSON Grammar Reference.
 
 ## Quick Links
 
-- [Primitive types](#primitive-types)
-- [Composite Types](#composite-types)
-- [Objects & Arrays](#objects-arrays)
+- [MSON Language Specification][]
+- [Objects & Arrays](#objects--arrays)
 - [Advanced Objects](#advanced-objects)
 - [Advanced Arrays](#advanced-arrays)
 - [Escaping](#escaping)
-- [Mutliline Description](#multiline-description)
+- [Multi-line Descriptions](#multi-line-descriptions)
 - [Variable Property Name](#variable-property-name)
-- [MSON Entity Definition](#mson-entity-definition)
+- [Type Definition](#type-definition)
 - [Referencing](#referencing)
 - [Mixins](#mixins)
 
-## Primitive types
-Following are the primitive data types of MSON entities:
-
-- bool (boolean)
-- number
-- string
-
-## Composite Types
-MSON entity types composed of one or more other types are 
-
-- array
-- object
-- one of
-
-    The _one of_ type represent a choice of types for an MSON entity value. The types are mutually exclusive. 
+## Objects & Arrays
+By default, a Markdown list item with a nested Markdown list is considered to be an `object` structure:
 
 #### MSON
 ```
-- property (one of)
-    - (number)
-    - (string)
+- address
+    - street
+    - city
+    - state
 ```
-
-## Objects & Arrays
-By default, a Markdown list item is considered to be an object property:
 
 #### JSON
 ```json
@@ -167,22 +179,8 @@ By default, a Markdown list item is considered to be an object property:
 }
 ```
 
-#### MSON
-```
-- address
-    - street
-    - city
-    - state
-```
-
-If a markdown list items are literals (represent array values), the type of parents property must be explicitly set to array:
-
-#### JSON
-```json
-{ 
-    "address": ["street", "city", "state"]
-}
-```
+If a Markdown list's items are intended to be literals (represent array values), the type of the parent list item MUST 
+be explicitly set to `array`:
 
 #### MSON
 ```
@@ -192,35 +190,34 @@ If a markdown list items are literals (represent array values), the type of pare
     - state
 ```
 
-Or, perhaps preferably: 
+Or, alternately: 
 
 ```
 - address: street, city, state (array)
 ```
 
-In this case, the type – `(array)` – can be omitted.
+In this latter case, using a comma-separated list of values, the type `(array)` is implied and thus MAY be omitted.
+
+#### JSON
+```json
+{ 
+    "address": [ "street", "city", "state" ]
+}
+```
+
+> **NOTE:** The values "street", "city", and "state" are solely sample values of the `address` array in this example.
+> No constraints are implied on the quantity or types of values in such an array other than that they MAY be `string`
+> literals.
 
 ## Advanced Objects
 
-### Non-uniform property
-A Property which value can be of different types is defined of the `one of` composite type:
-
-#### JSON
-
-```json
-{ "tag": "green" }
-```
-
-**or**
-
-```json
-{ "tag": { "tag_id": 1, "label": "green" } }
-```
+### Non-uniform Property
+A Property whose value can be of different types is defined by the `enum` structure type:
 
 #### MSON
 
 ```
-- tag (one of)
+- tag (enum)
     - green (string)
     - (object)
         - tag_id: 1
@@ -229,55 +226,85 @@ A Property which value can be of different types is defined of the `one of` comp
 
 #### Rendered Markdown
 
-- tag (one of)
+- tag (enum)
     - green (string)
     - (object)
         - tag_id: 1
         - label: green
+
+#### JSON
+
+```json
+{ 
+    "tag": "green" 
+}
+```
+
+**or**
+
+```json
+{ 
+    "tag": { 
+        "tag_id": "1", 
+        "label": "green" 
+    } 
+}
+```
+
+>**NOTE:** In an `enum` structure, in contrast to an `array` type structure, a value like "green" is a fully-qualified
+>value of the enumeration vs. being a sample value.
 
 ---
 
-### Mutually exclusive properties
-By default all properties are optional and can be included in the object (any of). If there is a choice of available properties use the `One of` keyword:
+### Mutually Exclusive Properties
+By default, all properties are optional and may or may not be included in the object. If there is a choice of 
+mutually exclusive properties available MSON defines a `One Of` type:
+
+#### MSON
+```
+- city
+- One Of
+    - state
+    - province
+- country
+```
+
+#### Rendered Markdown
+
+- city
+- One Of
+    - province
+    - state
+- country
 
 #### JSON
 ```json
-{ "a": null, "b1": null, "c": null }
+{ 
+    "street": null, 
+    "province": null, 
+    "country": null 
+}
 ```
 
 **or**
 
 ```json
-{ "a": null, "b2": null, "c": null }
+{ 
+    "street": null, 
+    "state": null, 
+    "country": null 
+}
 ```
 
-#### MSON
-```
-- a
-- One of
-    - b1
-    - b2
-- c
-```
-
-#### Rendered Markdown
-
-- a
-- One of
-    - b1
-    - b2
-- c
+>**NOTE:** Because an `enum` type MUST define a list of types vs. properties and by default an un-nested Markdown list 
+defines properties of an implied `object` structure, the `One Of` type declaration MUST only be used to indicate 
+mutually exclusive properties in an `object` structure.
 
 ---
 
 ## Advanced Arrays
-### Array of mixed types
 
-#### JSON
-
-```json
-{ "tags": ["hello", 42] }
-```
+### Array of Mixed Types
 
 #### MSON
 
@@ -292,15 +319,17 @@ By default all properties are optional and can be included in the object (any of
 - tags (array)
     - hello (string)
     - 42 (number)
+
+#### JSON
+
+```json
+{ 
+    "tags": [ "hello", 42 ] 
+}
+```
 
 ---
 
-#### JSON
-
-```json
-[{ "name": "snow", "description": null }, 42]
-```
-
 #### MSON
 
 ```
@@ -318,49 +347,47 @@ By default all properties are optional and can be included in the object (any of
         - name: snow (string)
         - description (string)
     - 42 (number)
+
+#### JSON
+
+```json
+[
+    { 
+        "name": "snow", 
+        "description": null 
+    },
+    42
+]
+```
 
 ---
 
 ### Array of Arrays
 
-#### JSON
-
-```json
-[[1, 2, 3, 4]]
-```
-
 #### MSON
 
 ```
 - (array)
-    - 1, 2, 3, 4 (array: number)
+    - 1, 2, 3, 4 (array[number])
 ```
 
 #### Rendered Markdown
 
 - (array)
-    - 1, 2, 3, 4 (array: number)
+    - 1, 2, 3, 4 (array[number])
+
+#### JSON
+
+```json
+[
+    [ 1, 2, 3, 4 ]
+]
+```
 
 ---
 
 ## Escaping
-Markdown [code span][] element syntax (`` ` ` ``) is used to escape properties and literals when needed. The use of code span is optional unless needed.
-
-Element values and property names and values with _reserved characters_ or containing keywords MUST be escaped. 
-
-#### Reserved Characters
-
-`:`, `(`,`)`, `<`, `>`, `{`, `}`, `[`, `]`, `_`, `*`, `-`, `` ` `` 
-
-#### Keywords 
-Keywords are case insensitive:
-
-`Element`, `Elements`, `Property`, `Properties`, `Choice`, `Choices` `One of`, `Include`
-
-#### Reserved Keywords
-Following keywords are reserved for future use:
-
-`Trait`, `Traits`, `Parameter`, `Parameters`, `Attribute`, `Attributes`, `Filter`, `Validation`
+Markdown [code span][] element syntax (`` ` ` ``) is used to escape names and literals when needed.
 
 #### MSON
 
@@ -380,14 +407,14 @@ Following keywords are reserved for future use:
 
 ---
 
-## Mutliline Description
-In the case where one-liner description is not enough a mutli-paragraph list item is the way to go.
+## Multi-line Descriptions
+In the case where a one-liner description is not sufficient, a multi-paragraph text block is the way to go.
 
 #### MSON
 
 ```
-- id: 1 (required, number) - The unique identifier for a product
-- name: A green door (required, string) 
+- id: 1 (number, required) - The unique identifier for a product
+- name: A green door (string, required) 
 
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
     
@@ -400,11 +427,12 @@ In the case where one-liner description is not enough a mutli-paragraph list ite
     - tres
     - quattuor    
 
-- price: 12.50 (required, number)
+- price: 12.50 (number, required)
 - tags: home, green (array)
 ```
 
-For multi-line description of an array or object the `Elements` or `Properties` keyword is needed to avoid any possible clash with potential description list items: 
+For a multi-line description of a structure type, an `Items`, `Members` , or `Properties` keyword MUST be used to avoid 
+conflict with potential list item values that are part of the description:
 
 ```
 - tags (array)
@@ -420,14 +448,29 @@ For multi-line description of an array or object the `Elements` or `Properties` 
     - tres
     - quattuor
 
-    - Elements 
-
+    - Items 
         - home
         - green 
 ```
 
+>**NOTE:** Unos ... quattor are considered part of the text block vs. defining items of the array.
+
 ## Variable Property Name
-Variable property name (key) is defined using braces `{}`. Note a variable property can't be required. 
+Variable property name (key) is defined using *italics*. Note that a variable property cannot be required. 
+
+#### MSON
+
+```
+- _links
+    - *self*
+        - href: a URI
+```
+
+#### Rendered Markdown
+
+- _links
+    - *self*
+        - href: a URI
 
 #### JSON
 
@@ -435,29 +478,26 @@ Variable property name (key) is defined using braces `{}`. Note a variable prope
 {
     "_links" {
         "self": {
-            "href": "an uri"
+            "href": "a URI"
         }
     }
 }
 ```
 
-#### MSON
-
-```
-- _links
-    - {self}
-        - href: an uri
-```
-
-#### Rendered Markdown
-
-- _links
-    - {self}
-        - href: an uri
 
 ---
 
 Additionally a variable property name can specify its key type:
+
+#### MSON
+
+```
+- *(number)* (string) - FizzBuzz number & answer pair
+```
+
+#### Rendered Markdown
+
+- *(number)* (string) - FizzBuzz number & answer pair
 
 #### JSON
 ```json
@@ -470,20 +510,10 @@ Additionally a variable property name can specify its key type:
 }
 ```
 
-#### MSON
-
-```
-- {(number)} (string) - FizzBuzz number & answer pair
-```
-
-#### Rendered Markdown
-
-- {(number)} (string) - FizzBuzz number & answer pair
-
 ---
 
-## MSON Entity Definition
-Top-level, MSON entity definition that can be referenced, is defined using a Markdown header. A form of markdown headed is also used for entity-level keywords:
+## Type Definition
+Additional Named Types can be defined using a Markdown header:
 
 #### MSON 
 
@@ -497,39 +527,27 @@ Description is here! Properties to follow.
 - zip
 ```
 
-#### MSON
-The same entity defined as a content of the `Address` property: 
+The same entity defined as an `address` property:
 
 ```
-- Address (object)
+- address (object)
 
     Description is here! Properties to follow. 
 
     - Properties
-
         - street
         - state
         - zip
 ```
 
-## Referencing
-Anywhere a type is expected, a top-level MSON entity can be referenced. At its simplest an MSON entity is referenced by its name only.
+The same `address` property referencing the previously Named type:
 
-Consider following JSON:
-
-#### JSON
-```json
-{
-    "fist_name": null,
-    "last_name": null,
-    "address": {
-        "street": null,
-        "city": null,
-        "state": null,
-        "zip": null
-    }
-}
 ```
+- address (Address)
+```
+
+## Referencing
+Anywhere a type is expected, a top-level MSON Named Type can be referenced. 
 
 #### MSON
 
@@ -541,7 +559,7 @@ Consider following JSON:
 - zip
 
 # User (object)
-- fist_name 
+- first_name
 - last_name
 - address (Address)
 ```
@@ -555,44 +573,30 @@ Consider following JSON:
 - zip
 
 ##### User (object)
-- fist_name 
+- first_name
 - last_name
 - address (Address)
 
----
-
-However both `[]()` and `[][]` [Markdown syntax](http://daringfireball.net/projects/markdown/syntax#link) are supported:
-
-#### MSON
-
-```
-# User (object)
-- fist_name 
-- last_name
-- address ([Address](#address-object))
-```
-
-```
-# User (object)
-- fist_name 
-- last_name
-- address ([Address][])
-```
-
-## Mixins
-To include (mixin) object properties in another object use the `Include` keyword followed by a reference to the object MSON entity.
-
 #### JSON
+
 ```json
 {
-    "fist_name": null,
+    "first_name": null,
     "last_name": null,
-    "street": null,
-    "city": null,
-    "state": null,
-    "zip": null
+    "address": {
+        "street": null,
+        "city": null,
+        "state": null,
+        "zip": null
+    }
 }
 ```
+
+---
+
+## Mixins
+To include (mixin) values or properties in another Named Type use the `Include` keyword followed by a reference to the  
+MSON Named Type.
 
 #### MSON
 
@@ -604,9 +608,9 @@ To include (mixin) object properties in another object use the `Include` keyword
 - zip
 
 # User Object
-- fist_name 
+- first_name
 - last_name
-- Include [Address]()
+- Include Address
 ```
 
 #### Rendered Markdown
@@ -618,13 +622,28 @@ To include (mixin) object properties in another object use the `Include` keyword
 - zip
 
 ##### User Object
-- fist_name 
+- first_name
 - last_name
-- Include [Address]()
+- Include Address
 
----
+#### JSON
+
+```json
+{
+    "first_name": null,
+    "last_name": null,
+    "street": null,
+    "city": null,
+    "state": null,
+    "zip": null
+}
+```
+
+>**NOTE:** A mixin can only use a Named Type that is derived from the same type of structure including the mixin.
 
 [API Blueprint]: https://github.com/apiaryio/api-blueprint
 [code span]: http://daringfireball.net/projects/markdown/syntax#code
 [@zdne]: https://github.com/zdne
 [Apiary]: http://apiary.io
+[RFC2119]: https://www.ietf.org/rfc/rfc2119
+[MSON Language Specification]: MSON%20Specification.md
