@@ -3,7 +3,7 @@
 ## Notes [/notes]
 + Model
 
-    + Body (array: Note)
+    + Body (array[Note])
  
 ### List all [GET]
 + Response 200 (application/json)
