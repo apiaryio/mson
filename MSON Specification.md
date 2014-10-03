@@ -1134,8 +1134,9 @@ _[Member Type][]_.
     ```
 
 ## 7 Reserved Characters & Keywords
-When using following characters or keywords in an _Property Name_, Literal Value or _Type Name_ the name or literal
-MUST be enclosed in backticks `` ` ``.
+When using following characters or keywords in a _[Property Name][]_, _[Literal Value][]__ or _[Type Name][]_ the name 
+or literal MUST be escaped in backticks `` ` ``. Otherwise, a `code span` MAY be used for any arbitrary formatting
+and has no specific meaning in an MSON document.
 
 ### 7.1 Characters
 
