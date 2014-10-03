@@ -484,32 +484,6 @@ Variable property name (key) is defined using *italics*. Note that a variable pr
 }
 ```
 
-
----
-
-Additionally a variable property name can specify its key type:
-
-#### MSON
-
-```
-- *(number)* (string) - FizzBuzz number & answer pair
-```
-
-#### Rendered Markdown
-
-- *(number)* (string) - FizzBuzz number & answer pair
-
-#### JSON
-```json
-{
-    "1": "1",
-    "2": "2",
-    "3": "Fizz",
-    "4": "4",
-    "5": "Buzz"
-}
-```
-
 ---
 
 ## Type Definition
@@ -639,7 +613,7 @@ MSON Named Type.
 }
 ```
 
->**NOTE:** A mixin can only use a Named Type that is derived from the same type of structure including the mixin.
+>**NOTE:** A mixin can only use a Named Type that is derived from the same type of structure including the mixin.fixfi
 
 [API Blueprint]: https://github.com/apiaryio/api-blueprint
 [code span]: http://daringfireball.net/projects/markdown/syntax#code
