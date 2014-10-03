@@ -181,7 +181,7 @@ _Named Declaration_ → `#` _[Type Name][]_` `_[Type Definition][]_ _[opt]_
 ```
 
 ### 3.1.1 Generic Named Declaration
-Defines a _[Named Type][]_ that allows an italicized _[Type Name Variable][]_ to represent a _[Type Name][]_
+Defines a _[Named Type][]_ that allows an italicized _[Variable Type Name][]_ to represent a _[Type Name][]_
 at any location in the _[Type Specification][]_ of a _[Variable Type Definition][]_.
 
 _Generic Named Declaration_ →  `#` _[Type Name][]_` `_[Variable Type Definition][]_
@@ -331,7 +331,7 @@ Defines a variable _[Type Definition][]_ to indicate generic _[Named Types][]_.
 
 _Variable Type Definition_ → _[Type Definition][]_
 
-A _Variable Type Definition_ MUST include at least one _[Type Name Variable][]_.
+A _Variable Type Definition_ MUST include at least one _[Variable Type Name][]_.
 
 ```
 (*T*)
@@ -357,17 +357,21 @@ Indicates a `array` type structure MAY include distinct numbers or strings as va
 References the name of a type in _[Base Types][]_ or _[Named Types][]_. Some limitations apply (see
 [Reserved Characters & Keywords][]).
 
-_Type Name_ → _[Literal Value][]_ | _[Type Name Variable][]_
+_Type Name_ → _[Literal Value][]_ | _[Variable Type Name][]_ | _Wildcard Type Name_
 
-A _[Type Name Variable][]_ MUST only be used in two situations:
+_Wildcard Type Name_ → `*`
+
+A _[Variable Type Name][]_ MUST only be used in two situations:
 - As a _Type Name_ in a _[Type Definition]_ for a _[Generic Named Type][]_.
 - As an associated _Type Name_ in _[Nested Member Types][]_ of the _[Generic Named Type][]_.
 
-#### 3.5.4 Type Name Variable
+A _Wildcard Type Name_ indicates any type MAY be possible.
+
+#### 3.5.4 Variable Type Name
 An *italicized* variable that MAY be used in place of a _[Type Name][]_ for a _[Type Definition][]_ in a
 _[Generic Named Declaration][]_.
 
-_Type Name Variable_ → `*`_[Literal Value][]_`*`
+_Variable Type Name_ → `*`_[Literal Value][]_`*`
 
 #### 3.5.5 Type Attribute
 Defines extra attributes associated with the implementation of a type.
@@ -935,14 +939,14 @@ A _One Of Type_ MUST use a `Properties` _[Member Type Separator][]_ in a _[Membe
     ```
 
 ### 5.3 Generic Named Type
-Defines a _[Named Type][]_ that allows an italicized _[Type Name Variable][]_ to represent a _[Type Name][]_
+Defines a _[Named Type][]_ that allows an italicized _[Variable Type Name][]_ to represent a _[Type Name][]_
 at any location in a _[Type Specification][]_.
 
 _Generic Named Type_ → _[Named Type][]_
 
 By default:
-- A _[Named Type][]_ that contains at least one _[Type Name Variable][]_ is a _Generic Named Type_.
-- A _Type Name Variable_ in a _[Type Specification][]_ MAY only be used in the _[Type Definition][]_ of explicitly
+- A _[Named Type][]_ that contains at least one _[Variable Type Name][]_ is a _Generic Named Type_.
+- A _Variable Type Name_ in a _[Type Specification][]_ MAY only be used in the _[Type Definition][]_ of explicitly
 defined _[Nested Member Types][]_ in the _Generic Named Type_ and MUST NOT define any implied _[Nested Member Types][]_.
 
 - Inherited type as a variable
@@ -1193,7 +1197,7 @@ Following keywords are reserved for future use:
 [Type Specifications]: #352-type-specification
 [Type Name]: #353-type-name
 [Type Names]: #353-type-name
-[Type Name Variable]: #354-type-name-variable
+[Variable Type Name]: #354-variable-type-name
 [Type Attribute]: #355-type-attribute
 [Type Attributes]: #355-type-attribute
 [Description]: #35-description
