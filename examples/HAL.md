@@ -25,7 +25,7 @@ state of the resource.
 
         - *(Relation Type)* (One or many(HAL Resource))
         
-- `*properties*` (*)
+- *`properties`* (*)
 
     Key/value pairs of properties of the Resource object that can contain a valid JSON type as a value.
 
