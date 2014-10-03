@@ -267,15 +267,32 @@ _Value_ → _[Literal Value][]_ | _[Variable Value][]_ | _Values List_
 
 _Values List_ → _Value_ | _Value_`,` _Values List_
 
-A _Value_ MAY be a _Values List_ if the associated type structure is an `array` or `enum` type structure.
+A _Values List_ MUST only be used with `array` or `enum` _[Structure Types][]_ or _[Named Types][]_ derived from them.
+
+By default:
+
+- A _Value Definition_ that incorporates a _Values List_ but has no _[Type Definition][]_ implies an
+`array` type structure.
 
 ```
-green, red
+- list: 1, 2, 3
 ```
 
-Defines sample values for an `array` type structures or fully-qualified values for an `enum` type
-structure. A _Values List_ MUST only be used with an `array` or `enum` _Structure Type_ or a _[Named Type][]_ derived
-from a _Structure Type_.
+is equivalent to:
+
+```
+- list: 1, 2, 3 (array)
+```
+
+Where "1", "2", and "3" are sample values of the `array` structure.
+
+- A _Value Definition_ that incorporates a _Values List_ defines fully-qualified values of an `enum` type structure.
+
+```
+- colors: red, green (enum)
+```
+
+Where "red" and "green" are fully-qualified values of the `colors` enumeration.
 
 #### 3.4.2 Literal Value
 Literal value of a type instance. Some limitations apply (see [Reserved Characters & Keywords][]).
