@@ -386,27 +386,6 @@ mutually exclusive properties in an `object` structure.
 
 ---
 
-## Escaping
-Markdown [code span][] element syntax (`` ` ` ``) is used to escape names and literals when needed.
-
-#### MSON
-
-```
-- `id`: `1`
-- `name`: `A green door`
-- `price`: `12.50`
-- `tags`: `home`, `green`
-```
-
-#### Rendered Markdown
-
-- `id`: `1`
-- `name`: `A green door`
-- `price`: `12.50`
-- `tags`: `home`, `green`
-
----
-
 ## Multi-line Descriptions
 In the case where a one-liner description is not sufficient, a multi-paragraph text block is the way to go.
 
@@ -454,6 +433,45 @@ conflict with potential list item values that are part of the description:
 ```
 
 >**NOTE:** Unos ... quattor are considered part of the text block vs. defining items of the array.
+
+## Escaping
+Markdown [code span][] element syntax (`` ` ` ``) is used to escape reserved Keywords that should just be interpretted
+as literals. For non-Keywords, a [code span][] can be used for formatting Markdown as an aesthetic preference.
+
+#### MSON
+
+```
+- listing (object)
+    
+    Our real estate listing has different properties available.
+
+    - `Properties`
+        - This one.
+        - That one. 
+
+    - Properties
+        - description
+        - date_listed
+```
+
+#### Rendered Markdown
+
+- listing (object)
+    
+    Our real estate listing has different properties available.
+
+    - `Properties`
+        - This one.
+        - That one. 
+
+    - Properties
+        - description
+        - date_listed
+
+>**NOTE:** In this example, the first "Properties" string is part of the multi-line block description whereas the second
+> defines the properties of the `listing` object.
+
+---
 
 ## Variable Property Name
 Variable property name (key) is defined using *italics*. Note that a variable property cannot be required. 
