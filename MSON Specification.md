@@ -1,6 +1,55 @@
 # MSON Specification
 Markdown Syntax for Object Notation (MSON) is a plain-text syntax for the description and validation of data structures.
 
+## Quick Links
+
+- 1 [How to Read the Grammar][]
+    - 1.1 [Markdown Syntax][]
+    - 1.2 [Notational Conventions][]
+    - 1.3 [Promises][]
+- 2 [Types][]
+    - 2.1 [Base Types][]
+        - 2.1.1 [Primitive Types][]
+        - 2.1.2 [Structure Types][]
+    - 2.2 [Named Types][]
+    - 2.3 [Member Types][]
+        - 2.3.1 [Property Member Types][]
+        - 2.3.2 [Value Member Types][]
+- 3 [Type Declaration][]
+    - 3.1 [Named Declaration][]
+        - 3.1.1 [Generic Named Declaration][]
+    - 3.2 [Property Member Declaration][]
+        - 3.2.1 [Property Name][]
+        - 3.2.2 [Variable Property Name][]
+    - 3.3 [Value Member Declaration][]
+    - 3.4 [Value Definition][]
+        - 3.4.1 [Value][]
+        - 3.4.2 [Literal Value][]
+        - 3.4.3 [Variable Value][]
+    - 3.5 [Type Definition][]
+        - 3.5.1 [Variable Type Definition][]
+        - 3.5.2 [Type Specification][]
+        - 3.5.3 [Type Name][]
+        - 3.5.4 [Variable Type Name][]
+        - 3.5.5 [Type Attribute][]
+    - 3.6 [Description][]
+- 4 [Type Sections][]
+    - 4.1 [Block Description][] 
+    - 4.2 [Member Type Group][]
+        - 4.2.1 [Member Type Separator][]
+    - 4.3 [Nested Member Type][]
+    - 4.4 [Sample][]
+    - 4.5 [Validations][]
+- 5 [Type Inheritance][]
+    - 5.1 [Mixin Type][]
+    - 5.2 [One Of Type][]
+    - 5.3 [Generic Named Type][]
+    - 5.4 [Member Type Precedence][]
+- 6 [Reserved Characters & Keywords][]
+    - 6.1 [Characters][]
+    - 6.2 [Keywords][]
+    - 6.3 [Additional Keywords][]
+
 ## 1 How to Read the Grammar
 - An arrow (→) mark grammar productions that can be read as "is defined by|is defined by a(n)"
 - A double arrow (⇒) marks grammar productions that can be read as "contains|contains a(n)"
@@ -1137,28 +1186,32 @@ _[Member Type][]_.
         - address (string)
     ```
 
-## 7 Reserved Characters & Keywords
+## 6 Reserved Characters & Keywords
 When using following characters or keywords in a _[Property Name][]_, _[Literal Value][]__ or _[Type Name][]_ the name 
 or literal MUST be escaped in backticks `` ` ``. Otherwise, a `code span` MAY be used for any arbitrary formatting
 and has no specific meaning in an MSON document.
 
-### 7.1 Characters
+### 6.1 Characters
 
 `:`, `(`,`)`, `<`, `>`, `{`, `}`, `[`, `]`, `_`, `*`, `-`, `+`, `` ` ``
 
-### 7.2 Keywords
+### 6.2 Keywords
 
 `Property`, `Properties`, `Item`, `Items`, `Member`, `Members`, `Include`, `One of`, `Sample`
 
 Note keywords are case-insensitive.
 
-### 7.3 Additional Keywords
+### 6.3 Additional Keywords
 Following keywords are reserved for future use:
 
 `Trait`, `Traits`, `Parameter`, `Parameters`, `Attribute`, `Attributes`, `Filter`, `Validation`, `Choice`, `Choices`,
 `Enumeration`, `Enum`, `Object`, `Array`, `Element`, `Elements`, `Description`
 
 [RFC2119]: https://www.ietf.org/rfc/rfc2119
+[How to Read the Grammar]: #1-how-to-read-the-grammar
+[Markdown Syntax]: #11-markdown-syntax
+[Notational Conventions]: #12-notational-conventions
+[Promises]: #13-promises
 [Type]: #2-types
 [Types]: #2-types
 [Base Type]: #21-base-types
@@ -1200,8 +1253,8 @@ Following keywords are reserved for future use:
 [Variable Type Name]: #354-variable-type-name
 [Type Attribute]: #355-type-attribute
 [Type Attributes]: #355-type-attribute
-[Description]: #35-description
-[Descriptions]: #35-description
+[Description]: #36-description
+[Descriptions]: #36-description
 
 [Type Section]: #4-type-sections
 [Type Sections]: #4-type-sections
@@ -1223,5 +1276,7 @@ Following keywords are reserved for future use:
 [Generic Named Type]: #53-generic-named-type
 [Member Type Precedence]: #54-member-type-precedence
 
-[Reserved Characters & Keywords]: #7-reserved-characters--keywords
-[Keywords]: #72-keywords
+[Reserved Characters & Keywords]: #6-reserved-characters--keywords
+[Characters]: #61-characters
+[Keywords]: #62-keywords
+[Additional Keywords]: #63-additional-keywords
