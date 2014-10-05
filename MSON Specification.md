@@ -30,8 +30,9 @@ Markdown Syntax for Object Notation (MSON) is a plain-text syntax for the descri
         - 3.5.1 [Variable Type Definition][]
         - 3.5.2 [Type Specification][]
         - 3.5.3 [Type Name][]
-        - 3.5.4 [Variable Type Name][]
-        - 3.5.5 [Type Attribute][]
+            - 3.5.3.1 [Variable Type Name][]
+            - 3.5.3.2 [Wildcard Type Name][]
+        - 3.5.4 [Type Attribute][]
     - 3.6 [Description][]
 - 4 [Type Sections][]
     - 4.1 [Block Description][] 
@@ -406,23 +407,26 @@ Indicates a `array` type structure MAY include distinct numbers or strings as va
 References the name of a type in _[Base Types][]_ or _[Named Types][]_. Some limitations apply (see
 [Reserved Characters & Keywords][]).
 
-_Type Name_ → _[Literal Value][]_ | _[Variable Type Name][]_ | _Wildcard Type Name_
-
-_Wildcard Type Name_ → `*`
+_Type Name_ → _[Literal Value][]_ | _[Variable Type Name][]_ | _[Wildcard Type Name][]_
 
 A _[Variable Type Name][]_ MUST only be used in two situations:
 - As a _Type Name_ in a _[Type Definition]_ for a _[Generic Named Type][]_.
 - As an associated _Type Name_ in _[Nested Member Types][]_ of the _[Generic Named Type][]_.
 
-A _Wildcard Type Name_ indicates any type MAY be possible.
-
-#### 3.5.4 Variable Type Name
+##### 3.5.3.1 Variable Type Name
 An *italicized* variable that MAY be used in place of a _[Type Name][]_ for a _[Type Definition][]_ in a
 _[Generic Named Declaration][]_.
 
 _Variable Type Name_ → `*`_[Literal Value][]_`*`
 
-#### 3.5.5 Type Attribute
+##### 3.5.3.2 Wildcard Type Name
+Indicates any type MAY be possible.
+
+_Wildcard Type Name_ → `*`
+
+A _Wildcard Type Name_ MAY only be used in a _[Type Specification][]_ for _[Member Types][]_.
+
+#### 3.5.4 Type Attribute
 Defines extra attributes associated with the implementation of a type.
 
 - `required` - instance of this type is required
@@ -1250,9 +1254,10 @@ Following keywords are reserved for future use:
 [Type Specifications]: #352-type-specification
 [Type Name]: #353-type-name
 [Type Names]: #353-type-name
-[Variable Type Name]: #354-variable-type-name
-[Type Attribute]: #355-type-attribute
-[Type Attributes]: #355-type-attribute
+[Variable Type Name]: #3531-variable-type-name
+[Wildcard Type Name]: #3532-wildcard-type-name
+[Type Attribute]: #354-type-attribute
+[Type Attributes]: #354-type-attribute
 [Description]: #36-description
 [Descriptions]: #36-description
 
