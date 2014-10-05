@@ -40,7 +40,8 @@ Markdown Syntax for Object Notation (MSON) is a plain-text syntax for the descri
         - 4.2.1 [Member Type Separator][]
     - 4.3 [Nested Member Type][]
     - 4.4 [Sample][]
-    - 4.5 [Validations][]
+    - 4.5 [Default][]
+    - 4.6 [Validations][]
 - 5 [Type Inheritance][]
     - 5.1 [Mixin Type][]
     - 5.2 [One Of Type][]
@@ -432,6 +433,8 @@ Defines extra attributes associated with the implementation of a type.
 - `required` - instance of this type is required
 - `optional` - instance of this type is optional (default)
 - `fixed`    - instance of this type structure and values are fixed
+- `sample`   - Alternate way to indicate a _[Value][]_ is a sample. See _[Sample][]_.
+- `default`   - Alternate way to indicate a _[Value][]_ is a default. See _[Default][]_.
 
 ### 3.6 Description
 Describes a _[Member Type][]_ in-line.
@@ -780,7 +783,7 @@ by using an `optional` attribute and/or MAY indicate values are samples using a 
 ### 4.4 Sample
 Defines alternate sample _[Values][]_ for _[Member Types][]_ as a nested Markdown list with (multi-line) text.
 
-_Sample_ → `- Sample` | `## Sample`
+_Sample_ → `- Sample` | `- Sample :` _[Value][]_ | `## Sample`
 
 _Sample_ ⇒ _Markdown-formatted text_ | _[Value Member Types][]_
 
@@ -811,12 +814,13 @@ A _[Type][]_ MAY have multiple _Sample_ lists.
 
      ```
      # Colors (array)
-     - Sample
-         - red
+     - Sample: red
      - Sample
          - blue
          - green
      ```
+
+     A `sample` _[Type Attribute][]_ MUST NOT be used in the _[Type Definition][]_ of a _[Named Declaration][]_.
 
 - Member Types
 
@@ -825,14 +829,103 @@ A _[Type][]_ MAY have multiple _Sample_ lists.
 
     ```
     - colors (array)
-      - Sample
-          - red
+      - Sample: red
       - Sample
           - blue
           - green
     ```
 
-### 4.5 Validations
+    A `sample` _[Type Attribute][]_ MAY be used to indicate a _[Value][]_ in a _[Value Member Type][]_ is a sample
+    value.
+
+    ```
+    - list: 3, 4 (enum, sample)
+    ```
+
+    Is equivalent to:
+
+    ```
+    - list: *3, 4* (enum)
+    ```
+
+    Which, is equivalent to:
+
+    ```
+    - list (enum)
+        - Samples
+            - 3
+            - 4
+    ```
+
+    A `default` _[Type Attribute][]_ MUST NOT be used in the _[Type Definition][]_ of a 
+    _[Property Member Declaration][]_.
+
+### 4.5 Default
+Indicates _[Values][]_ for _[Member Types][]_ as a nested Markdown list with (multi-line) text are defaults.
+
+_Default_ → `- Default` | `- Default :` _[Value][]_ | `## Default`
+
+_Default_ ⇒ _Markdown-formatted text_ | _[Value Member Types][]_
+
+A _[Type][]_ MAY have one _Default_ list. A _Default_ for a _[Member Type][]_ MAY also indicate a _[Sample][]_.
+
+- Named Types
+
+    A header-defined (`##`) _[Default][]_ MUST be nested one additional header level under the associated
+    _[Named Type][]_ if a _[Block Description][]_ is used.
+
+    ```
+    # Colors (array)
+    A list of colors
+
+    ## Default
+    - red
+
+    ## Items
+    - (string)
+    ```
+
+     A list-defined (`-`) _[Default][]_ MAY be nested directly under a _[Type Declaration][]_ if a
+     _[Block Description][]_ is not present.
+
+     ```
+     # Colors (array)
+     - Default
+         - red
+     ```
+
+     A `default` _[Type Attribute][]_ MUST NOT be used in the _[Type Definition][]_ of a _[Named Declaration][]_.
+
+- Member Types
+
+    A list-defined (`-`) _[default][]_ SHOULD be nested one indentation level under the associated
+    _[Member Type][]_.
+
+    ```
+    - colors (array)
+      - Default: red
+    ```
+
+    A `default` _[Type Attribute][]_ MAY be used to indicate a _[Value][]_ in a _[Value Member Type][]_ is a default
+    value.
+
+    ```
+    - list: 4 (enum, default)
+        - 3
+        - 4
+    ```
+
+    is equivalent to:
+
+    ```
+    - list: 3, 4 (enum)
+        - Default: 4
+    ```
+
+     A `default` _[Type Attribute][]_ MUST NOT be used in the _[Type Definition][]_ of a 
+     _[Property Member Declaration][]_.
+
+### 4.6 Validations
 Reserved for future use.
 
 ## 5 Type Inheritance
@@ -1271,8 +1364,10 @@ Following keywords are reserved for future use:
 [Nested Member Types]: #43-nested-member-types
 [Sample]: #44-sample
 [Samples]: #44-sample
-[Validation]: #45-validations
-[Validations]: #45-validations
+[Default]: #45-default
+[Defaults]: #45-default
+[Validation]: #46-validations
+[Validations]: #46-validations
 
 
 [Type Inheritance]: #5-type-inheritance
