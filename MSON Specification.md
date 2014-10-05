@@ -27,12 +27,12 @@ Markdown Syntax for Object Notation (MSON) is a plain-text syntax for the descri
         - 3.4.2 [Literal Value][]
         - 3.4.3 [Variable Value][]
     - 3.5 [Type Definition][]
-        - 3.5.1 [Variable Type Definition][]
-        - 3.5.2 [Type Specification][]
-        - 3.5.3 [Type Name][]
-            - 3.5.3.1 [Variable Type Name][]
-            - 3.5.3.2 [Wildcard Type Name][]
-        - 3.5.4 [Type Attribute][]
+        - 3.5.1 [Type Specification][]
+            - 3.5.1.1 [Variable Type Specification][]
+        - 3.5.2 [Type Name][]
+            - 3.5.2.1 [Variable Type Name][]
+            - 3.5.2.2 [Wildcard Type Name][]
+        - 3.5.3 [Type Attribute][]
     - 3.6 [Description][]
 - 4 [Type Sections][]
     - 4.1 [Block Description][] 
@@ -376,18 +376,7 @@ A _Type Definition_ MUST separate multiple items with commas and is order-indepe
 (enum, optional)
 ```
 
-#### 3.5.1 Variable Type Definition
-Defines a variable _[Type Definition][]_ to indicate generic _[Named Types][]_.
-
-_Variable Type Definition_ → _[Type Definition][]_
-
-A _Variable Type Definition_ MUST include at least one _[Variable Type Name][]_.
-
-```
-(*T*)
-```
-
-#### 3.5.2 Type Specification
+#### 3.5.1 Type Specification
 Defines sub-typed _[Base Types][]_ or _[Types][]_ for a particular _[Type][]_.
 
 _Type Specification_ → _[Type Name][]_ | _[Type Name][]_`[`_Nested Type Name List_`]`
@@ -403,7 +392,18 @@ array[number, string]
 
 Indicates a `array` type structure MAY include distinct numbers or strings as values.
 
-#### 3.5.3 Type Name
+##### 3.5.1.1 Variable Type Specification
+Defines a variable _[Type Specification][]_ to indicate generic _[Named Types][]_.
+
+_Variable Type Definition_ → _[Type Specification][]_
+
+A _Variable Type Definition_ MUST include at least one _[Variable Type Name][]_.
+
+```
+# One or Many (enum[*T*])
+```
+
+#### 3.5.2 Type Name
 References the name of a type in _[Base Types][]_ or _[Named Types][]_. Some limitations apply (see
 [Reserved Characters & Keywords][]).
 
@@ -413,20 +413,20 @@ A _[Variable Type Name][]_ MUST only be used in two situations:
 - As a _Type Name_ in a _[Type Definition]_ for a _[Generic Named Type][]_.
 - As an associated _Type Name_ in _[Nested Member Types][]_ of the _[Generic Named Type][]_.
 
-##### 3.5.3.1 Variable Type Name
+##### 3.5.2.1 Variable Type Name
 An *italicized* variable that MAY be used in place of a _[Type Name][]_ for a _[Type Definition][]_ in a
 _[Generic Named Declaration][]_.
 
 _Variable Type Name_ → `*`_[Literal Value][]_`*`
 
-##### 3.5.3.2 Wildcard Type Name
+##### 3.5.2.2 Wildcard Type Name
 Indicates any type MAY be possible.
 
 _Wildcard Type Name_ → `*`
 
 A _Wildcard Type Name_ MAY only be used in a _[Type Specification][]_ for _[Member Types][]_.
 
-#### 3.5.4 Type Attribute
+#### 3.5.3 Type Attribute
 Defines extra attributes associated with the implementation of a type.
 
 - `required` - instance of this type is required
@@ -1249,15 +1249,15 @@ Following keywords are reserved for future use:
 [Variable Value]: #343-variable-value
 [Type Definition]: #35-type-definition
 [Type Definitions]: #35-type-definition
-[Variable Type Definition]: #351-variable-type-definition
-[Type Specification]: #352-type-specification
-[Type Specifications]: #352-type-specification
-[Type Name]: #353-type-name
-[Type Names]: #353-type-name
-[Variable Type Name]: #3531-variable-type-name
-[Wildcard Type Name]: #3532-wildcard-type-name
-[Type Attribute]: #354-type-attribute
-[Type Attributes]: #354-type-attribute
+[Type Specification]: #351-type-specification
+[Type Specifications]: #351-type-specification
+[Variable Type Specification]: #3511-variable-type-specification
+[Type Name]: #352-type-name
+[Type Names]: #352-type-name
+[Variable Type Name]: #3521-variable-type-name
+[Wildcard Type Name]: #3522-wildcard-type-name
+[Type Attribute]: #353-type-attribute
+[Type Attributes]: #353-type-attribute
 [Description]: #36-description
 [Descriptions]: #36-description
 
