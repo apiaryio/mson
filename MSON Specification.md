@@ -434,7 +434,7 @@ Defines extra attributes associated with the implementation of a type.
 - `optional` - instance of this type is optional (default)
 - `fixed`    - instance of this type structure and values are fixed
 - `sample`   - Alternate way to indicate a _[Value][]_ is a sample. See _[Sample][]_.
-- `default`   - Alternate way to indicate a _[Value][]_ is a default. See _[Default][]_.
+- `default`  - Alternate way to indicate a _[Value][]_ is a default. See _[Default][]_.
 
 ### 3.6 Description
 Describes a _[Member Type][]_ in-line.
@@ -852,7 +852,7 @@ A _[Type][]_ MAY have multiple _Sample_ lists.
 
     ```
     - list (enum)
-        - Samples
+        - Sample
             - 3
             - 4
     ```
@@ -867,7 +867,8 @@ _Default_ → `- Default` | `- Default :` _[Value][]_ | `## Default`
 
 _Default_ ⇒ _Markdown-formatted text_ | _[Value Member Types][]_
 
-A _[Type][]_ MAY have one _Default_ list. A _Default_ for a _[Member Type][]_ MAY also indicate a _[Sample][]_.
+A _[Type][]_ MAY have one _Default_ _[Section Type][]_. A _Default_ for a _[Member Type][]_ MAY also indicate a 
+_[Sample][]_.
 
 - Named Types
 
