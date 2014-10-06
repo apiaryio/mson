@@ -1,5 +1,5 @@
 # Markdown Syntax for Object Notation
-This document provides an introduction to Markdown Syntax for Object Notation (MSON), a proposed Markdown syntax 
+This document provides an introduction to Markdown Syntax for Object Notation (MSON), a Markdown syntax 
 compatible with describing JSON and JSON Schema.
 
 ## What? 
@@ -16,7 +16,7 @@ In addition, this format also offers (limited) serialization functionality.
 Similar to the original Markdown to HTML (markup) conversion, MSON enables conversion to other markup formats.
 
 ## Who & Why? 
-This format is being developed by [@zdne][] at [Apiary][] as a part of the [API Blueprint][] syntax to provide a means 
+This format is being developed by [Apiary][] as a part of the [API Blueprint][] syntax to provide a means 
 for description and validation of HTTP payloads and DRY, media-type agnostic, resource descriptions and to simplify 
 content-negotiation.
 
@@ -88,7 +88,7 @@ A product from Acme's catalog
 - id: 1 (number, required) - The unique identifier for a product
 - name: A green door (string, required) - Name of the product
 - price: 12.50 (number, required)
-- tags: home, green (array: string)
+- tags: home, green (array[string])
 
 #### JSON
 
@@ -432,11 +432,13 @@ conflict with potential list item values that are part of the description:
         - green 
 ```
 
->**NOTE:** Unos ... quattor are considered part of the text block vs. defining items of the array.
+>**NOTE:** Unus ... quattuor are considered part of the text block vs. defining items of the array.
 
 ## Escaping
 Markdown [code span][] element syntax (`` ` ` ``) is used to escape reserved Keywords that should just be interpretted
-as literals. For non-Keywords, a [code span][] can be used for formatting Markdown as an aesthetic preference.
+as literals as well as other constructs that may be erroneously interpreted by an MSON parser as meaningful. 
+
+For non-Keywords, a [code span][] can be used for formatting Markdown as an aesthetic preference.
 
 #### MSON
 
@@ -450,8 +452,9 @@ as literals. For non-Keywords, a [code span][] can be used for formatting Markdo
         - That one. 
 
     - Properties
-        - description
-        - date_listed
+        - description (string)
+        - date_listed (string)
+        - `some:location`: local (string)
 ```
 
 #### Rendered Markdown
@@ -467,6 +470,7 @@ as literals. For non-Keywords, a [code span][] can be used for formatting Markdo
     - Properties
         - description
         - date_listed
+        - `some:location`: local (string)
 
 >**NOTE:** In this example, the first "Properties" string is part of the multi-line block description whereas the second
 > defines the properties of the `listing` object.
@@ -496,7 +500,10 @@ Variable property name (key) is defined using *italics*. Note that a variable pr
 {
     "_links" {
         "self": {
-            "href": "a URI"
+            "href": "..."
+        },
+        "users": {
+            "href": "..."
         }
     }
 }
@@ -631,7 +638,9 @@ MSON Named Type.
 }
 ```
 
->**NOTE:** A mixin can only use a Named Type that is derived from the same type of structure including the mixin.fixfi
+>**NOTE:** A mixin can only use a Named Type that is derived from the same type of structure including the mixin.
+> Further, the parent structure inherits all the members of the included Named Type and maintains the order the
+> members were originally defined.
 
 [API Blueprint]: https://github.com/apiaryio/api-blueprint
 [code span]: http://daringfireball.net/projects/markdown/syntax#code
