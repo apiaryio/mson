@@ -1,6 +1,57 @@
 # MSON Specification
 Markdown Syntax for Object Notation (MSON) is a plain-text syntax for the description and validation of data structures.
 
+## Quick Links
+
+- 1 [How to Read the Grammar][]
+    - 1.1 [Markdown Syntax][]
+    - 1.2 [Notational Conventions][]
+    - 1.3 [Promises][]
+- 2 [Types][]
+    - 2.1 [Base Types][]
+        - 2.1.1 [Primitive Types][]
+        - 2.1.2 [Structure Types][]
+    - 2.2 [Named Types][]
+    - 2.3 [Member Types][]
+        - 2.3.1 [Property Member Types][]
+        - 2.3.2 [Value Member Types][]
+- 3 [Type Declaration][]
+    - 3.1 [Named Declaration][]
+        - 3.1.1 [Generic Named Declaration][]
+    - 3.2 [Property Member Declaration][]
+        - 3.2.1 [Property Name][]
+        - 3.2.2 [Variable Property Name][]
+    - 3.3 [Value Member Declaration][]
+    - 3.4 [Value Definition][]
+        - 3.4.1 [Value][]
+        - 3.4.2 [Literal Value][]
+        - 3.4.3 [Variable Value][]
+    - 3.5 [Type Definition][]
+        - 3.5.1 [Type Specification][]
+            - 3.5.1.1 [Variable Type Specification][]
+        - 3.5.2 [Type Name][]
+            - 3.5.2.1 [Variable Type Name][]
+            - 3.5.2.2 [Wildcard Type Name][]
+        - 3.5.3 [Type Attribute][]
+    - 3.6 [Description][]
+- 4 [Type Sections][]
+    - 4.1 [Block Description][] 
+    - 4.2 [Member Type Group][]
+        - 4.2.1 [Member Type Separator][]
+    - 4.3 [Nested Member Type][]
+    - 4.4 [Sample][]
+    - 4.5 [Default][]
+    - 4.6 [Validations][]
+- 5 [Type Inheritance][]
+    - 5.1 [Mixin Type][]
+    - 5.2 [One Of Type][]
+    - 5.3 [Generic Named Type][]
+    - 5.4 [Member Type Precedence][]
+- 6 [Reserved Characters & Keywords][]
+    - 6.1 [Characters][]
+    - 6.2 [Keywords][]
+    - 6.3 [Additional Keywords][]
+
 ## 1 How to Read the Grammar
 - An arrow (→) mark grammar productions that can be read as "is defined by|is defined by a(n)"
 - A double arrow (⇒) marks grammar productions that can be read as "contains|contains a(n)"
@@ -181,7 +232,7 @@ _Named Declaration_ → `#` _[Type Name][]_` `_[Type Definition][]_ _[opt]_
 ```
 
 ### 3.1.1 Generic Named Declaration
-Defines a _[Named Type][]_ that allows an italicized _[Type Name Variable][]_ to represent a _[Type Name][]_
+Defines a _[Named Type][]_ that allows an italicized _[Variable Type Name][]_ to represent a _[Type Name][]_
 at any location in the _[Type Specification][]_ of a _[Variable Type Definition][]_.
 
 _Generic Named Declaration_ →  `#` _[Type Name][]_` `_[Variable Type Definition][]_
@@ -267,15 +318,32 @@ _Value_ → _[Literal Value][]_ | _[Variable Value][]_ | _Values List_
 
 _Values List_ → _Value_ | _Value_`,` _Values List_
 
-A _Value_ MAY be a _Values List_ if the associated type structure is an `array` or `enum` type structure.
+A _Values List_ MUST only be used with `array` or `enum` _[Structure Types][]_ or _[Named Types][]_ derived from them.
+
+By default:
+
+- A _Value Definition_ that incorporates a _Values List_ but has no _[Type Definition][]_ implies an
+`array` type structure.
 
 ```
-green, red
+- list: 1, 2, 3
 ```
 
-Defines sample values for an `array` type structures or fully-qualified values for an `enum` type
-structure. A _Values List_ MUST only be used with an `array` or `enum` _Structure Type_ or a _[Named Type][]_ derived
-from a _Structure Type_.
+is equivalent to:
+
+```
+- list: 1, 2, 3 (array)
+```
+
+Where "1", "2", and "3" are sample values of the `array` structure.
+
+- A _Value Definition_ that incorporates a _Values List_ defines fully-qualified values of an `enum` type structure.
+
+```
+- colors: red, green (enum)
+```
+
+Where "red" and "green" are fully-qualified values of the `colors` enumeration.
 
 #### 3.4.2 Literal Value
 Literal value of a type instance. Some limitations apply (see [Reserved Characters & Keywords][]).
@@ -309,18 +377,7 @@ A _Type Definition_ MUST separate multiple items with commas and is order-indepe
 (enum, optional)
 ```
 
-#### 3.5.1 Variable Type Definition
-Defines a variable _[Type Definition][]_ to indicate generic _[Named Types][]_.
-
-_Variable Type Definition_ → _[Type Definition][]_
-
-A _Variable Type Definition_ MUST include at least one _[Type Name Variable][]_.
-
-```
-(*T*)
-```
-
-#### 3.5.2 Type Specification
+#### 3.5.1 Type Specification
 Defines sub-typed _[Base Types][]_ or _[Types][]_ for a particular _[Type][]_.
 
 _Type Specification_ → _[Type Name][]_ | _[Type Name][]_`[`_Nested Type Name List_`]`
@@ -336,28 +393,50 @@ array[number, string]
 
 Indicates a `array` type structure MAY include distinct numbers or strings as values.
 
-#### 3.5.3 Type Name
+##### 3.5.1.1 Variable Type Specification
+Defines a variable _[Type Specification][]_ to indicate generic _[Named Types][]_.
+
+_Variable Type Definition_ → _[Type Specification][]_
+
+A _Variable Type Definition_ MUST include at least one _[Variable Type Name][]_.
+
+```
+# One or Many (enum[*T*])
+```
+
+#### 3.5.2 Type Name
 References the name of a type in _[Base Types][]_ or _[Named Types][]_. Some limitations apply (see
 [Reserved Characters & Keywords][]).
 
-_Type Name_ → _[Literal Value][]_ | _[Type Name Variable][]_
+_Type Name_ → _[Literal Value][]_ | _[Variable Type Name][]_ | _[Wildcard Type Name][]_
 
-A _[Type Name Variable][]_ MUST only be used in two situations:
+A _[Variable Type Name][]_ MUST only be used in two situations:
 - As a _Type Name_ in a _[Type Definition]_ for a _[Generic Named Type][]_.
 - As an associated _Type Name_ in _[Nested Member Types][]_ of the _[Generic Named Type][]_.
 
-#### 3.5.4 Type Name Variable
+##### 3.5.2.1 Variable Type Name
 An *italicized* variable that MAY be used in place of a _[Type Name][]_ for a _[Type Definition][]_ in a
 _[Generic Named Declaration][]_.
 
-_Type Name Variable_ → `*`_[Literal Value][]_`*`
+_Variable Type Name_ → `*`_[Literal Value][]_`*`
 
-#### 3.5.5 Type Attribute
+##### 3.5.2.2 Wildcard Type Name
+Indicates any type MAY be possible.
+
+_Wildcard Type Name_ → `*`
+
+A _Wildcard Type Name_ MAY only be used in a _[Type Specification][]_ for _[Member Types][]_.
+
+#### 3.5.3 Type Attribute
 Defines extra attributes associated with the implementation of a type.
 
 - `required` - instance of this type is required
 - `optional` - instance of this type is optional (default)
 - `fixed`    - instance of this type structure and values are fixed
+- `sample`   - Alternate way to indicate a _[Value][]_ is a sample. See _[Sample][]_.
+- `default`  - Alternate way to indicate a _[Value][]_ is a default. See _[Default][]_.
+
+A `sample` _Type Attribute_ is mutually exclusive with `default`.
 
 ### 3.6 Description
 Describes a _[Member Type][]_ in-line.
@@ -706,7 +785,7 @@ by using an `optional` attribute and/or MAY indicate values are samples using a 
 ### 4.4 Sample
 Defines alternate sample _[Values][]_ for _[Member Types][]_ as a nested Markdown list with (multi-line) text.
 
-_Sample_ → `- Sample` | `## Sample`
+_Sample_ → `- Sample` | `- Sample :` _[Value][]_ | `## Sample`
 
 _Sample_ ⇒ _Markdown-formatted text_ | _[Value Member Types][]_
 
@@ -737,12 +816,13 @@ A _[Type][]_ MAY have multiple _Sample_ lists.
 
      ```
      # Colors (array)
-     - Sample
-         - red
+     - Sample: red
      - Sample
          - blue
          - green
      ```
+
+     A `sample` _[Type Attribute][]_ MUST NOT be used in the _[Type Definition][]_ of a _[Named Declaration][]_.
 
 - Member Types
 
@@ -751,14 +831,104 @@ A _[Type][]_ MAY have multiple _Sample_ lists.
 
     ```
     - colors (array)
-      - Sample
-          - red
+      - Sample: red
       - Sample
           - blue
           - green
     ```
 
-### 4.5 Validations
+    A `sample` _[Type Attribute][]_ MAY be used to indicate a _[Value][]_ in a _[Value Member Type][]_ is a sample
+    value.
+
+    ```
+    - list: 3, 4 (enum, sample)
+    ```
+
+    Is equivalent to:
+
+    ```
+    - list: *3, 4* (enum)
+    ```
+
+    Which, is equivalent to:
+
+    ```
+    - list (enum)
+        - Sample
+            - 3
+            - 4
+    ```
+
+    A `default` _[Type Attribute][]_ MUST NOT be used in the _[Type Definition][]_ of a 
+    _[Property Member Declaration][]_.
+
+### 4.5 Default
+Indicates _[Values][]_ for _[Member Types][]_ as a nested Markdown list with (multi-line) text are defaults.
+
+_Default_ → `- Default` | `- Default :` _[Value][]_ | `## Default`
+
+_Default_ ⇒ _Markdown-formatted text_ | _[Value Member Types][]_
+
+A _[Type][]_ MAY have one _Default_ _[Section Type][]_. A _Default_ for a _[Member Type][]_ MAY also indicate a 
+_[Sample][]_.
+
+- Named Types
+
+    A header-defined (`##`) _[Default][]_ MUST be nested one additional header level under the associated
+    _[Named Type][]_ if a _[Block Description][]_ is used.
+
+    ```
+    # Colors (array)
+    A list of colors
+
+    ## Default
+    - red
+
+    ## Items
+    - (string)
+    ```
+
+     A list-defined (`-`) _[Default][]_ MAY be nested directly under a _[Type Declaration][]_ if a
+     _[Block Description][]_ is not present.
+
+     ```
+     # Colors (array)
+     - Default
+         - red
+     ```
+
+     A `default` _[Type Attribute][]_ MUST NOT be used in the _[Type Definition][]_ of a _[Named Declaration][]_.
+
+- Member Types
+
+    A list-defined (`-`) _[default][]_ SHOULD be nested one indentation level under the associated
+    _[Member Type][]_.
+
+    ```
+    - colors (array)
+      - Default: red
+    ```
+
+    A `default` _[Type Attribute][]_ MAY be used to indicate a _[Value][]_ in a _[Value Member Type][]_ is a default
+    value.
+
+    ```
+    - list: 4 (enum, default)
+        - 3
+        - 4
+    ```
+
+    is equivalent to:
+
+    ```
+    - list: 3, 4 (enum)
+        - Default: 4
+    ```
+
+     A `default` _[Type Attribute][]_ MUST NOT be used in the _[Type Definition][]_ of a 
+     _[Property Member Declaration][]_.
+
+### 4.6 Validations
 Reserved for future use.
 
 ## 5 Type Inheritance
@@ -918,14 +1088,14 @@ A _One Of Type_ MUST use a `Properties` _[Member Type Separator][]_ in a _[Membe
     ```
 
 ### 5.3 Generic Named Type
-Defines a _[Named Type][]_ that allows an italicized _[Type Name Variable][]_ to represent a _[Type Name][]_
+Defines a _[Named Type][]_ that allows an italicized _[Variable Type Name][]_ to represent a _[Type Name][]_
 at any location in a _[Type Specification][]_.
 
 _Generic Named Type_ → _[Named Type][]_
 
 By default:
-- A _[Named Type][]_ that contains at least one _[Type Name Variable][]_ is a _Generic Named Type_.
-- A _Type Name Variable_ in a _[Type Specification][]_ MAY only be used in the _[Type Definition][]_ of explicitly
+- A _[Named Type][]_ that contains at least one _[Variable Type Name][]_ is a _Generic Named Type_.
+- A _Variable Type Name_ in a _[Type Specification][]_ MAY only be used in the _[Type Definition][]_ of explicitly
 defined _[Nested Member Types][]_ in the _Generic Named Type_ and MUST NOT define any implied _[Nested Member Types][]_.
 
 - Inherited type as a variable
@@ -1116,27 +1286,32 @@ _[Member Type][]_.
         - address (string)
     ```
 
-## 7 Reserved Characters & Keywords
-When using following characters or keywords in an _Property Name_, Literal Value or _Type Name_ the name or literal
-MUST be enclosed in backticks `` ` ``.
+## 6 Reserved Characters & Keywords
+When using following characters or keywords in a _[Property Name][]_, _[Literal Value][]__ or _[Type Name][]_ the name 
+or literal MUST be escaped in backticks `` ` ``. Otherwise, a `code span` MAY be used for any arbitrary formatting
+and has no specific meaning in an MSON document.
 
-### 7.1 Characters
+### 6.1 Characters
 
 `:`, `(`,`)`, `<`, `>`, `{`, `}`, `[`, `]`, `_`, `*`, `-`, `+`, `` ` ``
 
-### 7.2 Keywords
+### 6.2 Keywords
 
 `Property`, `Properties`, `Item`, `Items`, `Member`, `Members`, `Include`, `One of`, `Sample`
 
 Note keywords are case-insensitive.
 
-### 7.3 Additional Keywords
+### 6.3 Additional Keywords
 Following keywords are reserved for future use:
 
 `Trait`, `Traits`, `Parameter`, `Parameters`, `Attribute`, `Attributes`, `Filter`, `Validation`, `Choice`, `Choices`,
 `Enumeration`, `Enum`, `Object`, `Array`, `Element`, `Elements`, `Description`
 
 [RFC2119]: https://www.ietf.org/rfc/rfc2119
+[How to Read the Grammar]: #1-how-to-read-the-grammar
+[Markdown Syntax]: #11-markdown-syntax
+[Notational Conventions]: #12-notational-conventions
+[Promises]: #13-promises
 [Type]: #2-types
 [Types]: #2-types
 [Base Type]: #21-base-types
@@ -1170,16 +1345,17 @@ Following keywords are reserved for future use:
 [Variable Value]: #343-variable-value
 [Type Definition]: #35-type-definition
 [Type Definitions]: #35-type-definition
-[Variable Type Definition]: #351-variable-type-definition
-[Type Specification]: #352-type-specification
-[Type Specifications]: #352-type-specification
-[Type Name]: #353-type-name
-[Type Names]: #353-type-name
-[Type Name Variable]: #354-type-name-variable
-[Type Attribute]: #355-type-attribute
-[Type Attributes]: #355-type-attribute
-[Description]: #35-description
-[Descriptions]: #35-description
+[Type Specification]: #351-type-specification
+[Type Specifications]: #351-type-specification
+[Variable Type Specification]: #3511-variable-type-specification
+[Type Name]: #352-type-name
+[Type Names]: #352-type-name
+[Variable Type Name]: #3521-variable-type-name
+[Wildcard Type Name]: #3522-wildcard-type-name
+[Type Attribute]: #353-type-attribute
+[Type Attributes]: #353-type-attribute
+[Description]: #36-description
+[Descriptions]: #36-description
 
 [Type Section]: #4-type-sections
 [Type Sections]: #4-type-sections
@@ -1191,8 +1367,10 @@ Following keywords are reserved for future use:
 [Nested Member Types]: #43-nested-member-types
 [Sample]: #44-sample
 [Samples]: #44-sample
-[Validation]: #45-validations
-[Validations]: #45-validations
+[Default]: #45-default
+[Defaults]: #45-default
+[Validation]: #46-validations
+[Validations]: #46-validations
 
 
 [Type Inheritance]: #5-type-inheritance
@@ -1201,5 +1379,7 @@ Following keywords are reserved for future use:
 [Generic Named Type]: #53-generic-named-type
 [Member Type Precedence]: #54-member-type-precedence
 
-[Reserved Characters & Keywords]: #7-reserved-characters--keywords
-[Keywords]: #72-keywords
+[Reserved Characters & Keywords]: #6-reserved-characters--keywords
+[Characters]: #61-characters
+[Keywords]: #62-keywords
+[Additional Keywords]: #63-additional-keywords
