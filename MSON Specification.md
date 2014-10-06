@@ -436,6 +436,8 @@ Defines extra attributes associated with the implementation of a type.
 - `sample`   - Alternate way to indicate a _[Value][]_ is a sample. See _[Sample][]_.
 - `default`  - Alternate way to indicate a _[Value][]_ is a default. See _[Default][]_.
 
+A `sample` _Type Attribute_ is mutually exclusive with `default`.
+
 ### 3.6 Description
 Describes a _[Member Type][]_ in-line.
 
