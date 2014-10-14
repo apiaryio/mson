@@ -287,7 +287,7 @@ Where `rel` is a sample value for the arbitrary _[Property Name][]_ of a _[Prope
 Defines a _[Value Member Type][]_. A _Value Member Declaration_ MUST only be used to define structures of `array`
 or `enum` _[Member Types][]_.
 
-_Value Member Declaration_ → `-` _[Value Definition][]_ _[opt]_ `-` _[opt]_ _[Description][]_ _[opt]_
+_Value Member Declaration_ → `-` _[Value Definition][]_ `-` _[opt]_ _[Description][]_ _[opt]_
 
 The optional `-` is only applicable in the case where a _[Description][]_ is provided.
 
@@ -302,7 +302,8 @@ a _[Type Specification][]_ and/or _[Type Attributes][]_, of associated types.
 
 _Value Definition_ → _[Value][]_ _[opt]_ _[Type Definition][]_ _[opt]_
 
-A _Value Definition_ of an `object` _[Member Type][]_ MUST NOT specify a _[Value][]_.
+A _[Value Definition]_ MUST include at least a _[Value][]_ or a _[Type Definition][]_. A _Value Definition_ of 
+an `object` _[Member Type][]_ MUST NOT specify a _[Value][]_. 
 
 ```
 5, 6 (array)
