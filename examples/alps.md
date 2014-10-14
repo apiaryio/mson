@@ -11,30 +11,26 @@ An ALPS document contains a machine-readable collection of identifying strings a
 Base type for select [ALPS][] elements.
 
 ### Properties
-- `links` (array[[Link][]], optional) - Links to other resources.
-- `descriptors` (array[[Descriptor][]]) - Data and transition definitions.
+- `links` (array[[Link][]], optional) - Links to other related resources.
+- `descriptors` (array[[Descriptor][]], optional) - Data and transition definitions.
 - `doc` ([Text][], optional) - A description of the element.
-- `ext` ([Extension][]) - Author-specific extension to an element.
+- `ext` ([Extension][], optional) - Author-specific extension to an element.
 
 ## Link
 Identifies a link between an ALPS element and some other (possibly external) resource.
 
 ### Properties
-- `rel` (string) - A [RFC5988][] approved relation type.
-- `href` ([URL][]) - The URL of the resource described by the associated `rel`.
+- `rel` (string, required) - A [RFC5988][] approved relation type.
+- `href` ([URL][], required) - The URL of the resource described by the associated `rel`.
 
 ## Descriptor ([ALPS Base][])
 Defines the semantics of specific data elements or state transitions that MAY exist in an associated representation.
 
 ### Properties
-- One Of
-    - `id` (string, optional) - A document-wide unique identifier for the descriptor element.
-    - `href` (enum, optional)
-        - ([URL][]) - References an external ALPS descriptor element.
-        - ([Fragment][]) - References a local descriptor element.
-    - Properties
-        - `id` - Not dry. Need access to re-use inline elements.
-        - `href` - Ditto.
+- `id` (string, optional) - A document-wide unique identifier for the descriptor element.
+- `href` (enum, optional)
+    - ([URL][]) - References an external ALPS descriptor element.
+    - ([Fragment][]) - References a local descriptor element.
 - `name` (string, optional) - A name for a descriptor element.
 - `type` (enum[string], optional) - The type of hypermedia control within the associated representation.
     - `semantic` (default) - A state (data) element.
@@ -47,20 +43,20 @@ Defines the semantics of specific data elements or state transitions that MAY ex
 Defines additional properties that extend [ALPS][] elements.
 
 ### Properties
-- `id` - A document-wide unique identifier for the extension element.
-- `href` ([URL][]) - References the definition of the extension.
-- `value` (string) - Specifies the value.
+- `id` (string, required) - A document-wide unique identifier for the extension element.
+- `href` ([URL][], optional) - References the definition of the extension.
+- `value` (string, optional) - Specifies the value.
 
 ## Text
 Free-form, usually human-readable, text.
 
 ### Properties
-- `format` (enum[string]) - Indicates how the content should be parsed.
+- `format` (enum[string], optional) - Indicates how the content should be parsed.
     - `text` (default)
     - `html`
     - `asciidoc`
-- `href` ([URL][]) - References a related document containing human readable text.
-- `content` (string) - The text contents.
+- `href` ([URL][], optional) - References a related document containing human readable text.
+- `content` (string, optional) - The text contents.
 
 ## URL (string)
 A resolvable [RFC3986] URL.
