@@ -302,7 +302,8 @@ a _[Type Specification][]_ and/or _[Type Attributes][]_, of associated types.
 
 _Value Definition_ → _[Value][]_ _[opt]_ _[Type Definition][]_ _[opt]_
 
-A _[Value Definition]_ MUST include at least a _[Value][]_ or a _[Type Definition][]_. A _Value Definition_ of 
+A _Value Definition_ MUST include at least a _[Value][]_ or a _[Type Definition][]_. A _Value Definition_ of an 
+`object` _[Member Type][]_ MUST NOT specify a _[Value][]_.
 
 ```
 5, 6 (array)
