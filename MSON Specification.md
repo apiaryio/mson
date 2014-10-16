@@ -287,7 +287,7 @@ Where `rel` is a sample value for the arbitrary _[Property Name][]_ of a _[Prope
 Defines a _[Value Member Type][]_. A _Value Member Declaration_ MUST only be used to define structures of `array`
 or `enum` _[Member Types][]_.
 
-_Value Member Declaration_ → `-` _[Value Definition][]_ _[opt]_ `-` _[opt]_ _[Description][]_ _[opt]_
+_Value Member Declaration_ → `-` _[Value Definition][]_ `-` _[opt]_ _[Description][]_ _[opt]_
 
 The optional `-` is only applicable in the case where a _[Description][]_ is provided.
 
@@ -302,7 +302,8 @@ a _[Type Specification][]_ and/or _[Type Attributes][]_, of associated types.
 
 _Value Definition_ → _[Value][]_ _[opt]_ _[Type Definition][]_ _[opt]_
 
-A _Value Definition_ of an `object` _[Member Type][]_ MUST NOT specify a _[Value][]_.
+A _Value Definition_ MUST include at least a _[Value][]_ or a _[Type Definition][]_. A _Value Definition_ of an 
+`object` _[Member Type][]_ MUST NOT specify a _[Value][]_.
 
 ```
 5, 6 (array)
@@ -408,11 +409,16 @@ A _Variable Type Definition_ MUST include at least one _[Variable Type Name][]_.
 References the name of a type in _[Base Types][]_ or _[Named Types][]_. Some limitations apply (see
 [Reserved Characters & Keywords][]).
 
-_Type Name_ → _[Literal Value][]_ | _[Variable Type Name][]_ | _[Wildcard Type Name][]_
+_Type Name_ → _[Literal Value][]_ | _[Variable Type Name][]_ | _[Wildcard Type Name][]_ | _Referenced Type Name_
+
+_Referenced Type Name_ → *A valid [Markdown-style link][], where the link name MUST be a _[Literal Value][]_*
 
 A _[Variable Type Name][]_ MUST only be used in two situations:
 - As a _Type Name_ in a _[Type Definition]_ for a _[Generic Named Type][]_.
 - As an associated _Type Name_ in _[Nested Member Types][]_ of the _[Generic Named Type][]_.
+
+A _Referenced Type Name_ MAY be used to link to a _Type Name_ defined in another location in an MSON document
+solely as a navigation convenience.
 
 ##### 3.5.2.1 Variable Type Name
 An *italicized* variable that MAY be used in place of a _[Type Name][]_ for a _[Type Definition][]_ in a
@@ -1287,7 +1293,7 @@ _[Member Type][]_.
     ```
 
 ## 6 Reserved Characters & Keywords
-When using following characters or keywords in a _[Property Name][]_, _[Literal Value][]__ or _[Type Name][]_ the name 
+When using following characters or keywords in a _[Property Name][]_, _[Literal Value][]_ or _[Type Name][]_ the name 
 or literal MUST be escaped in backticks `` ` ``. Otherwise, a `code span` MAY be used for any arbitrary formatting
 and has no specific meaning in an MSON document.
 
@@ -1308,6 +1314,7 @@ Following keywords are reserved for future use:
 `Enumeration`, `Enum`, `Object`, `Array`, `Element`, `Elements`, `Description`
 
 [RFC2119]: https://www.ietf.org/rfc/rfc2119
+[Markdown-style link]: http://daringfireball.net/projects/markdown/syntax#link
 [How to Read the Grammar]: #1-how-to-read-the-grammar
 [Markdown Syntax]: #11-markdown-syntax
 [Notational Conventions]: #12-notational-conventions
