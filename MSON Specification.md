@@ -35,7 +35,7 @@ Markdown Syntax for Object Notation (MSON) is a plain-text syntax for the descri
         - 3.5.3 [Type Attribute][]
     - 3.6 [Description][]
 - 4 [Type Sections][]
-    - 4.1 [Block Description][] 
+    - 4.1 [Block Description][]
     - 4.2 [Member Type Group][]
         - 4.2.1 [Member Type Separator][]
     - 4.3 [Nested Member Type][]
@@ -940,7 +940,7 @@ Reserved for future use.
 ## 5 Type Inheritance
 A _[Member Type][]_ or _[Named Type][]_ that inherits from another _[Named Type][]_ also inherits any
 _[Nested Member Types][]_ in the same order they are defined in the inherited _[Named Type][]_ and in order based
-on the placement of the _Mixin Type_.
+on the placement of the _[Mixin Type][]_.
 
 ```
 # Person (object)
@@ -1016,7 +1016,7 @@ Implies the same structure as:
     - prefix: Mr.
 ```
 
-A _Mixin Type_ MUST use an appropriate _[Member Type Separator][]_ in a _[Member Type Group][]_ in order to specify
+A _[Mixin Type][]_ MUST use an appropriate _[Member Type Separator][]_ in a _[Member Type Group][]_ in order to specify
 _[Nested Member Types][]_ after a _[Block Description][]_.
 
 ```
@@ -1037,7 +1037,7 @@ _One of Type_ ⇒ _[Member Type Group][]_
 
 _One of Type_ ⇒ _[Nested Member Types][]_
 
-_One of Type_ ⇒ _Mixin Type_
+_One of Type_ ⇒ _[Mixin Type][]_
 
 ```
 - first_name
@@ -1381,7 +1381,7 @@ Following keywords are reserved for future use:
 
 
 [Type Inheritance]: #5-type-inheritance
-[Mixin Type]: #51-mixin-inheritance
+[Mixin Type]: #51-mixin-type
 [One Of Type]: #52-one-of-type
 [Generic Named Type]: #53-generic-named-type
 [Member Type Precedence]: #54-member-type-precedence
