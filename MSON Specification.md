@@ -819,18 +819,7 @@ A _[Type][]_ MAY have multiple _Sample_ lists.
     - green
     ```
 
-     A list-defined (`-`) _[Sample][]_ MAY be nested directly under a _[Type Declaration][]_ if a
-     _[Block Description][]_ is not present.
-
-     ```
-     # Colors (array)
-     - Sample: red
-     - Sample
-         - blue
-         - green
-     ```
-
-     A `sample` _[Type Attribute][]_ MUST NOT be used in the _[Type Definition][]_ of a _[Named Declaration][]_.
+    A `sample` _[Type Attribute][]_ MUST NOT be used in the _[Type Definition][]_ of a _[Named Declaration][]_.
 
 - Member Types
 
@@ -895,15 +884,6 @@ _[Sample][]_.
     ## Items
     - (string)
     ```
-
-     A list-defined (`-`) _[Default][]_ MAY be nested directly under a _[Type Declaration][]_ if a
-     _[Block Description][]_ is not present.
-
-     ```
-     # Colors (array)
-     - Default
-         - red
-     ```
 
      A `default` _[Type Attribute][]_ MUST NOT be used in the _[Type Definition][]_ of a _[Named Declaration][]_.
 
