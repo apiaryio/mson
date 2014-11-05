@@ -489,17 +489,19 @@ Describes a _[Type][]_ using a nested (multi-line) Markdown text block.
 
 _Block Description_ → _Markdown-formatted text_
 
-A _Block Description_ MUST be located directly under a _[Type Declaration][]_. Markdown lists that are part of a
-_[Block Description][]_ are considered part of the block text.
+A _Block Description_ MUST be located directly under a _[Type Declaration][]_ and MUST start with text. Markdown lists 
+MAY be included in a _Block Description_ after initial text content and are considered part of the block text.
 
 ```
 - name: Andrew (string) - A Description
 
     An additional
-    multi-line description
+    multi-line description.
 
     - here
     - there
+
+    More text.
 ```
 
 Note that `here` and `there` are NOT _[Nested Member Types][]_ but rather are part of a Markdown list in the
