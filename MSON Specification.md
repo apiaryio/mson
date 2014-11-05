@@ -455,7 +455,7 @@ _Description_ → `-` _Markdown-formatted text_
 
 ## 4 Type Sections
 _[Types][]_ MAY contain any _[Block Description][]_, _[Member Type Group][]_, _[Nested Member Types][]_,
-_[Sample][]_ and/or _[Validations][]_ _Type Sections_. Apart from a _[Block Description][]_, multiple
+_[Sample][]_, _[Default][]_ and/or _[Validations][]_ _Type Sections_. Apart from a _[Block Description][]_, multiple
 _[Type Sections][]_ MAY be specified and MAY have any order.
 
 ```
