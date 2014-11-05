@@ -455,7 +455,7 @@ _Description_ → `-` _Markdown-formatted text_
 
 ## 4 Type Sections
 _[Types][]_ MAY contain any _[Block Description][]_, _[Member Type Group][]_, _[Nested Member Types][]_,
-_[Sample][]_ and/or _[Validations][]_ _Type Sections_. Apart from a _[Block Description][]_, multiple
+_[Sample][]_, _[Default][]_ and/or _[Validations][]_ _Type Sections_. Apart from a _[Block Description][]_, multiple
 _[Type Sections][]_ MAY be specified and MAY have any order.
 
 ```
@@ -489,17 +489,19 @@ Describes a _[Type][]_ using a nested (multi-line) Markdown text block.
 
 _Block Description_ → _Markdown-formatted text_
 
-A _Block Description_ MUST be located directly under a _[Type Declaration][]_. Markdown lists that are part of a
-_[Block Description][]_ are considered part of the block text.
+A _Block Description_ MUST be located directly under a _[Type Declaration][]_ and MUST start with text. Markdown lists 
+MAY be included in a _Block Description_ after initial text content and are considered part of the block text.
 
 ```
 - name: Andrew (string) - A Description
 
     An additional
-    multi-line description
+    multi-line description.
 
     - here
     - there
+
+    More text.
 ```
 
 Note that `here` and `there` are NOT _[Nested Member Types][]_ but rather are part of a Markdown list in the
@@ -817,18 +819,7 @@ A _[Type][]_ MAY have multiple _Sample_ lists.
     - green
     ```
 
-     A list-defined (`-`) _[Sample][]_ MAY be nested directly under a _[Type Declaration][]_ if a
-     _[Block Description][]_ is not present.
-
-     ```
-     # Colors (array)
-     - Sample: red
-     - Sample
-         - blue
-         - green
-     ```
-
-     A `sample` _[Type Attribute][]_ MUST NOT be used in the _[Type Definition][]_ of a _[Named Declaration][]_.
+    A `sample` _[Type Attribute][]_ MUST NOT be used in the _[Type Definition][]_ of a _[Named Declaration][]_.
 
 - Member Types
 
@@ -893,15 +884,6 @@ _[Sample][]_.
     ## Items
     - (string)
     ```
-
-     A list-defined (`-`) _[Default][]_ MAY be nested directly under a _[Type Declaration][]_ if a
-     _[Block Description][]_ is not present.
-
-     ```
-     # Colors (array)
-     - Default
-         - red
-     ```
 
      A `default` _[Type Attribute][]_ MUST NOT be used in the _[Type Definition][]_ of a _[Named Declaration][]_.
 
