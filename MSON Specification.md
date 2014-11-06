@@ -1021,6 +1021,8 @@ _One of Type_ ⇒ _[Nested Member Types][]_
 
 _One of Type_ ⇒ _[Mixin Type][]_
 
+_One of Type_ ⇒ _One of Type_
+
 ```
 - first_name
 - One Of
