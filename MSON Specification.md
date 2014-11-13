@@ -302,7 +302,7 @@ a _[Type Specification][]_ and/or _[Type Attributes][]_, of associated types.
 
 _Value Definition_ → _[Value][]_ _[opt]_ _[Type Definition][]_ _[opt]_
 
-A _Value Definition_ MUST include at least a _[Value][]_ or a _[Type Definition][]_. A _Value Definition_ of an 
+A _Value Definition_ MUST include at least a _[Value][]_ or a _[Type Definition][]_. A _Value Definition_ of an
 `object` _[Member Type][]_ MUST NOT specify a _[Value][]_.
 
 ```
@@ -489,7 +489,7 @@ Describes a _[Type][]_ using a nested (multi-line) Markdown text block.
 
 _Block Description_ → _Markdown-formatted text_
 
-A _Block Description_ MUST be located directly under a _[Type Declaration][]_ and MUST start with text. Markdown lists 
+A _Block Description_ MUST be located directly under a _[Type Declaration][]_ and MUST start with text. Markdown lists
 MAY be included in a _Block Description_ after initial text content and are considered part of the block text.
 
 ```
@@ -856,7 +856,7 @@ A _[Type][]_ MAY have multiple _Sample_ lists.
             - 4
     ```
 
-    A `default` _[Type Attribute][]_ MUST NOT be used in the _[Type Definition][]_ of a 
+    A `default` _[Type Attribute][]_ MUST NOT be used in the _[Type Definition][]_ of a
     _[Property Member Declaration][]_.
 
 ### 4.5 Default
@@ -866,7 +866,7 @@ _Default_ → `- Default` | `- Default :` _[Value][]_ | `## Default`
 
 _Default_ ⇒ _Markdown-formatted text_ | _[Value Member Types][]_
 
-A _[Type][]_ MAY have one _Default_ _[Section Type][]_. A _Default_ for a _[Member Type][]_ MAY also indicate a 
+A _[Type][]_ MAY have one _Default_ _[Section Type][]_. A _Default_ for a _[Member Type][]_ MAY also indicate a
 _[Sample][]_.
 
 - Named Types
@@ -913,7 +913,7 @@ _[Sample][]_.
         - Default: 4
     ```
 
-     A `default` _[Type Attribute][]_ MUST NOT be used in the _[Type Definition][]_ of a 
+     A `default` _[Type Attribute][]_ MUST NOT be used in the _[Type Definition][]_ of a
      _[Property Member Declaration][]_.
 
 ### 4.6 Validations
@@ -949,8 +949,9 @@ Implies the same structure as:
 Where the inherited _[Member Types][]_ from `Person` _[Named Type][]_ are listed first.
 
 ### 5.1 Mixin Type
-MSON defines a _Mixin Type_ that supports multiple inheritance from another _[Named Type][]_. _[Nested Member Types][]_
-defined in the inherited _[Named Type][]_ are added at the same indentation level of the _Mixin Type_.
+MSON defines a _Mixin Type_ that supports multiple inheritance from another _[Named Type][]_. The _[Named Type][]_ being inherited MUST be a _[Structure Type][]_ or its sub-type.
+
+_[Nested Member Types][]_ defined in the inherited _[Named Type][]_ are added at the same indentation level of the _Mixin Type_.
 
 _Mixin Type_ → `- Include` _[Type Name][]_ | `- Include` _[Type Definition][]_
 
@@ -1277,7 +1278,7 @@ _[Member Type][]_.
     ```
 
 ## 6 Reserved Characters & Keywords
-When using following characters or keywords in a _[Property Name][]_, _[Literal Value][]_ or _[Type Name][]_ the name 
+When using following characters or keywords in a _[Property Name][]_, _[Literal Value][]_ or _[Type Name][]_ the name
 or literal MUST be escaped in backticks `` ` ``. Otherwise, a `code span` MAY be used for any arbitrary formatting
 and has no specific meaning in an MSON document.
 
