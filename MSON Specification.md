@@ -951,7 +951,7 @@ Where the inherited _[Member Types][]_ from `Person` _[Named Type][]_ are listed
 ### 5.1 Mixin Type
 MSON defines a _Mixin Type_ that supports multiple inheritance from another _[Named Type][]_. The _[Named Type][]_ being inherited MUST be a _[Structure Type][]_ or its sub-type.
 
-_[Nested Member Types][]_ defined in the inherited _[Named Type][]_ are added at the same indentation level of the _Mixin Type_.
+_[Nested Member Types][]_ defined in and inherited from the mixed-in _[Named Type][]_ are added at the same indentation level of the _Mixin Type_.
 
 _Mixin Type_ → `- Include` _[Type Name][]_ | `- Include` _[Type Definition][]_
 
