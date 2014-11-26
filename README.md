@@ -498,7 +498,7 @@ Variable property name (key) is defined using *italics*. Note that a variable pr
 
 ```json
 {
-    "_links" {
+    "_links": {
         "self": {
             "href": "..."
         },
