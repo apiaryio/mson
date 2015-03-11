@@ -697,7 +697,7 @@ By Default:
         - *5* (number)
     ```
 
-    Implies Implies a `colors` _[Property Member Type][]_ that MUST have either the string "red" or any number as
+    Implies a `colors` _[Property Member Type][]_ that MUST have either the string "red" or any number as
     a value, where "5" is a sample of a `number` value.
 
 - Named Types
@@ -1135,7 +1135,7 @@ defined _[Nested Member Types][]_ in the _Generic Named Type_ and MUST NOT defin
     - rel (enum)
         - (string)
         - (object)
-        - array(object)
+        - array[object]
     ```
 
 ### 5.4 Member Type Precedence
