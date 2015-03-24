@@ -111,6 +111,42 @@ _Type_ ⇒ _[Validations][]_ _[opt]_
         - street
     ```
 
+    Refract:
+
+    ```js
+    {
+      'element': 'object',
+      'meta': {
+        'id': 'Person',
+        'description': 'A person'
+      },
+      'content': [
+        {
+          'element': 'string',
+          'meta': { 'property': 'first_name' }
+        },
+        {
+          'element': 'string',
+          'meta': { 'property': 'last_name' }
+        },
+        {
+          'element': 'object',
+          'meta': { 'property': 'address' },
+          'content': [
+            {
+              'element': 'string',
+              'meta': { 'property': 'city' }
+            },
+            {
+              'element': 'string',
+              'meta': { 'property': 'street' }
+            }
+          ]
+        }
+      ]
+    }
+    ```
+
 - List-defined _[Member Type][]_
 
     ```
@@ -122,10 +158,58 @@ _Type_ ⇒ _[Validations][]_ _[opt]_
             - street
     ```
 
+    Refract:
+
+    ```js
+    {
+      'element': 'object',
+      'meta': {
+        'id': 'person',
+        'description': 'A person'
+      },
+      'content': [
+        {
+          'element': 'string',
+          'meta': { 'property': 'first_name' }
+        },
+        {
+          'element': 'string',
+          'meta': { 'property': 'last_name' }
+        },
+        {
+          'element': 'object',
+          'meta': { 'property': 'address' },
+          'content': [
+            {
+              'element': 'string',
+              'meta': { 'property': 'city' }
+            },
+            {
+              'element': 'string',
+              'meta': { 'property': 'street' }
+            }
+          ]
+        }
+      ]
+    }
+    ```
+
     or, equivalently:
 
     ```
     - person (Person) - A person
+    ```
+
+    Refract:
+
+    ```js
+    {
+      'element': 'Person',
+      'meta': {
+        'id': 'person',
+        'description': 'A person'
+      }
+    }
     ```
 
 ### 2.1 Base Types
@@ -231,6 +315,15 @@ _Named Declaration_ → `#` _[Type Name][]_` `_[Type Definition][]_ _[opt]_
 # Person (object)
 ```
 
+Refract:
+
+```js
+{
+  'element': 'object',
+  'meta': { 'id': 'Person' }
+}
+```
+
 ### 3.1.1 Generic Named Declaration
 Defines a _[Named Type][]_ that allows an italicized _[Variable Type Name][]_ to represent a _[Type Name][]_
 at any location in the _[Type Specification][]_ of a _[Variable Type Definition][]_.
@@ -250,10 +343,42 @@ _Property Member Declaration_ → `-` _[Property Name][]_ `:` _[opt]_ _[Value De
 - person (object) - A person
 ```
 
+Refract:
+
+```js
+{
+  'element': 'object',
+  'content': [
+    {
+      'element': 'object',
+      'meta': {
+        'property': 'person',
+        'description': 'A person'
+      }
+    }
+  ]
+}
+```
+
 The optional `:` is only applicable in the case where a _[Value Definition][]_ is present and includes a _[Value][]_.
 
 ```
 - company: Apiary (string)
+```
+
+Refract:
+
+```js
+{
+  'element': 'object',
+  'content': [
+    {
+      'element': 'string',
+      'meta': { 'property': 'company' },
+      'content': 'Apiary'
+    }
+  ]
+}
 ```
 
 #### 3.2.1 Property Name
@@ -263,6 +388,22 @@ _Property Name_ → _[Literal Value][]_ | _[Variable Property Name][]_
 
 ```
 - customer (object)
+```
+
+Refract:
+
+```js
+{
+  'element': 'object',
+  'content': [
+    {
+      'element': 'object',
+      'meta': {
+        'property': 'customer',
+      }
+    }
+  ]
+}
 ```
 
 Defines a _[Property Member Declaration][]_ with a _Property Name_ "customer".
@@ -279,6 +420,31 @@ that MUST be sub-typed from a `string` _[Primitive Type][]_.
 
 ```
 *rel (Custom String)* (object)
+```
+
+Refract:
+
+```js
+{
+  'element': 'object',
+  'content': [
+    {
+      'element': 'object',
+      'meta': [
+        {
+          'element': 'property',
+          'attributes': {
+            'variable': true
+          },
+          'content': {
+            'element': 'Custom String',
+            'content': 'rel'
+          }
+        }
+      ]
+    }
+  ]
+}
 ```
 
 Where `rel` is a sample value for the arbitrary _[Property Name][]_ of a _[Property Member Declaration][]_.
@@ -309,6 +475,24 @@ A _Value Definition_ MUST include at least a _[Value][]_ or a _[Type Definition]
 5, 6 (array)
 ```
 
+Refract:
+
+```js
+{
+  'element': 'array',
+  'content': [
+    {
+      'element': 'string',
+      'content': '5'
+    },
+    {
+      'element': 'string',
+      'content': '6'
+    }
+  ]
+}
+```
+
 Defines a _Value Definition_ for an `array` type structure with sample values "5" and "6".
 
 #### 3.4.1 Value
@@ -336,12 +520,68 @@ is equivalent to:
 - list: 1, 2, 3 (array)
 ```
 
+Refract:
+
+```js
+{
+  'element': 'object',
+  'content': [
+    {
+      'element': 'array',
+      'meta': {
+        'property': 'list'
+      },
+      'content': [
+        {
+          'element': 'string',
+          'content': '1'
+        },
+        {
+          'element': 'string',
+          'content': '2'
+        },
+        {
+          'element': 'string',
+          'content': '3'
+        }
+      ]
+    }
+  ]
+}
+```
+
 Where "1", "2", and "3" are sample values of the `array` structure.
 
 - A _Value Definition_ that incorporates a _Values List_ defines fully-qualified values of an `enum` type structure.
 
 ```
 - colors: red, green (enum)
+```
+
+Refract:
+
+```js
+{
+  'element': 'object',
+  'content': [
+    {
+      'element': 'enum',
+      'meta': {
+        'property': 'colors'
+      },
+      'content': [
+        {
+          'element': 'string',
+          'content': 'red'
+        },
+        {
+          'element': 'string',
+          'content': 'green'
+        }
+      ]
+    }
+  ]
+}
 ```
 
 Where "red" and "green" are fully-qualified values of the `colors` enumeration.
@@ -351,6 +591,15 @@ Literal value of a type instance. Some limitations apply (see [Reserved Characte
 
 ```
 5
+```
+
+Refract:
+
+```js
+{
+  'element': 'string',
+  'content': '5'
+}
 ```
 
 #### 3.4.3 Variable Value
@@ -365,6 +614,14 @@ more generally, a sample value in a _[Value Definition][]_.
 *rel*
 ```
 
+```js
+{
+  'element': 'string',
+  'attributes': { 'variable': true },
+  'content': 'rel'
+}
+```
+
 #### 3.5 Type Definition
 Explicitly specifies the type of a value in an MSON instance.
 
@@ -376,6 +633,15 @@ A _Type Definition_ MUST separate multiple items with commas and is order-indepe
 
 ```
 (enum, optional)
+```
+
+Refract:
+
+```js
+{
+  'element': 'enum',
+  'attributes': { 'typeAttributes': ['optional'] }
+}
 ```
 
 #### 3.5.1 Type Specification
@@ -392,6 +658,10 @@ _[Nested Member Types][]_ members in-line using `[]` as a _Nested Type Name List
 array[number, string]
 ```
 
+Refract:
+
+TBD
+
 Indicates a `array` type structure MAY include distinct numbers or strings as values.
 
 ##### 3.5.1.1 Variable Type Specification
@@ -403,6 +673,19 @@ A _Variable Type Definition_ MUST include at least one _[Variable Type Name][]_.
 
 ```
 # One or Many (enum[*T*])
+```
+
+Refract:
+
+TBD on generic types and sub-types
+
+```js
+{
+  'element': 'enum',
+  'meta': {
+    'id': 'One or Many'
+  }
+}
 ```
 
 #### 3.5.2 Type Name
@@ -453,6 +736,24 @@ _Description_ → `-` _Markdown-formatted text_
 - name: Andrew (string) - A Description
 ```
 
+Refract:
+
+```js
+{
+  'element': 'object',
+  'content': [
+    {
+      'element': 'string',
+      'meta': {
+        'property': 'name'
+        'description': 'A Description'
+      },
+      'content': 'Andrew'
+    }
+  ]
+}
+```
+
 ## 4 Type Sections
 _[Types][]_ MAY contain any _[Block Description][]_, _[Member Type Group][]_, _[Nested Member Types][]_,
 _[Sample][]_, _[Default][]_ and/or _[Validations][]_ _Type Sections_. Apart from a _[Block Description][]_, multiple
@@ -480,6 +781,20 @@ multi-line description
 Another ...
 ```
 
+Refract:
+
+TBD, but here is an attempt
+
+```js
+{
+  'element': 'object',
+  'meta': { 'id': 'Person' },
+  'attributes': {
+    'multline-desc': 'Multi-line description here'
+  }
+}
+```
+
 In general, _Type Sections_ nested under:
 - A _[Named Declaration][]_ MUST use header-defined (`##`) variations.
 - A _[Property Member Declaration][]_ or _[Value Member Declaration][]_ MUST use list-defined (`-`) variations.
@@ -502,6 +817,27 @@ MAY be included in a _Block Description_ after initial text content and are cons
     - there
 
     More text.
+```
+
+Refract:
+
+```js
+{
+  'element': 'object',
+  'content': [
+    {
+      'element': 'string',
+      'meta': {
+        'property': 'name'
+        'description': 'A Description'
+      },
+      'attributes': {
+        'multline-desc': 'Multi-line description here'
+      }
+      'content': 'Andrew'
+    }
+  ]
+}
 ```
 
 Note that `here` and `there` are NOT _[Nested Member Types][]_ but rather are part of a Markdown list in the
