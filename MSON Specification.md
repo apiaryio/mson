@@ -729,7 +729,7 @@ the `fixed` attribute as well.
     ```
 
 - An `array` based _[Named Type][]_ or _[Member Type][]_ MAY specify `fixed` to indicate the structure is a
-"fixed ordererd list" of only the specified values and/or types, if any, of its _[Nested Member Types][]_.
+"fixed ordered list" of only the specified values and/or types, if any, of its _[Nested Member Types][]_.
 
     ```
     - colors (array, fixed)
