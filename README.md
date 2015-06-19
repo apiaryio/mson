@@ -172,9 +172,9 @@ By default, a Markdown list item with a nested Markdown list is considered to be
 ```json
 {
     "address" : {
-        "street": null,
-        "city": null,
-        "state": null
+        "street": "",
+        "city": "",
+        "state": ""
     }
 }
 ```
@@ -280,9 +280,9 @@ mutually exclusive properties available MSON defines a `One Of` type:
 #### JSON
 ```json
 {
-    "street": null,
-    "province": null,
-    "country": null
+    "street": "",
+    "province": "",
+    "country": ""
 }
 ```
 
@@ -290,9 +290,9 @@ mutually exclusive properties available MSON defines a `One Of` type:
 
 ```json
 {
-    "street": null,
-    "state": null,
-    "country": null
+    "street": "",
+    "state": "",
+    "country": ""
 }
 ```
 
@@ -354,7 +354,7 @@ mutually exclusive properties in an `object` structure.
 [
     {
         "name": "snow",
-        "description": null
+        "description": ""
     },
     42
 ]
@@ -580,13 +580,13 @@ Anywhere a type is expected, a top-level MSON Named Type can be referenced.
 
 ```json
 {
-    "first_name": null,
-    "last_name": null,
+    "first_name": "",
+    "last_name": "",
     "address": {
-        "street": null,
-        "city": null,
-        "state": null,
-        "zip": null
+        "street": "",
+        "city": "",
+        "state": "",
+        "zip": ""
     }
 }
 ```
@@ -629,12 +629,12 @@ MSON Named Type.
 
 ```json
 {
-    "first_name": null,
-    "last_name": null,
-    "street": null,
-    "city": null,
-    "state": null,
-    "zip": null
+    "first_name": "",
+    "last_name": "",
+    "street": "",
+    "city": "",
+    "state": "",
+    "zip": ""
 }
 ```
 
