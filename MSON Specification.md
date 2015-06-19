@@ -233,9 +233,9 @@ _Named Declaration_ → `#` _[Type Name][]_` `_[Type Definition][]_ _[opt]_
 
 ### 3.1.1 Generic Named Declaration
 Defines a _[Named Type][]_ that allows an italicized _[Variable Type Name][]_ to represent a _[Type Name][]_
-at any location in the _[Type Specification][]_ of a _[Variable Type Definition][]_.
+at any location in the _[Type Specification][]_ of a _[Variable Type Specification][]_.
 
-_Generic Named Declaration_ →  `#` _[Type Name][]_` `_[Variable Type Definition][]_
+_Generic Named Declaration_ →  `#` _[Type Name][]_` `_[Variable Type Specification][]_
 
 ```
 # One or Many (enum[*T*])
@@ -397,9 +397,9 @@ Indicates a `array` type structure MAY include distinct numbers or strings as va
 ##### 3.5.1.1 Variable Type Specification
 Defines a variable _[Type Specification][]_ to indicate generic _[Named Types][]_.
 
-_Variable Type Definition_ → _[Type Specification][]_
+_Variable Type Specification_ → _[Type Specification][]_
 
-A _Variable Type Definition_ MUST include at least one _[Variable Type Name][]_.
+A _Variable Type Specification_ MUST include at least one _[Variable Type Name][]_.
 
 ```
 # One or Many (enum[*T*])
@@ -866,7 +866,7 @@ _Default_ → `- Default` | `- Default :` _[Value][]_ | `## Default`
 
 _Default_ ⇒ _Markdown-formatted text_ | _[Value Member Types][]_
 
-A _[Type][]_ MAY have one _Default_ _[Section Type][]_. A _Default_ for a _[Member Type][]_ MAY also indicate a
+A _[Type][]_ MAY have one _Default_ _[Type Section][]_. A _Default_ for a _[Member Type][]_ MAY also indicate a
 _[Sample][]_.
 
 - Named Types

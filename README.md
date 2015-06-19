@@ -1,26 +1,26 @@
 # Markdown Syntax for Object Notation
-This document provides an introduction to Markdown Syntax for Object Notation (MSON), a Markdown syntax 
+This document provides an introduction to Markdown Syntax for Object Notation (MSON), a Markdown syntax
 compatible with describing JSON and JSON Schema.
 
-## What? 
-MSON is a plain-text, human and machine readable, description format for describing data structures in common markup 
+## What?
+MSON is a plain-text, human and machine readable, description format for describing data structures in common markup
 formats such as JSON, XML or YAML.
 
 ## What for?
-The aim of this description format is to facilitate the discussion (and thus validation) of data structures. The format, 
-being agnostic to the common markup formats, is well suited for "resource & representations" and "content negotiation" 
+The aim of this description format is to facilitate the discussion (and thus validation) of data structures. The format,
+being agnostic to the common markup formats, is well suited for "resource & representations" and "content negotiation"
 scenarios.
 
 In addition, this format also offers (limited) serialization functionality.
 
 Similar to the original Markdown to HTML (markup) conversion, MSON enables conversion to other markup formats.
 
-## Who & Why? 
-This format is being developed by [Apiary][] as a part of the [API Blueprint][] syntax to provide a means 
-for description and validation of HTTP payloads and DRY, media-type agnostic, resource descriptions and to simplify 
+## Who & Why?
+This format is being developed by [Apiary][] as a part of the [API Blueprint][] syntax to provide a means
+for description and validation of HTTP payloads and DRY, media-type agnostic, resource descriptions and to simplify
 content-negotiation.
 
-> **NOTE**: While this document focuses primarily on JSON and JSON Schema examples, the underlying specification will 
+> **NOTE**: While this document focuses primarily on JSON and JSON Schema examples, the underlying specification will
 > ultimately allow producing XML or YAML representations from MSON.
 
 ## Notational Conventions
@@ -67,7 +67,7 @@ A Named Type with it's associated JSON expression and JSON Schema.
 #### MSON
 
 ```
-# Product 
+# Product
 A product from Acme's catalog
 
 ## Properties
@@ -101,7 +101,7 @@ A product from Acme's catalog
 }
 ```
 
->**NOTE:** The `id` and `price` sample values are numbers given the explicit declaration of their base type of `number` 
+>**NOTE:** The `id` and `price` sample values are numbers given the explicit declaration of their base type of `number`
 > vs. the default of `string` as in [Example 1](#example-1).
 
 #### JSON Schema
@@ -135,13 +135,13 @@ A product from Acme's catalog
 }
 ```
 
-> **NOTE:** This proposal covers only basic features of JSON Schema. At this moment, it is out of the scope of this 
+> **NOTE:** This proposal covers only basic features of JSON Schema. At this moment, it is out of the scope of this
 > syntax to support all the JSON Schema keywords (such as `uniqueItems`, `exclusiveMinimum`, etc.).
 
 ---
 
 ## MSON Language Specification
-The rest of this document covers some advanced syntax examples. Refer to the [MSON Language Specification][] for the 
+The rest of this document covers some advanced syntax examples. Refer to the [MSON Language Specification][] for the
 complete MSON Grammar Reference.
 
 ## Quick Links
@@ -170,16 +170,16 @@ By default, a Markdown list item with a nested Markdown list is considered to be
 
 #### JSON
 ```json
-{ 
+{
     "address" : {
-        "street": null,
-        "city": null,
-        "state": null
+        "street": "",
+        "city": "",
+        "state": ""
     }
 }
 ```
 
-If a Markdown list's items are intended to be literals (represent array values), the type of the parent list item MUST 
+If a Markdown list's items are intended to be literals (represent array values), the type of the parent list item MUST
 be explicitly set to `array`:
 
 #### MSON
@@ -190,7 +190,7 @@ be explicitly set to `array`:
     - state
 ```
 
-Or, alternately: 
+Or, alternately:
 
 ```
 - address: street, city, state (array)
@@ -200,7 +200,7 @@ In this latter case, using a comma-separated list of values, the type `(array)` 
 
 #### JSON
 ```json
-{ 
+{
     "address": [ "street", "city", "state" ]
 }
 ```
@@ -235,19 +235,19 @@ A Property whose value can be of different types is defined by the `enum` struct
 #### JSON
 
 ```json
-{ 
-    "tag": "green" 
+{
+    "tag": "green"
 }
 ```
 
 **or**
 
 ```json
-{ 
-    "tag": { 
-        "tag_id": "1", 
-        "label": "green" 
-    } 
+{
+    "tag": {
+        "tag_id": "1",
+        "label": "green"
+    }
 }
 ```
 
@@ -257,7 +257,7 @@ A Property whose value can be of different types is defined by the `enum` struct
 ---
 
 ### Mutually Exclusive Properties
-By default, all properties are optional and may or may not be included in the object. If there is a choice of 
+By default, all properties are optional and may or may not be included in the object. If there is a choice of
 mutually exclusive properties available MSON defines a `One Of` type:
 
 #### MSON
@@ -279,25 +279,25 @@ mutually exclusive properties available MSON defines a `One Of` type:
 
 #### JSON
 ```json
-{ 
-    "street": null, 
-    "province": null, 
-    "country": null 
+{
+    "street": "",
+    "province": "",
+    "country": ""
 }
 ```
 
 **or**
 
 ```json
-{ 
-    "street": null, 
-    "state": null, 
-    "country": null 
+{
+    "street": "",
+    "state": "",
+    "country": ""
 }
 ```
 
->**NOTE:** Because an `enum` type MUST define a list of types vs. properties and by default an un-nested Markdown list 
-defines properties of an implied `object` structure, the `One Of` type declaration MUST only be used to indicate 
+>**NOTE:** Because an `enum` type MUST define a list of types vs. properties and by default an un-nested Markdown list
+defines properties of an implied `object` structure, the `One Of` type declaration MUST only be used to indicate
 mutually exclusive properties in an `object` structure.
 
 ---
@@ -323,8 +323,8 @@ mutually exclusive properties in an `object` structure.
 #### JSON
 
 ```json
-{ 
-    "tags": [ "hello", 42 ] 
+{
+    "tags": [ "hello", 42 ]
 }
 ```
 
@@ -352,9 +352,9 @@ mutually exclusive properties in an `object` structure.
 
 ```json
 [
-    { 
-        "name": "snow", 
-        "description": null 
+    {
+        "name": "snow",
+        "description": ""
     },
     42
 ]
@@ -393,29 +393,8 @@ In the case where a one-liner description is not sufficient, a multi-paragraph t
 
 ```
 - id: 1 (number, required) - The unique identifier for a product
-- name: A green door (string, required) 
+- name: A green door (string, required)
 
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-    
-    Sed sed lacus a arcu vehicula ultricies sed vel nibh. Mauris id cursus felis. 
-
-    Interdum et malesuada fames ac ante ipsum primis in faucibus.
-
-    - unus
-    - duo
-    - tres
-    - quattuor    
-
-- price: 12.50 (number, required)
-- tags: home, green (array)
-```
-
-For a multi-line description of a structure type, an `Items`, `Members` , or `Properties` keyword MUST be used to avoid 
-conflict with potential list item values that are part of the description:
-
-```
-- tags (array)
-    
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
     Sed sed lacus a arcu vehicula ultricies sed vel nibh. Mauris id cursus felis.
@@ -427,16 +406,37 @@ conflict with potential list item values that are part of the description:
     - tres
     - quattuor
 
-    - Items 
+- price: 12.50 (number, required)
+- tags: home, green (array)
+```
+
+For a multi-line description of a structure type, an `Items`, `Members` , or `Properties` keyword MUST be used to avoid
+conflict with potential list item values that are part of the description:
+
+```
+- tags (array)
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+    Sed sed lacus a arcu vehicula ultricies sed vel nibh. Mauris id cursus felis.
+
+    Interdum et malesuada fames ac ante ipsum primis in faucibus.
+
+    - unus
+    - duo
+    - tres
+    - quattuor
+
+    - Items
         - home
-        - green 
+        - green
 ```
 
 >**NOTE:** Unus ... quattuor are considered part of the text block vs. defining items of the array.
 
 ## Escaping
 Markdown [code span][] element syntax (`` ` ` ``) is used to escape reserved Keywords that should just be interpretted
-as literals as well as other constructs that may be erroneously interpreted by an MSON parser as meaningful. 
+as literals as well as other constructs that may be erroneously interpreted by an MSON parser as meaningful.
 
 For non-Keywords, a [code span][] can be used for formatting Markdown as an aesthetic preference.
 
@@ -444,12 +444,12 @@ For non-Keywords, a [code span][] can be used for formatting Markdown as an aest
 
 ```
 - listing (object)
-    
+
     Our real estate listing has different properties available.
 
     - `Properties`
         - This one.
-        - That one. 
+        - That one.
 
     - Properties
         - description (string)
@@ -460,12 +460,12 @@ For non-Keywords, a [code span][] can be used for formatting Markdown as an aest
 #### Rendered Markdown
 
 - listing (object)
-    
+
     Our real estate listing has different properties available.
 
     - `Properties`
         - This one.
-        - That one. 
+        - That one.
 
     - Properties
         - description
@@ -478,7 +478,7 @@ For non-Keywords, a [code span][] can be used for formatting Markdown as an aest
 ---
 
 ## Variable Property Name
-Variable property name (key) is defined using *italics*. Note that a variable property cannot be required. 
+Variable property name (key) is defined using *italics*. Note that a variable property cannot be required.
 
 #### MSON
 
@@ -514,11 +514,11 @@ Variable property name (key) is defined using *italics*. Note that a variable pr
 ## Type Definition
 Additional Named Types can be defined using a Markdown header:
 
-#### MSON 
+#### MSON
 
 ```
 # Address (object)
-Description is here! Properties to follow. 
+Description is here! Properties to follow.
 
 ## Properties
 - street
@@ -531,7 +531,7 @@ The same entity defined as an `address` property:
 ```
 - address (object)
 
-    Description is here! Properties to follow. 
+    Description is here! Properties to follow.
 
     - Properties
         - street
@@ -546,7 +546,7 @@ The same `address` property referencing the previously Named type:
 ```
 
 ## Referencing
-Anywhere a type is expected, a top-level MSON Named Type can be referenced. 
+Anywhere a type is expected, a top-level MSON Named Type can be referenced.
 
 #### MSON
 
@@ -580,13 +580,13 @@ Anywhere a type is expected, a top-level MSON Named Type can be referenced.
 
 ```json
 {
-    "first_name": null,
-    "last_name": null,
+    "first_name": "",
+    "last_name": "",
     "address": {
-        "street": null,
-        "city": null,
-        "state": null,
-        "zip": null
+        "street": "",
+        "city": "",
+        "state": "",
+        "zip": ""
     }
 }
 ```
@@ -629,12 +629,12 @@ MSON Named Type.
 
 ```json
 {
-    "first_name": null,
-    "last_name": null,
-    "street": null,
-    "city": null,
-    "state": null,
-    "zip": null
+    "first_name": "",
+    "last_name": "",
+    "street": "",
+    "city": "",
+    "state": "",
+    "zip": ""
 }
 ```
 
