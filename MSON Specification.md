@@ -439,6 +439,7 @@ Defines extra attributes associated with the implementation of a type.
 - `required` - instance of this type is required
 - `optional` - instance of this type is optional (default)
 - `fixed`    - instance of this type structure and values are fixed
+- `nullable` - instance of this type *Value* MAY be unset (e.g. `null` or `nil`)
 - `sample`   - Alternate way to indicate a _[Value][]_ is a sample. See _[Sample][]_.
 - `default`  - Alternate way to indicate a _[Value][]_ is a default. See _[Default][]_.
 
