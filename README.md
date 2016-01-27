@@ -28,7 +28,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 "OPTIONAL" in this document are to be interpreted as described in [RFC2119][].
 
 ## Example 1
-A simple `object` structure and it's associated JSON expression.
+A simple `object` structure and its associated JSON expression.
 
 #### MSON
 
@@ -62,7 +62,7 @@ A simple `object` structure and it's associated JSON expression.
 ---
 
 ## Example 2
-A Named Type with it's associated JSON expression and JSON Schema.
+A Named Type with its associated JSON expression and JSON Schema.
 
 #### MSON
 
