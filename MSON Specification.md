@@ -104,8 +104,8 @@ _Type_ ⇒ _[Validations][]_ _[opt]_
     A person.
 
     ## Properties
-    - first_name
-    - last_name
+    - `first_name`
+    - `last_name`
     - address
         - city
         - street
@@ -115,8 +115,8 @@ _Type_ ⇒ _[Validations][]_ _[opt]_
 
     ```
     - person (object) - A person
-        - first_name
-        - last_name
+        - `first_name`
+        - `last_name`
         - address
             - city
             - street
@@ -194,8 +194,8 @@ Any list of _[Property Member Types][]_ collectively MAY define an implied paren
 
 ```
 - person (object) - A person
-    - first_name
-    - last_name
+    - `first_name`
+    - `last_name`
     - address
 - company (string)
 ```
@@ -471,8 +471,8 @@ multi-line description
 ...
 
 ## Properties
-- first_name
-- last_name
+- `first_name`
+- `last_name`
 
 ## Validations
 ...
@@ -520,7 +520,7 @@ when used in a Markdown list.
         - last_name
 
     - Properties
-        - given_name
+        - `given_name`
         - surname
 ```
 
@@ -549,8 +549,8 @@ _[Nested Member Types][]_ list.
     - there
 
     ## Properties
-    - first_name
-    - last_name
+    - `first_name`
+    - `last_name`
     ```
 
 - Member Type
@@ -568,8 +568,8 @@ _[Nested Member Types][]_ list.
         - there
 
         - Properties
-            - first_name
-            - last_name
+            - `first_name`
+            - `last_name`
     ```
 
 A _Member Type Group_ of an appropriate type MUST be used to define _[Nested Member Types][]_ whenever any other
@@ -584,8 +584,8 @@ _[Type Section][]_ is specified at the same level.
 
     ```
     # Person (object)
-    - first_name
-    - last_name
+    - `first_name`
+    - `last_name`
 
     ## Sample
     ...
@@ -599,8 +599,8 @@ _[Type Section][]_ is specified at the same level.
     Just an ordinary person
 
     ## Properties
-    - first_name
-    - last_name
+    - `first_name`
+    - `last_name`
     ```
 
 #### 4.2.1 Member Type Separator
@@ -708,8 +708,8 @@ By Default:
 
     ```
     # Person (object)
-    - first_name
-    - last_name
+    - `first_name`
+    - `last_name`
     ```
 
 With a `fixed` _[Type Attribute][]_:
@@ -755,8 +755,8 @@ _[Nested Member Types][]_. Further, such an `object` type structure MUST NOT con
 
     ```
     - person (object, fixed)
-        - first_name: Andrew
-        - last_name: Smith
+        - `first_name`: Andrew
+        - `last_name`: Smith
     ```
 
     Implies a "value object" that MUST contain only the properties "first_name" and "last_name" with the values
@@ -764,8 +764,8 @@ _[Nested Member Types][]_. Further, such an `object` type structure MUST NOT con
 
     ```
     - person (object, fixed)
-        - first_name
-        - last_name
+        - `first_name`
+        - `last_name`
     ```
 
     Implies an `object` that MUST contain only the properties "first_name" and "last_name", respectively.
@@ -775,8 +775,8 @@ by using an `optional` attribute and/or MAY indicate values are samples using a 
 
     ```
     - person (object, fixed)
-        - first_name
-        - last_name (optional)
+        - `first_name`
+        - `last_name` (optional)
     ```
 
     Implies a "value object" that MUST contain the property "first_name" and MAY contain the property
@@ -927,8 +927,8 @@ on the placement of the _[Mixin Type][]_.
 
 ```
 # Person (object)
-- first_name
-- last_name
+- `first_name`
+- `last_name`
 ```
 
 And:
@@ -942,8 +942,8 @@ Implies the same structure as:
 
 ```
 - person (object)
-    - first_name
-    - last_name
+    - `first_name`
+    - `last_name`
     - address
 ```
 
@@ -960,14 +960,14 @@ _Example 1_
 
 ```
 # Person (object)
-- first_name
-- last_name
+- `first_name`
+- `last_name`
 ```
 
 And:
 
 ```
-- formal_person (object)
+- `formal_person` (object)
     - prefix: Mr
     - Include Person
 ```
@@ -975,10 +975,10 @@ And:
 Implies the same structure as:
 
 ```
-- formal_person (object)
+- `formal_person` (object)
     - prefix: Mr
-    - first_name
-    - last_name
+    - `first_name`
+    - `last_name`
 ```
 
 _Example 2_
@@ -986,7 +986,7 @@ _Example 2_
 Alternately:
 
 ```
-- formal_person (object)
+- `formal_person` (object)
     - Include Person
     - prefix: Mr.
 ```
@@ -994,9 +994,9 @@ Alternately:
 Implies the same structure as:
 
 ```
-- formal_person (object)
-    - first_name
-    - last_name
+- `formal_person` (object)
+    - `first_name`
+    - `last_name`
     - prefix: Mr.
 ```
 
@@ -1026,33 +1026,33 @@ _One of Type_ ⇒ _[Mixin Type][]_
 _One of Type_ ⇒ _One of Type_
 
 ```
-- first_name
+- `first_name`
 - One Of
-    - last_name
-    - One of
-        - given_name: Smith
-        - suffixed_name: Smith, Sr.
+    - `last_name`
+    - One Of
+        - `given_name`: Smith
+        - `suffixed_name`: Smith, Sr.
 ```
 
 Implies values with a structure of:
 
 ```
-- first_name
-- last_name
+- `first_name`
+- `last_name`
 ```
 
 Or:
 
 ```
-- first_name
-- given_name: Smith
+- `first_name`
+- `given_name`: Smith
 ```
 
 Or:
 
 ```
-- first_name
-- suffixed_name: Smith, Sr.
+- `first_name`
+- `suffixed_name`: Smith, Sr.
 ```
 
 A _One Of Type_ MUST use a `Properties` _[Member Type Separator][]_ in a _[Member Type Group][]_:
@@ -1073,10 +1073,10 @@ A _One Of Type_ MUST use a `Properties` _[Member Type Separator][]_ in a _[Membe
     ```
     - person (object)
         - One Of
-            - full_name
+            - `full_name`
             - Properties
-                - first_name
-                - last_name
+                - `first_name`
+                - `last_name`
     ```
 
 ### 5.3 Generic Named Type
@@ -1097,22 +1097,22 @@ defined _[Nested Member Types][]_ in the _Generic Named Type_ and MUST NOT defin
         - address
 
     # Person (object)
-        - first_name
-        - last_name
+        - `first_name`
+        - `last_name`
     ```
 
     And:
 
     ```
-    - decorated_person (Address Decorator(Person))
+    - `decorated_person` (Address Decorator(Person))
     ```
 
     Implies the same structure as:
 
     ```
     - decorated_person (object)
-        - first_name
-        - last_name
+        - `first_name`
+        - `last_name`
         - address
     ```
 
@@ -1146,8 +1146,8 @@ _[Member Type][]_.
 
 ```
 # Person (object, fixed)
-- first_name
-- last_name
+- `first_name`
+- `last_name`
 - address (object)
 ```
 
@@ -1157,25 +1157,25 @@ _[Member Type][]_.
 
     ```
     - person (Person)
-        - last_name (optional)
+        - `last_name` (optional)
     ```
 
     Is literally the same as:
 
     ```
     - person (object)
-        - first_name (fixed)
-        - last_name (fixed)
+        - `first_name` (fixed)
+        - `last_name` (fixed)
         - address (object, fixed)
-        - last_name (optional)
+        - `last_name` (optional)
     ```
 
     Which implies a structure the same as:
 
     ```
     - person (object)
-        - first_name (fixed)
-        - last_name (optional)
+        - `first_name` (fixed)
+        - `last_name` (optional)
         - address (object, fixed)
     ```
 
@@ -1183,7 +1183,7 @@ _[Member Type][]_.
 
     ```
     - person (object)
-        - first_name (optional)
+        - `first_name` (optional)
         - Include Person
     ```
 
@@ -1191,9 +1191,9 @@ _[Member Type][]_.
 
     ```
     - person (object)
-        - first_name (optional)
-        - first_name (fixed)
-        - last_name (fixed)
+        - `first_name` (optional)
+        - `first_name` (fixed)
+        - `last_name` (fixed)
         - address (object, fixed)
     ```
 
@@ -1201,8 +1201,8 @@ _[Member Type][]_.
 
     ```
     - person (object)
-        - first_name (fixed)
-        - last_name (fixed)
+        - `first_name` (fixed)
+        - `last_name` (fixed)
         - address (object, fixed)
     ```
 
@@ -1211,7 +1211,7 @@ _[Member Type][]_.
     ```
     - person (object)
         - Include Person
-        - first_name (optional)
+        - `first_name` (optional)
 
     ```
 
@@ -1219,18 +1219,18 @@ _[Member Type][]_.
 
     ```
     - person (object)
-        - first_name (fixed)
-        - last_name (fixed)
+        - `first_name` (fixed)
+        - `last_name` (fixed)
         - address (object, fixed)
-        - first_name (optional)
+        - `first_name` (optional)
     ```
 
     Implies a structure the same as:
 
     ```
     - person (object)
-        - first_name (optional)
-        - last_name (fixed)
+        - `first_name` (optional)
+        - `last_name` (fixed)
         - address (object, fixed)
     ```
 
@@ -1245,8 +1245,8 @@ _[Member Type][]_.
 
     ```
     - person (object, fixed)
-        - first_name
-        - last_name
+        - `first_name`
+        - `last_name`
         - address (object)
         - citizenship
     ```
@@ -1263,8 +1263,8 @@ _[Member Type][]_.
 
     ```
     - person (object)
-        - first_name (fixed)
-        - last_name (fixed)
+        - `first_name` (fixed)
+        - `last_name` (fixed)
         - address (object, fixed)
         - address (string)
     ```
@@ -1273,8 +1273,8 @@ _[Member Type][]_.
 
     ```
     - person (object)
-        - first_name (fixed)
-        - last_name (fixed)
+        - `first_name` (fixed)
+        - `last_name` (fixed)
         - address (string)
     ```
 
