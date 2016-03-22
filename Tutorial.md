@@ -37,7 +37,7 @@ We may also specify a sample value for the person's name by preceding the proper
 + name: Kyle (string) - The Person's name
 ```
 
-**NOTE**: *It's important to note, that if a sample value contains reserved characters such as `:`, `(`,`)`, `<`, `>`, `{`, `}`, `[`, `]`, `_`, `*`, `-`, `+`, `` ` `` then the sample value must be wrapped in a code-block using back-ticks:*
+**NOTE**: *It's important to note, that if a sample value contains reserved characters such as `:`, `(`,`)`, `<`, `>`, `{`, `}`, `[`, `]`, `_`, <code>&ast;</code>, `-`, `+`, `` ` `` then the sample value must be wrapped in a code-block using back-ticks:*
 
 ```apib
 + name: `Spencer-Churchill` (string) - The Person's name
