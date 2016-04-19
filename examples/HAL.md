@@ -1,6 +1,8 @@
 # JSON Hypertext Application Language
 <http://tools.ietf.org/html/draft-kelly-json-hal-06>
 
+# Data Structures
+
 ## HAL Resource (object)
 HAL Resource is the base type for all HAL resource models. It contains two predefined elements containing hypertext 
 links of the given resource and embedded resources. Derived resource models may add additional elements to specify the 
@@ -14,7 +16,7 @@ state of the resource.
 
     - Properties
 
-        - *(Relation Type)* (One or many(Link))
+        - *relation* ([One Or Many Links](#one-or-many-links-enum))
 
 - `_embedded` (object)
 
@@ -23,9 +25,9 @@ state of the resource.
 
     - Properties
 
-        - *(Relation Type)* (One or many(HAL Resource))
-        
-- *`properties`* (*)
+        - *relation* ([One Or Many HAL Resources](#one-or-many-hal-resources-enum))
+
+- *`properties`* (enum)
 
     Key/value pairs of properties of the Resource object that can contain a valid JSON type as a value.
 
@@ -34,13 +36,13 @@ HAL introduces for Link relation types an extended representation of RFC 5988:
 
 - Registered link relation types use their registered string
 - Custom link relation types should be (HTTP) URI, which should point to HTML documentation for that relation type.
-- The reserved (but unregistered) relation type curies can get used for a compact URI representation in CURIE Syntax 
+- The reserved (but unregistered) relation type curies can get used for a compact URI representation in CURIE Syntax
 - for custom link relation types.
 
 Note in a future, additional type specifiers can be added:
 
-``` 
-- Validations 
+```
+- Validations
     - min: `1`
 ```
 
@@ -65,17 +67,19 @@ Link object specifies a link to a target resource.
 
 - `hreflang` (string) - A BCP 47 language tag identifying the language of the target resource
 
-## One or many (enum[*T*])
-The generic type `One or many` allows to model a data type that either contains a single entry of a given type or a 
-collection of elements of the same type.
+
+## One Or Many Links (enum)
+This is a data type that either contains a single Link or a collection of Links.
 
 ### Members
-- (*T*)
-- (array[*T*])
 
-    Again a possible future extension to specifiy minimum number of items could be
+- ([Link](#link-object))
+- (array[[Link](#link-object)])
 
-    ```
-    ### Validations
-        - min: `1`
-    ```
+## One Or Many HAL Resources (enum)
+This is a data type that either contains a single HAL Resource or a collection of HAL Resources.
+
+### Members
+
+- ([HAL Resource](#hal-resource-object))
+- (array[[HAL Resource](#hal-resource-object)])
