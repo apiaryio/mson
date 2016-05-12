@@ -152,6 +152,9 @@ contain a _[Member Type Group][]_ or _[Nested Member Types][]_.
 Applies to recursive, composite data structure and type definitions. _[Types][]_ that are sub-typed from
 _Structure Types_ MAY contain a _[Member Type Group][]_ or _[Nested Member Types][]_.
 
+Structure Types may directly or indirectly contain recursive references to
+themselves.
+
 - `array`
 
     Specifies a list of items for values.
@@ -948,6 +951,8 @@ Implies the same structure as:
 ```
 
 Where the inherited _[Member Types][]_ from `Person` _[Named Type][]_ are listed first.
+
+An object may not inherit from itself, either directly or indirectly.
 
 ### 5.1 Mixin Type
 MSON defines a _Mixin Type_ that supports multiple inheritance from another _[Named Type][]_. The _[Named Type][]_ being inherited MUST be a _[Structure Type][]_ or its sub-type.
