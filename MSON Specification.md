@@ -675,7 +675,7 @@ By Default:
         - 5 (number)
     ```
 
-    Implies an `array` structure whose individual items MAY be strings or numbers with sample values "red" and "5",
+    Implies an `array` structure whose individual items MAY be strings or numbers with sample values "red" and 5,
     respectively.
 
 - Enum Structures
