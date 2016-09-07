@@ -439,12 +439,13 @@ A _Wildcard Type Name_ MAY only be used in a _[Type Specification][]_ for _[Memb
 #### 3.5.3 Type Attribute
 Defines extra attributes associated with the implementation of a type.
 
-- `required` - instance of this type is required
-- `optional` - instance of this type is optional (default)
-- `fixed`    - instance of this type structure and values are fixed
-- `nullable` - instance of this type *Value* MAY be unset (e.g. `null` or `nil`). `nullable` may only be used within properties of objects.
-- `sample`   - Alternate way to indicate a _[Value][]_ is a sample. See _[Sample][]_.
-- `default`  - Alternate way to indicate a _[Value][]_ is a default. See _[Default][]_.
+- `required`   - instance of this type is required
+- `optional`   - instance of this type is optional (default)
+- `fixed`      - instance of this type structure and values are fixed. This attribute propagates to _[Nested Member Types][]_.
+- `fixed-type` - instance of this type structure is fixed, value is not. This attribute does not propagate to _[Nested Member Types][]_.
+- `nullable`   - instance of this type *Value* MAY be unset (e.g. `null` or `nil`). `nullable` may only be used within properties of objects.
+- `sample`     - Alternate way to indicate a _[Value][]_ is a sample. See _[Sample][]_.
+- `default`    - Alternate way to indicate a _[Value][]_ is a default. See _[Default][]_.
 
 A `sample` _Type Attribute_ is mutually exclusive with `default`.
 
@@ -793,6 +794,33 @@ by using an `optional` attribute and/or MAY indicate values are samples using a 
 
     Implies an `array` type structure that MUST contain "red" as an item and MAY contain any other strings, where
     "green" is a sample value.
+
+With a `fixed-type` _[Type Attribute][]_:
+
+- If a _[Named Type][]_ or _[Member Type][]_ annotates its type as `fixed-type`, _[Nested Member Types][]_ do not inherit
+the `fixed-type` attribute.
+
+- An `array` based _[Named Type][]_ or _[Member Type][]_ MAY specify `fixed-type` to indicate the structure
+MUST contain items of the specified types only.
+
+    ```
+    - colors (array, fixed-type)
+        - red (string)
+    ```
+
+    Implies a fixed-list `array` structure that MUST only contain any string items; red is an example value.
+
+- An `object` based _[Named Type][]_ or _[Member Type][]_ MAY specify `fixed-type` to indicate an object where all
+the properties MUST be present. Further, such an `object` type structure MUST NOT contain any other properties.
+
+    ```
+    - person (object, fixed-type)
+        - first_name: John
+        - last_name: Smith
+    ```
+
+    Implies an object that MUST contain only the properties "first_name" and "last_name", respectively;
+    John and Smith are example values.
 
 ### 4.4 Sample
 Defines alternate sample _[Values][]_ for _[Member Types][]_ as a nested Markdown list with (multi-line) text.
