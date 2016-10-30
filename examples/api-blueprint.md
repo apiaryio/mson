@@ -4,7 +4,7 @@
  
 ### List all [GET]
 + Response 200 (application/json)
-    + Attributes (array[Note])
+    + Attributes (array[Note], fixed-type)
  
 ## Note [/notes/{id}]
 + Attributes
