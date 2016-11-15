@@ -888,9 +888,6 @@ A _[Type][]_ MAY have multiple _Sample_ lists.
             - 4
     ```
 
-    A `default` _[Type Attribute][]_ MUST NOT be used in the _[Type Definition][]_ of a
-    _[Property Member Declaration][]_.
-
 ### 4.5 Default
 Indicates _[Values][]_ for _[Member Types][]_ as a nested Markdown list with (multi-line) text are defaults.
 
@@ -944,9 +941,6 @@ _[Sample][]_.
     - list: 3, 4 (enum)
         - Default: 4
     ```
-
-     A `default` _[Type Attribute][]_ MUST NOT be used in the _[Type Definition][]_ of a
-     _[Property Member Declaration][]_.
 
 ### 4.6 Validations
 Reserved for future use.
