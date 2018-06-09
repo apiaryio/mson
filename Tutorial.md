@@ -31,7 +31,7 @@ We can attach a description for our name property by following the type definiti
 + name (string) - The Person's name
 ```
 
-We may also specify a sample value for the person's name by preceding the property name by a colon (`:`) and then the value.
+We may also specify a sample value for the person's name by following the property name by a colon (`:`) and then the value.
 
 ```apib
 + name: Kyle (string) - The Person's name
